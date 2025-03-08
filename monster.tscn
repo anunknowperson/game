@@ -1,0 +1,91 @@
+[gd_scene load_steps=5 format=3 uid="uid://deud1npbtlu0q"]
+
+[sub_resource type="GDScript" id="GDScript_qhyq2"]
+script/source = "extends CharacterBody3D
+
+var movement_speed: float = 1.0
+var movement_target_position: Vector3 = Vector3(-3.0,0.0,2.0)
+
+@onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
+
+func _ready():
+	if is_multiplayer_authority():
+		# These values need to be adjusted for the actor's speed
+		# and the navigation layout.
+		navigation_agent.path_desired_distance = 0.5
+		navigation_agent.target_desired_distance = 0.5
+		
+		# Make sure to not await during _ready.
+		actor_setup.call_deferred()
+	else:
+		$Label3D.text = \"
+		Am I authority: %s\\n
+		My uid: %s\\n
+		\" % [str(is_multiplayer_authority()), str(multiplayer.get_unique_id())]
+		$Label3D.modulate = Color.GREEN
+
+func actor_setup():
+	while true:
+		# Wait for the first physics frame so the NavigationServer can sync.
+		await get_tree().physics_frame
+
+		# Now that the navigation map is no longer empty, set the movement target.
+		#print(multiplayer.get_unique_id())
+		
+		$Label3D.text = \"
+		Am I authority: %s\\n
+		My uid: %s\\n
+		My navigation target: %s\\n
+		\" % [str(is_multiplayer_authority()), str(multiplayer.get_unique_id()), str(get_node(\"/root/Game\").players[multiplayer.get_unique_id()].position)]
+		$Label3D.modulate = Color.RED
+		# print(str(get_node(\"/root/Game\").players))
+		# print(str(get_node(\"/root/Game\").players[multiplayer.get_unique_id()].position))
+		set_movement_target(get_node(\"/root/Game\").players[multiplayer.get_unique_id()].position)
+
+
+
+func set_movement_target(movement_target: Vector3):
+	navigation_agent.set_target_position(movement_target)
+
+func _physics_process(delta):
+	if not is_multiplayer_authority():
+		return
+		
+	if navigation_agent.is_navigation_finished():
+		return
+
+	var current_agent_position: Vector3 = global_position
+	var next_path_position: Vector3 = navigation_agent.get_next_path_position()
+
+	velocity = current_agent_position.direction_to(next_path_position) * movement_speed
+	move_and_slide()
+"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qhyq2"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_bexhn"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_c5q2p"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="Monster" type="CharacterBody3D"]
+script = SubResource("GDScript_qhyq2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.570139, 0)
+shape = SubResource("SphereShape3D_qhyq2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.572067, 0)
+mesh = SubResource("SphereMesh_bexhn")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_c5q2p")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01112, 0)
+billboard = 1
