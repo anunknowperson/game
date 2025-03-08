@@ -18,7 +18,7 @@ var player_name = "Player"
 
 func _enter_tree():
 	var args = Array(OS.get_cmdline_args())
-	set_multiplayer_authority(str(name).to_int(), true)
+	#set_multiplayer_authority(str(name).to_int(), true)
 
 func _ready():
 	var args = Array(OS.get_cmdline_args())
@@ -39,7 +39,7 @@ func _ready():
 		#	player_name = manager.player_name
 		player_name = WebrtcMultiplayer.manager.player_name
 		# RPC to set our name for all clients
-		print("test: " + str(args) + str(get_node("/root/Game/Players/1").name))
+		#print("test: " + str(args) + str(get_node("/root/Game/Players/1").name))
 		call_deferred("rpc", "set_player_name", player_name)
 
 # RPC to sync the player name
