@@ -25,8 +25,7 @@ var multiplayer_manager: MultiplayerManager
 
 func _ready():
 	# Initialize the multiplayer manager
-	multiplayer_manager = MultiplayerManager.new()
-	add_child(multiplayer_manager)
+	multiplayer_manager = WebrtcMultiplayer.manager
 	
 	# Connect signals
 	multiplayer_manager.connection_established.connect(_on_connection_established)
@@ -146,4 +145,4 @@ func _on_leave_button_pressed():
 
 func _on_game_started():
 	# In a real game, you would switch to the game scene here
-	print("Game started! In a real game, you would switch to the game scene.")
+	get_tree().change_scene_to_file("res://Game.tscn")

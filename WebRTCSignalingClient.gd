@@ -192,10 +192,13 @@ func _handle_connected(id: int, use_mesh: bool) -> void:
 	my_id = id
 	
 	if use_mesh:
+		print("Mesh peer initialized")
 		rtc_mp.create_mesh(id)
 	elif id == 1:
+		print("Server peer initialized")
 		rtc_mp.create_server()
 	else:
+		print("Client peer initialized")
 		rtc_mp.create_client(id)
 	
 	multiplayer.multiplayer_peer = rtc_mp

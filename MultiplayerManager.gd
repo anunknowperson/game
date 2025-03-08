@@ -87,6 +87,7 @@ func start_game() -> void:
 # Set player name
 func set_player_name(name: String) -> void:
 	player_name = name
+	print("MY PLAYER NAME IS: " + player_name)
 	
 	# If we're already connected, update our name for others
 	if signaling.my_id != 0:
@@ -153,10 +154,10 @@ func _on_network_peer_disconnected(id: int) -> void:
 	print("Network peer disconnected: ", id)
 	
 	if players.has(id):
-		var player_name = players[id]
+		var disconnected_player_name = players[id]
 		players.erase(id)
 		player_left.emit(id)
-		print("Player left: ", player_name)
+		print("Player left: ", disconnected_player_name)
 
 # RPC method to register a player
 @rpc("any_peer", "reliable")

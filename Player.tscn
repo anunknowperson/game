@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://cjpsidrjpev6j"]
+
+[ext_resource type="Script" uid="uid://mj1xce237xdb" path="res://Player.gd" id="1_8q7sx"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_o1t54"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m24f3"]
+albedo_color = Color(0.27451, 0.317647, 0.980392, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_njs2f"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6qmwl"]
+viewport_path = NodePath("NameViewport")
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_0hv48"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:velocity")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("NameLabel:text")
+properties/3/spawn = true
+properties/3/replication_mode = 2
+properties/4/path = NodePath(".:player_name")
+properties/4/spawn = true
+properties/4/replication_mode = 2
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+script = ExtResource("1_8q7sx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_o1t54")
+surface_material_override/0 = SubResource("StandardMaterial3D_m24f3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_njs2f")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="NameLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+billboard = 1
+text = "Player"
+font_size = 24
+outline_size = 4
+
+[node name="NameViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(200, 50)
+
+[node name="Label" type="Label" parent="NameViewport"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Player"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+visible = false
+billboard = 1
+texture = SubResource("ViewportTexture_6qmwl")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+delta_interval = 1.0
+replication_config = SubResource("SceneReplicationConfig_0hv48")
