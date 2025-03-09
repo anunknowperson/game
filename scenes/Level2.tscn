@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdfvhuccxv3if"]
+
+[sub_resource type="GDScript" id="GDScript_t7iv1"]
+script/source = "extends Node3D
+
+var monster_scene = preload(\"res://monster.tscn\")
+
+func _ready() -> void:
+	rpc(\"spawn_monster\", multiplayer.get_unique_id(), Vector3(randf_range(-1, 1), 0, randf_range(-1, 1)))
+
+@rpc(\"any_peer\", \"call_local\")
+func spawn_monster(id, pos) -> void:
+	print(str(multiplayer.get_unique_id()) + \"SPAWNING: \" + str(id))
+	
+	var monster = monster_scene.instantiate()
+	monster.position = pos
+	monster.name = str(id)
+	monster.set_multiplayer_authority(id, true)
+	
+	add_child(monster, true)
+"
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_qhyq2"]
+rayleigh_coefficient = 1.5
+ground_color = Color(0.368627, 0.384314, 0.180392, 1)
+
+[sub_resource type="Sky" id="Sky_rn17v"]
+sky_material = SubResource("PhysicalSkyMaterial_qhyq2")
+
+[sub_resource type="Environment" id="Environment_bexhn"]
+background_mode = 2
+sky = SubResource("Sky_rn17v")
+ambient_light_source = 3
+ambient_light_color = Color(0.611765, 0.611765, 0.611765, 1)
+tonemap_mode = 2
+ssao_enabled = true
+glow_enabled = true
+
+[node name="Level" type="Node3D"]
+script = SubResource("GDScript_t7iv1")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bexhn")

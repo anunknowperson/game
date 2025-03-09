@@ -20,6 +20,8 @@ extends Control
 @onready var start_game_button = $GamePanel/VBoxContainer/StartGameButton
 @onready var leave_button = $GamePanel/VBoxContainer/LeaveButton
 
+@onready var game_scene = preload("res://Game.tscn")
+
 # Reference to the multiplayer manager
 var multiplayer_manager: MultiplayerManager
 
@@ -145,4 +147,9 @@ func _on_leave_button_pressed():
 
 func _on_game_started():
 	# In a real game, you would switch to the game scene here
-	get_tree().change_scene_to_file("res://Game.tscn")
+	connection_panel.visible = false
+	lobby_panel.visible = false
+	game_panel.visible = false
+	
+	var g = game_scene.instantiate()
+	add_child(g)

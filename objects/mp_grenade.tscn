@@ -1,0 +1,142 @@
+[gd_scene load_steps=9 format=3 uid="uid://b2inhttevhtna"]
+
+[ext_resource type="Script" uid="uid://2is75bhhucsc" path="res://objects/mp_rigidbody.gd" id="1_46k3x"]
+[ext_resource type="Script" uid="uid://eatwwggessoe" path="res://objects/synchronizer.gd" id="2_boiug"]
+[ext_resource type="AudioStream" uid="uid://muijbc7msadf" path="res://sounds/bomb.mp3" id="3_boiug"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_boiug"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_bexhn"]
+material = SubResource("StandardMaterial3D_boiug")
+radius = 0.25
+height = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_t7iv1"]
+radius = 0.25
+
+[sub_resource type="GDScript" id="GDScript_46k3x"]
+script/source = "extends Node3D
+
+# Configurable properties
+@export var countdown_time: float = 2.0
+@export var blast_radius: float = 10.0
+@export var blast_force: float = 20.0
+@export var damage: float = 50.0
+
+# References to nodes
+@onready var audio_player: AudioStreamPlayer3D = $\"%ExplosionSound\"
+@onready var shape_cast: ShapeCast3D = $\"%BlastShapeCast\"
+
+# Internal variables
+var is_active: bool = false
+var countdown_timer: float = 0.0
+
+# Remote procedure call that activates the grenade countdown
+@rpc(\"any_peer\", \"call_local\")
+func activate_grenade() -> void:
+	if is_active:
+		return
+		
+	is_active = true
+	countdown_timer = countdown_time
+	print(\"Grenade activated! %s seconds until detonation...\" % countdown_time)
+
+# Process function to handle countdown
+func _process(delta: float) -> void:
+	if is_active and countdown_timer > 0:
+		countdown_timer -= delta
+		
+		$\"%Label3D2\".text =str(countdown_timer)
+		
+		# Check if countdown is over
+		if countdown_timer <= 0:
+			detonate()
+
+# Function to handle the detonation
+func detonate() -> void:
+	print(\"BOOM! Grenade detonated!\")
+	
+	# Play explosion sound
+	if audio_player:
+		audio_player.play()
+	
+	# Perform the shape cast to detect affected bodies
+	if shape_cast:
+		# Configure the shape cast for explosion radius
+		shape_cast.target_position = Vector3.ZERO  # We'll check in all directions
+		shape_cast.shape.radius = blast_radius  # Assuming a SphereShape
+		shape_cast.force_shapecast_update()
+		
+		# Check for collisions
+		for i in range(shape_cast.get_collision_count()):
+			var collider = shape_cast.get_collider(i)
+			
+			# Check if the collided body is a player
+			if collider.is_in_group(\"mp_player\"):
+				# Calculate direction and distance
+				var direction = (collider.global_position + Vector3.UP * 2 - global_position).normalized()
+				var distance = global_position.distance_to(collider.global_position)
+				
+				# Calculate force based on distance (closer = stronger)
+				var force_multiplier = 1.0 - clamp(distance / blast_radius, 0.0, 1.0)
+				var force = direction * blast_force * force_multiplier * 0.2
+				
+				# Apply knockback and damage to player
+				collider.apply_explosion_impact(force , damage * force_multiplier)
+	
+	# Visual effects could be added here
+	
+	# Queue free with a small delay to allow sound to play
+	await get_tree().create_timer(2.0).timeout
+	get_parent().get_parent().queue_free()
+
+
+func _on_mp_rigidbody_on_interaction() -> void:
+	if not is_active:
+		# Use RPC to activate the grenade on all clients
+		rpc(\"activate_grenade\")
+"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_boiug"]
+radius = 2.939
+
+[node name="MPRigidbody" type="Node3D" groups=["mp_rigidbody", "rc_grabbable", "rc_interactable"]]
+script = ExtResource("1_46k3x")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." groups=["mp_rigidbody", "rc_grabbable", "rc_interactable"]]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("SphereMesh_bexhn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_t7iv1")
+
+[node name="Label3D" type="Label3D" parent="RigidBody3D"]
+visible = false
+billboard = 1
+no_depth_test = true
+
+[node name="Grenade" type="Node3D" parent="RigidBody3D"]
+script = SubResource("GDScript_46k3x")
+
+[node name="Label3D2" type="Label3D" parent="RigidBody3D/Grenade"]
+unique_name_in_owner = true
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0, 0, 1)
+text = "не активна"
+
+[node name="ExplosionSound" type="AudioStreamPlayer3D" parent="RigidBody3D/Grenade"]
+unique_name_in_owner = true
+stream = ExtResource("3_boiug")
+
+[node name="BlastShapeCast" type="ShapeCast3D" parent="RigidBody3D/Grenade"]
+unique_name_in_owner = true
+shape = SubResource("SphereShape3D_boiug")
+target_position = Vector3(0, 0, 0)
+
+[node name="Synchronizer" type="Node3D" parent="."]
+script = ExtResource("2_boiug")
+
+[connection signal="on_interaction" from="." to="RigidBody3D/Grenade" method="_on_mp_rigidbody_on_interaction"]

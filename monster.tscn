@@ -36,11 +36,11 @@ func actor_setup():
 		Am I authority: %s\\n
 		My uid: %s\\n
 		My navigation target: %s\\n
-		\" % [str(is_multiplayer_authority()), str(multiplayer.get_unique_id()), str(get_node(\"/root/Game\").players[multiplayer.get_unique_id()].position)]
+		\" % [str(is_multiplayer_authority()), str(multiplayer.get_unique_id()), str(get_node(\"/root/MultiplayerTestUI/Game\").players[multiplayer.get_unique_id()].position)]
 		$Label3D.modulate = Color.RED
-		# print(str(get_node(\"/root/Game\").players))
-		# print(str(get_node(\"/root/Game\").players[multiplayer.get_unique_id()].position))
-		set_movement_target(get_node(\"/root/Game\").players[multiplayer.get_unique_id()].position)
+		# print(str(get_node(\"/root/MultiplayerTestUI/Game\").players))
+		# print(str(get_node(\"/root/MultiplayerTestUI/Game\").players[multiplayer.get_unique_id()].position))
+		set_movement_target(get_node(\"/root/MultiplayerTestUI/Game\").players[multiplayer.get_unique_id()].position)
 
 
 

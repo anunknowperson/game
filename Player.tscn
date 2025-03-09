@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjpsidrjpev6j"]
+[gd_scene load_steps=8 format=3 uid="uid://cjpsidrjpev6j"]
 
 [ext_resource type="Script" uid="uid://mj1xce237xdb" path="res://Player.gd" id="1_8q7sx"]
 
@@ -23,8 +23,16 @@ properties/2/path = NodePath(".:velocity")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
-[node name="Player" type="CharacterBody3D"]
-collision_layer = 2
+[sub_resource type="GDScript" id="GDScript_kpjcp"]
+script/source = "extends AudioListener3D
+
+func _ready() -> void:
+	if is_multiplayer_authority():
+		make_current()
+"
+
+[node name="Player" type="CharacterBody3D" groups=["mp_player"]]
+collision_layer = 3
 script = ExtResource("1_8q7sx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -66,3 +74,13 @@ texture = SubResource("ViewportTexture_6qmwl")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 delta_interval = 1.0
 replication_config = SubResource("SceneReplicationConfig_0hv48")
+
+[node name="Voice" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69948, 0)
+max_distance = 15.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Record"
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+script = SubResource("GDScript_kpjcp")
