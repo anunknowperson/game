@@ -14,14 +14,16 @@ func _ready():
 	
 	var level = level_scene.instantiate()
 	add_child(level)
-	
+
+func start_game():
+
 	multiplayer.peer_connected.connect(_on_peer_connected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 	
 	rpc("spawn_player", multiplayer.get_unique_id(), $Spawn.global_position + Vector3.FORWARD * randf_range(-0.5, 0.5))
 	
 	
-@rpc("any_peer", "call_local")
+@rpc("any_peer", "call_local", "reliable")
 func spawn_player(id, pos):
 	_add_player(id, pos)
 

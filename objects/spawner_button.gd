@@ -11,7 +11,7 @@ func press() -> void:
 	counter += 1
 	rpc("spawn_rigidbody", multiplayer.get_unique_id(), loc, object_name)
 
-@rpc("any_peer", "call_local")
+@rpc("any_peer", "call_local", "reliable")
 func spawn_rigidbody(id, pos, object_name) -> void:
 	print(str(multiplayer.get_unique_id()) + " SPAWNING RIGIDBODY: " + str(id) + " at " + str(pos))
 	

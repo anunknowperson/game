@@ -33,7 +33,7 @@ var is_active: bool = false
 var countdown_timer: float = 0.0
 
 # Remote procedure call that activates the grenade countdown
-@rpc(\"any_peer\", \"call_local\")
+@rpc(\"any_peer\", \"call_local\", \"reliable\")
 func activate_grenade() -> void:
 	if is_active:
 		return

@@ -33,7 +33,7 @@ func _ready():
 	if not is_multiplayer_authority():
 		$Voice.stream = AudioStreamOpusChunked.new()
 		audiostreamopuschunked = $Voice.stream
-		audiostreamopuschunked.audiosamplechunks = 10
+		audiostreamopuschunked.audiosamplechunks = 50
 		$Voice.play()
 	else:
 		$AudioStreamPlayer.stream = AudioStreamMicrophone.new()
@@ -61,7 +61,7 @@ func _ready():
 		call_deferred("rpc", "set_player_name", player_name)
 
 # RPC to sync the player name
-@rpc("any_peer", "call_local")
+@rpc("any_peer", "call_local", "reliable")
 func set_player_name(new_name):
 	player_name = new_name
 	name_label.text = player_name
@@ -266,7 +266,7 @@ func send_data(data : Array):
 	if is_multiplayer_authority():
 		return
 		
-	if opuspacketsbuffer.size() < 10:
+	if opuspacketsbuffer.size() < 15:
 		opuspacketsbuffer.append_array(data)
 	else:
 		# If buffer is full, replace oldest chunks with newest ones

@@ -169,12 +169,12 @@ func set_authority(peer_id: int) -> void:
 	if debug_label:
 		_update_debug_label()
 
-@rpc("any_peer")
+@rpc("any_peer", "reliable")
 func touch(force):
 	if is_multiplayer_authority():
 		rigid_body.apply_central_impulse(force)
 
-@rpc("any_peer")
+@rpc("any_peer", "reliable")
 func apply_velocities(force):
 	if is_multiplayer_authority():
 		# Get the RigidBody3D node

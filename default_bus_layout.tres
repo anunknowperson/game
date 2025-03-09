@@ -1,7 +1,6 @@
 [gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://cp28tle6i786w"]
 
 [sub_resource type="AudioEffectOpusChunked" id="AudioEffectOpusChunked_j3pel"]
-audiosamplechunks = 10
 resource_name = "OpusChunked"
 
 [resource]

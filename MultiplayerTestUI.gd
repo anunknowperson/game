@@ -25,7 +25,12 @@ extends Control
 # Reference to the multiplayer manager
 var multiplayer_manager: MultiplayerManager
 
+var game_object
+
 func _ready():
+	game_object = game_scene.instantiate()
+	add_child(game_object)
+	
 	# Initialize the multiplayer manager
 	multiplayer_manager = WebrtcMultiplayer.manager
 	
@@ -151,5 +156,4 @@ func _on_game_started():
 	lobby_panel.visible = false
 	game_panel.visible = false
 	
-	var g = game_scene.instantiate()
-	add_child(g)
+	game_object.start_game()
