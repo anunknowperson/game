@@ -1,0 +1,192 @@
+[gd_scene load_steps=2 format=3 uid="uid://5waroudohjyx"]
+
+[ext_resource type="Script" uid="uid://7r3kxp7sq2u2" path="res://MultiplayerTestUI.gd" id="1_rcbgx"]
+
+[node name="MultiplayerTestUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rcbgx")
+
+[node name="ConnectionPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ConnectionPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ConnectionPanel/VBoxContainer"]
+layout_mode = 2
+text = "WebRTC Multiplayer Test"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="ConnectionPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="ServerUrlLabel" type="Label" parent="ConnectionPanel/VBoxContainer"]
+layout_mode = 2
+text = "Server URL:"
+
+[node name="ServerUrlInput" type="LineEdit" parent="ConnectionPanel/VBoxContainer"]
+layout_mode = 2
+text = "ws://localhost:9080"
+placeholder_text = "ws://localhost:9080"
+
+[node name="PlayerNameLabel" type="Label" parent="ConnectionPanel/VBoxContainer"]
+layout_mode = 2
+text = "Player Name:"
+
+[node name="PlayerNameInput" type="LineEdit" parent="ConnectionPanel/VBoxContainer"]
+layout_mode = 2
+text = "Player"
+placeholder_text = "Enter your name"
+
+[node name="ConnectButton" type="Button" parent="ConnectionPanel/VBoxContainer"]
+layout_mode = 2
+text = "Connect"
+
+[node name="StatusLabel" type="Label" parent="ConnectionPanel/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="LobbyPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LobbyPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="LobbyPanel/VBoxContainer"]
+layout_mode = 2
+text = "Available Lobbies"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="LobbyPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="LobbyList" type="ItemList" parent="LobbyPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MaxPlayersLabel" type="Label" parent="LobbyPanel/VBoxContainer"]
+layout_mode = 2
+text = "Max Players for New Lobby:"
+
+[node name="MaxPlayersInput" type="SpinBox" parent="LobbyPanel/VBoxContainer"]
+layout_mode = 2
+min_value = 2.0
+max_value = 16.0
+value = 4.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LobbyPanel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="RefreshButton" type="Button" parent="LobbyPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Refresh"
+
+[node name="CreateLobbyButton" type="Button" parent="LobbyPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Create Lobby"
+
+[node name="JoinLobbyButton" type="Button" parent="LobbyPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Join Selected"
+
+[node name="LobbyNameLabel" type="Label" parent="LobbyPanel/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="GamePanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -200.0
+offset_right = 250.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GamePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GamePanel/VBoxContainer"]
+layout_mode = 2
+text = "Players in Lobby"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="GamePanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="PlayerList" type="ItemList" parent="GamePanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StartGameButton" type="Button" parent="GamePanel/VBoxContainer"]
+layout_mode = 2
+text = "Start Game"
+
+[node name="LeaveButton" type="Button" parent="GamePanel/VBoxContainer"]
+layout_mode = 2
+text = "Leave Lobby"
