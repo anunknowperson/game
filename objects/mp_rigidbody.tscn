@@ -1,18 +1,20 @@
 [gd_scene load_steps=5 format=3 uid="uid://dp13b1igi6v63"]
 
 [ext_resource type="Script" uid="uid://eatwwggessoe" path="res://objects/synchronizer.gd" id="1_1yf3g"]
-[ext_resource type="Script" uid="uid://2is75bhhucsc" path="res://objects/mp_rigidbody.gd" id="1_fvioc"]
+[ext_resource type="Script" uid="uid://c3ji80v6iglfv" path="res://objects/mp_valuable.gd" id="1_fvioc"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_bexhn"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_t7iv1"]
+radius = 0.21
 
-[node name="MPRigidbody" type="Node3D" groups=["mp_rigidbody", "rc_grabbable"]]
+[node name="MPValuable" type="Node3D" groups=["mp_rigidbody", "mp_valuable", "rc_grabbable"]]
 script = ExtResource("1_fvioc")
 
-[node name="RigidBody3D" type="RigidBody3D" parent="." groups=["mp_rigidbody", "rc_grabbable"]]
+[node name="RigidBody3D" type="RigidBody3D" parent="." groups=["mp_rigidbody", "mp_valuable", "rc_grabbable"]]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(0.41, 0, 0, 0, 0.41, 0, 0, 0, 0.41, 0, 0, 0)
 mesh = SubResource("SphereMesh_bexhn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]

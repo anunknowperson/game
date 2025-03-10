@@ -146,6 +146,7 @@ layout_mode = 2
 horizontal_alignment = 1
 
 [node name="GamePanel" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

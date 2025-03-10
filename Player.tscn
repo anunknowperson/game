@@ -1,6 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cjpsidrjpev6j"]
+[gd_scene load_steps=11 format=3 uid="uid://cjpsidrjpev6j"]
 
 [ext_resource type="Script" uid="uid://mj1xce237xdb" path="res://Player.gd" id="1_8q7sx"]
+[ext_resource type="AudioStream" uid="uid://b5s8ljl8jumve" path="res://sounds/concrete-footsteps-1-6265.mp3" id="2_kpjcp"]
+[ext_resource type="AudioStream" uid="uid://muijbc7msadf" path="res://sounds/bomb.mp3" id="3_kne1u"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_o1t54"]
 
@@ -8,6 +10,12 @@
 albedo_color = Color(0.27451, 0.317647, 0.980392, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_njs2f"]
+radius = 0.511952
+height = 2.02753
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_kne1u"]
+height = 0.479614
+radius = 0.523926
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_6qmwl"]
 viewport_path = NodePath("NameViewport")
@@ -35,21 +43,39 @@ func _ready() -> void:
 collision_layer = 3
 script = ExtResource("1_8q7sx")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="StandingMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_o1t54")
 surface_material_override/0 = SubResource("StandardMaterial3D_m24f3")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="StandingShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_njs2f")
+
+[node name="SittingMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.264342, 0, 0, 0, 1, 0, 0.35594, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_o1t54")
+surface_material_override/0 = SubResource("StandardMaterial3D_m24f3")
+
+[node name="SittingShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3349, 0)
+visible = false
+shape = SubResource("CylinderShape3D_kne1u")
+disabled = true
+
+[node name="StandingCamera" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="SittingCamera" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5541, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.233941, -0.093827, -0.996992)
-light_energy = 0.867
+light_energy = 0.5
 shadow_enabled = true
 spot_range = 13.0782
 spot_angle = 61.2585
@@ -84,10 +110,57 @@ replication_config = SubResource("SceneReplicationConfig_0hv48")
 
 [node name="Voice" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69948, 0)
-max_distance = 15.0
+volume_db = 1.0
+max_distance = 30.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"Record"
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 script = SubResource("GDScript_kpjcp")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 30.0
+offset_right = 127.0
+offset_bottom = 101.0
+theme_override_colors/font_color = Color(0.819153, 4.52429e-06, 9.62615e-07, 1)
+theme_override_font_sizes/font_size = 50
+text = "HP: 100/100"
+
+[node name="StaminaLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 95.0
+offset_right = 439.0
+offset_bottom = 166.0
+theme_override_colors/font_color = Color(0.819608, 1, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Stamina: 100/100"
+
+[node name="Label2" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 217.0
+offset_top = 256.0
+offset_right = 905.0
+offset_bottom = 393.0
+theme_override_colors/font_color = Color(0.819153, 4.52429e-06, 9.62615e-07, 1)
+theme_override_font_sizes/font_size = 100
+text = "ВЫ УМЕРЛИ!!!"
+
+[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_kpjcp")
+max_db = 1.0
+
+[node name="DamagePlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_kne1u")

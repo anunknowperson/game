@@ -16,7 +16,6 @@ func _ready():
 	add_child(level)
 
 func start_game():
-
 	multiplayer.peer_connected.connect(_on_peer_connected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 	

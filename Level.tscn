@@ -1,13 +1,19 @@
-[gd_scene load_steps=40 format=3 uid="uid://bjygiisslvvbr"]
+[gd_scene load_steps=47 format=3 uid="uid://bjygiisslvvbr"]
 
 [ext_resource type="Texture2D" uid="uid://ywfqykx00t7h" path="res://textures/expressive-152-herringbone-1131-mm-architextures.jpg" id="5_d6u53"]
 [ext_resource type="Texture2D" uid="uid://dig5t7b8mnly8" path="res://textures/pewter-no-chip-1220-mm-architextures.jpg" id="6_sypgb"]
 [ext_resource type="Texture2D" uid="uid://ty4xdjbc1tri" path="res://textures/walnut-3200-mm-architextures.jpg" id="7_dn5x0"]
 [ext_resource type="Texture2D" uid="uid://dtera26mv21kc" path="res://textures/suede-450-mm-architextures.jpg" id="8_esphl"]
 [ext_resource type="Texture2D" uid="uid://cn10qrbbs4kdc" path="res://textures/larvikite-stack-1612-mm-architextures.jpg" id="9_5qkpu"]
+[ext_resource type="Script" uid="uid://bsltexsp4epiv" path="res://objects/mp_spawner.gd" id="9_86ljf"]
 [ext_resource type="Texture2D" uid="uid://bp3fm0s1f0ehr" path="res://textures/finnish-grey-brick-flemish-1035-mm-architextures.jpg" id="10_dcckh"]
+[ext_resource type="PackedScene" uid="uid://bm2yhlgk7j4h6" path="res://objects/mp_cart.tscn" id="11_d6u53"]
 [ext_resource type="Texture2D" uid="uid://dbodgvadfeghj" path="res://textures/buff-flemish-675-mm-architextures.jpg" id="11_jftiw"]
+[ext_resource type="PackedScene" uid="uid://8q34dnlrnojc" path="res://monsters/monster.tscn" id="11_ofirr"]
+[ext_resource type="PackedScene" uid="uid://b2inhttevhtna" path="res://objects/mp_grenade.tscn" id="12_d6u53"]
 [ext_resource type="Texture2D" uid="uid://crw7tnc04nf0a" path="res://textures/travertine-cubic-2118-mm-architextures.jpg" id="12_yye10"]
+[ext_resource type="PackedScene" uid="uid://dp13b1igi6v63" path="res://objects/mp_rigidbody.tscn" id="13_sypgb"]
+[ext_resource type="Script" uid="uid://3031c5tnaixk" path="res://objects/mp_extraction_point.gd" id="14_dn5x0"]
 
 [sub_resource type="GDScript" id="GDScript_t7iv1"]
 script/source = "extends Node3D
@@ -58,6 +64,7 @@ sky_material = SubResource("PhysicalSkyMaterial_qhyq2")
 
 [sub_resource type="Environment" id="Environment_bexhn"]
 sky = SubResource("Sky_rn17v")
+ambient_light_energy = 0.0
 tonemap_mode = 4
 ssao_enabled = true
 glow_enabled = true
@@ -159,6 +166,9 @@ uv1_scale = Vector3(1.775, 1.775, 1.775)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_53f8w"]
 albedo_texture = ExtResource("10_dcckh")
 uv1_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sypgb"]
+size = Vector3(2.24146, 3.68207, 3.33899)
 
 [node name="Level" type="Node3D"]
 script = SubResource("GDScript_t7iv1")
@@ -478,9 +488,9 @@ material = SubResource("StandardMaterial3D_s8mmm")
 metadata/_edit_lock_ = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/Level/Corridor_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, -3.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.28726, -3.5)
 use_collision = true
-size = Vector3(5, 0.1, 10)
+size = Vector3(5, 0.674512, 10)
 material = SubResource("StandardMaterial3D_5ekwc")
 metadata/_edit_lock_ = true
 
@@ -654,5 +664,101 @@ operation = 2
 size = Vector3(1.5, 2.5, 0.1)
 material = SubResource("StandardMaterial3D_s8mmm")
 
-[node name="MPSpawner" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.16809, -2.95397, 0.026324)
+[node name="MPSpawner3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.77518, 0.313853, 1.80067)
+script = ExtResource("9_86ljf")
+scene_to_spawn = ExtResource("11_ofirr")
+amount_to_spawn = 1
+spawn_radius = 0.1
+
+[node name="MPSpawner4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0256839, -2.05035, -2.77722)
+script = ExtResource("9_86ljf")
+scene_to_spawn = ExtResource("11_d6u53")
+amount_to_spawn = 1
+spawn_radius = 0.1
+
+[node name="Marker3D" type="Marker3D" parent="." groups=["ms_loc"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.45607, -3.91926, -14.3264)
+
+[node name="Marker3D2" type="Marker3D" parent="." groups=["ms_loc"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.47492, -3.91926, -14.4793)
+
+[node name="Marker3D3" type="Marker3D" parent="." groups=["ms_loc"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0133048, -3.91926, -3.66869)
+
+[node name="Marker3D4" type="Marker3D" parent="." groups=["ms_loc"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02521, -3.91926, 3.88158)
+
+[node name="Marker3D5" type="Marker3D" parent="." groups=["ms_loc"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.19527, -3.91926, -6.3987)
+
+[node name="Marker3D6" type="Marker3D" parent="." groups=["ms_loc"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.131022, 0.360933, -4.73435)
+
+[node name="Marker3D7" type="Marker3D" parent="." groups=["ms_loc"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.29124, 0.360933, -4.28214)
+
+[node name="Marker3D8" type="Marker3D" parent="." groups=["ms_loc"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.19621, 0.360933, 3.84688)
+
+[node name="Marker3D9" type="Marker3D" parent="." groups=["ms_loc"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.11624, 0.360932, 4.95936)
+
+[node name="MPRigidbody" parent="." instance=ExtResource("12_d6u53")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.693697, -3.7, -0.757571)
+
+[node name="MPRigidbody2" parent="." instance=ExtResource("13_sypgb")]
+transform = Transform3D(1.00305, 0, 0, 0, 1.00305, 0, 0, 0, 1.00305, 0.0937474, -3.66556, -2.6353)
+
+[node name="ExtractionPoint" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.80177, 0.117279, 0.972221)
+script = ExtResource("14_dn5x0")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="ExtractionPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.55537)
+use_collision = true
+size = Vector3(2.66589, 0.395691, 0.378242)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="ExtractionPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.61496)
+use_collision = true
+size = Vector3(2.66589, 0.395691, 0.378242)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="ExtractionPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09268, 0, 0.0232372)
+use_collision = true
+size = Vector3(0.48053, 0.395691, 3.56168)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExtractionPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.160034, 1.34103, 0.069397)
+shape = SubResource("BoxShape3D_sypgb")
+
+[node name="CostLabel" type="Label3D" parent="ExtractionPoint"]
+transform = Transform3D(0.0977867, 0, -1.97258, 0, 1.975, 0, 1.97258, 0, 0.0977867, 1.20814, 2.23241, 0)
+text = "Cost Label"
+
+[node name="Control" type="Control" parent="ExtractionPoint"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ExtractionPoint/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "ВЫ ВЫИГРАЛИ"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="ExtractionPoint" to="ExtractionPoint" method="_on_body_entered"]
+[connection signal="body_exited" from="ExtractionPoint" to="ExtractionPoint" method="_on_body_exited"]

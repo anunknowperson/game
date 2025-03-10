@@ -157,3 +157,4 @@ func _on_game_started():
 	game_panel.visible = false
 	
 	game_object.start_game()
+	Globals.game_start.emit()

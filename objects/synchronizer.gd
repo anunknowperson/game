@@ -174,6 +174,20 @@ func touch(force):
 	if is_multiplayer_authority():
 		rigid_body.apply_central_impulse(force)
 
+func pickup():
+	rigid_body.linear_damp = 4.0
+	rigid_body.angular_damp = 2.0
+	
+	if get_parent().only_x:
+		var rigid_body :RigidBody3D = get_parent().get_node("RigidBody3D")
+		rigid_body.physics_material_override.friction = 0.0
+func drop():
+	rigid_body.linear_damp = 1.0
+	rigid_body.angular_damp = 1.0
+	if get_parent().only_x:
+		var rigid_body :RigidBody3D = get_parent().get_node("RigidBody3D")
+		rigid_body.physics_material_override.friction = 1.0
+
 @rpc("any_peer", "reliable")
 func apply_velocities(force):
 	if is_multiplayer_authority():
@@ -187,11 +201,26 @@ func apply_velocities(force):
 		
 		# Calculate a smooth interpolation between current and target velocity
 		# This makes the movement feel more natural
-		rigid_body.linear_velocity = current_vel.lerp(target_vel, 0.5)
+		#rigid_body.linear_velocity = current_vel.lerp(target_vel, 0.5)
+		rigid_body.apply_central_force(force * 20.0* rigid_body.mass / 8.0)
 		
 		# Optional: Add a small upward force to counteract gravity slightly
 		# This helps prevent the object from falling while being carried
 		rigid_body.apply_central_force(Vector3(0, 9.8, 0))
+
+@rpc("any_peer", "reliable")
+func apply_angular_velocities(angular_force):
+	if is_multiplayer_authority():
+
+		# Get the RigidBody3D node
+		var rigid_body = get_parent().get_node("RigidBody3D")  # Adjust path if needed
+		if rigid_body:
+			# Apply angular velocity directly
+			rigid_body.apply_torque(angular_force * (25.0 if get_parent().only_x else 2))
+			
+			# Use a more aggressive damping to prevent oscillation
+			
+			
 
 # Event handlers
 func _on_player_connected(id: int) -> void:

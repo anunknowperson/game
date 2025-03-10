@@ -2,6 +2,8 @@ extends Node3D
 
 signal on_interaction
 
+@export var price :int = 500
+
 @export var only_x :bool = false
 var current_y := 0.0
 
