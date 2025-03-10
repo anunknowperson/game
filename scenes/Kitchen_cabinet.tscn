@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dv2m11j4nf85q"]
+
+[ext_resource type="PackedScene" uid="uid://dorbs565h26hj" path="res://models/Kitchen_cabinet.glb" id="1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xbhe"]
+size = Vector3(1.30602, 1.98877, 0.785065)
+
+[node name="Spatial" type="Node3D"]
+
+[node name="Kitchen_cabinet" parent="." instance=ExtResource("1")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.326332, -0.0129395, 0.0202789)
+shape = SubResource("BoxShape3D_0xbhe")

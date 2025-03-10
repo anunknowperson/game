@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfih608c61an"]
+
+[ext_resource type="PackedScene" uid="uid://be3mqdgviof3x" path="res://models/Clothes_Hanger.glb" id="1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cltdn"]
+size = Vector3(0.326599, 1.98877, 0.27356)
+
+[node name="Spatial" type="Node3D"]
+
+[node name="Clothes_Hanger" parent="." instance=ExtResource("1")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0384216, -0.0129395, 0.00665283)
+shape = SubResource("BoxShape3D_cltdn")

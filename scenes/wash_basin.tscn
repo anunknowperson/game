@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://byvmm07yg7usf"]
+
+[ext_resource type="PackedScene" uid="uid://d1sie2ludi17a" path="res://models/wash_basin.fbx" id="1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1q0wv"]
+size = Vector3(2.53844, 0.787315, 2.12262)
+
+[node name="Spatial" type="Node3D"]
+
+[node name="wash_basin" parent="." instance=ExtResource("1")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.167809, 0.408749, 0.726297)
+shape = SubResource("BoxShape3D_1q0wv")

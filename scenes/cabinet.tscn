@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjdkp5hbhgb76"]
+
+[ext_resource type="PackedScene" uid="uid://vy5myyc03qq7" path="res://models/cabinet.fbx" id="1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xr4xt"]
+size = Vector3(0.232086, 0.335373, 0.286377)
+
+[node name="Spatial" type="Node3D"]
+
+[node name="cabinet" parent="." instance=ExtResource("1")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.122025, 0.168144, -0.154175)
+shape = SubResource("BoxShape3D_xr4xt")

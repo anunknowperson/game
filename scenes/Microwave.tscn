@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cknmidxo06bmq"]
+
+[ext_resource type="PackedScene" uid="uid://c1g8bpqr6g5xe" path="res://models/Microwave.fbx" id="1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iqa6u"]
+size = Vector3(0.508652, 0.343933, 0.27356)
+
+[node name="Spatial" type="Node3D"]
+
+[node name="Microwave" parent="." instance=ExtResource("1")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.391924, 0.348419, 0.396127)
+shape = SubResource("BoxShape3D_iqa6u")
