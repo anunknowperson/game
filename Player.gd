@@ -310,7 +310,7 @@ func handle_grabbed_object():
 			only_x_z = true
 			
 			# Use current_y property instead of meta data
-			vertical_limit = mp_rigidbody.current_y + 0.4
+			vertical_limit = mp_rigidbody.current_y + 1.0
 	
 	# Modify target position if we're only moving on X and Z
 	if only_x_z:

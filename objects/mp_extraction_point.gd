@@ -3,7 +3,7 @@ extends Area3D
 var value := 0
 
 @export
-var target := 2000
+var target := 15000
 
 func _ready() -> void:
 	$CostLabel.text = "Собрано: %s/%s" % [str(value), str(target)]
