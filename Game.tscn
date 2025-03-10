@@ -12,4 +12,4 @@ shadow_enabled = true
 [node name="Players" type="Node3D" parent="."]
 
 [node name="Spawn" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.144322, -2.40881, 3.56462)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.50299, -3.83261, -15.8589)

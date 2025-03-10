@@ -46,7 +46,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var grabbed_object = null
 var grab_distance = 0.0
-var grab_offset = Vector3.ZERO
+var grabbed_object_authority = -1
 
 # Camera-related variables
 @onready var mesh = $MeshInstance3D
@@ -241,9 +241,9 @@ func _physics_process(delta):
 		if c.get_collider().is_in_group("mp_rigidbody"):
 			c.get_collider().get_parent().touch(-c.get_normal() * push_force * velocity.length())
 	
-	# Handle grabbed object physics
+	# Handle grabbed object - send grab target data to authority
 	if grabbed_object:
-		handle_grabbed_object()
+		update_grab_target()
 	
 	# Check for button interaction (raycast)
 	if Input.is_action_just_pressed("interact"): # You'll need to define this action
@@ -294,86 +294,18 @@ func interact_with_grabbed_object():
 			# Call the interact method on the rigidbody
 			mp_rigidbody.interact()
 
-func handle_grabbed_object():
+# New optimized grab handling - just send target data to authority
+func update_grab_target():
 	# Calculate the target position (in front of the camera)
 	var target_pos = camera.global_position - camera.global_transform.basis.z * grab_distance
 	
 	# Get the mp_rigidbody
 	var mp_rigidbody = grabbed_object.get_parent()
 	
-	# Check if we should only move on X and Z axes
-	var only_x_z = false
-	var vertical_limit = 0.0
-	
 	if mp_rigidbody and mp_rigidbody.is_in_group("mp_rigidbody"):
-		if mp_rigidbody.has_method("get") and mp_rigidbody.get("only_x") == true:
-			only_x_z = true
-			
-			# Use current_y property instead of meta data
-			vertical_limit = mp_rigidbody.current_y + 1.0
-	
-	# Modify target position if we're only moving on X and Z
-	if only_x_z:
-		target_pos.y = max(vertical_limit, grabbed_object.global_position.y)  # Keep at least current_y + 0.1
-	
-	# Calculate velocity needed to move toward target
-	var current_pos = grabbed_object.global_position
-	var velocity_to_target = (target_pos - current_pos) * 10.0  # Adjust multiplier for responsiveness
-
-	# If we're only controlling X and Z, ensure vertical force is >= 0 when at or below the limit
-	if only_x_z and current_pos.y <= vertical_limit and velocity_to_target.y < 0:
-		velocity_to_target.y = 0
-	
-	# Extract the forward vectors - using the grabbed_object for current orientation
-	var target_forward = -camera.global_transform.basis.z.normalized()
-	var current_forward = -grabbed_object.global_transform.basis.z.normalized()
-	
-	# Calculate the rotation axis
-	var rotation_axis = current_forward.cross(target_forward)
-	var rotation_axis_length = rotation_axis.length()
-	
-	# Normalize rotation axis if not too small
-	if rotation_axis_length > 0.001:
-		rotation_axis = rotation_axis / rotation_axis_length
-	else:
-		# Vectors are parallel or anti-parallel
-		if current_forward.dot(target_forward) < 0:
-			# Anti-parallel - use any perpendicular axis
-			rotation_axis = current_forward.cross(Vector3.UP)
-			if rotation_axis.length() < 0.001:
-				rotation_axis = current_forward.cross(Vector3.RIGHT)
-			rotation_axis = rotation_axis.normalized()
-		else:
-			# Already aligned, no rotation needed
-			rotation_axis = Vector3.ZERO
-	
-	# Calculate the angle between vectors
-	var dot_product = current_forward.dot(target_forward)
-	var angle = acos(clamp(dot_product, -1.0, 1.0))
-	
-	# Calculate angular velocity based on angle
-	var angular_velocity = Vector3.ZERO
-	
-	if angle > 0.05:  # Only rotate if angle is significant
-		# Scale rotation speed based on angle, but set a maximum
-		var rotation_speed = min(angle * 2.0, 4.0)  # Reduced speed for smoother rotation
-		angular_velocity = rotation_axis * rotation_speed
-	else:
-		# When nearly aligned, apply damping to stop rotation
-		var current_angular_velocity = Vector3.ZERO
-		current_angular_velocity = grabbed_object.angular_velocity
-		angular_velocity = -current_angular_velocity * 0.95
-	
-	# Apply angular velocity through the mp_rigidbody
-	if mp_rigidbody and mp_rigidbody.is_in_group("mp_rigidbody"):
-		apply_angular_velocities(mp_rigidbody, angular_velocity)
-	
-	# Apply linear velocity
-	apply_velocities(grabbed_object, velocity_to_target)
-
-# Add a helper function to apply angular velocities to an object
-func apply_angular_velocities(mp_rigidbody, angular_force):
-	mp_rigidbody.apply_angular_velocities(angular_force)
+		# Send target position and rotation to the authority
+		var target_forward = -camera.global_transform.basis.z.normalized()
+		mp_rigidbody.update_grab_target(target_pos, target_forward)
 
 # Modify your perform_raycast function to handle grabbable objects
 func perform_raycast():
@@ -408,12 +340,11 @@ func grab_object(object, grab_point):
 	grabbed_object = object
 	# Calculate the distance from the camera to the grab point
 	grab_distance = camera.global_position.distance_to(grab_point)
-	# Calculate offset from object center to grab point
-	grab_offset = grab_point - grabbed_object.global_position
 	
-	# Call pickup() on the mp_rigidbody
+	# Store the authority ID
 	var mp_rigidbody = grabbed_object.get_parent()
 	if mp_rigidbody and mp_rigidbody.is_in_group("mp_rigidbody"):
+		grabbed_object_authority = mp_rigidbody.get_multiplayer_authority()
 		mp_rigidbody.pickup()
 
 # Track explosion impact separately
@@ -436,29 +367,17 @@ func apply_explosion_impact(force, hp_damage = 20):
 	# Call move_and_slide() to apply the impulse immediately
 	move_and_slide()
 	
-# Clear grab metadata when releasing object
+# Release object with optional throw
 func release_object():
-	# Apply a small throw force in the direction we're looking
 	if grabbed_object:
 		var throw_direction = -camera.global_transform.basis.z
-		var throw_force = throw_direction * 2.0  # Adjust throw strength as needed
 		
 		var mp_rigidbody = grabbed_object.get_parent()
 		if mp_rigidbody and mp_rigidbody.is_in_group("mp_rigidbody"):
-			# Clear any grab-related metadata
-			if mp_rigidbody.has_meta("grab_start_time"):
-				mp_rigidbody.remove_meta("grab_start_time")
-			if mp_rigidbody.has_meta("initial_y"):
-				mp_rigidbody.remove_meta("initial_y")
-			
-			# Call drop() on the mp_rigidbody
-			mp_rigidbody.drop()
+			mp_rigidbody.drop(throw_direction)
 		
-		apply_velocities(grabbed_object, throw_force)
 		grabbed_object = null
-
-func apply_velocities(mp_rigidbody, force):
-	mp_rigidbody.get_parent().apply_velocities(force)
+		grabbed_object_authority = -1
 
 var audiostreamopuschunked : AudioStreamOpusChunked 
 var opuspacketsbuffer = [ ]   # append incoming packets to this list

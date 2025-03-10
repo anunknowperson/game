@@ -158,6 +158,17 @@ theme_override_colors/font_color = Color(0.819153, 4.52429e-06, 9.62615e-07, 1)
 theme_override_font_sizes/font_size = 100
 text = "ВЫ УМЕРЛИ!!!"
 
+[node name="ColorRect" type="ColorRect" parent="Control"]
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_kpjcp")
 max_db = 1.0

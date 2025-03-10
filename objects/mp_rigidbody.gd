@@ -5,6 +5,10 @@ signal on_interaction
 @export var only_x :bool = false
 var current_y := 0.0
 
+# Grab state tracking
+var is_grabbed := false
+var grabber_id := -1
+
 func _physics_process(delta):
 	if only_x == false:
 		return
@@ -53,28 +57,33 @@ func touch(force):
 		
 func pickup():
 	if is_multiplayer_authority():
+		is_grabbed = true
+		grabber_id = multiplayer.get_remote_sender_id()
 		$Synchronizer.pickup()
 	else:
 		$Synchronizer.rpc_id(get_multiplayer_authority(), "pickup")
 
-func drop():
+func drop(throw_direction = Vector3.ZERO):
 	if is_multiplayer_authority():
+		is_grabbed = false
+		grabber_id = -1
 		$Synchronizer.drop()
-	else:
-		$Synchronizer.rpc_id(get_multiplayer_authority(), "drop")
 		
-
+		# Apply throw force if provided
+		if throw_direction != Vector3.ZERO:
+			$Synchronizer.apply_throw(throw_direction * 2.0)
+	else:
+		# Forward throw direction to authority
+		$Synchronizer.rpc_id(get_multiplayer_authority(), "drop", throw_direction)
+		
 func interact():
 	on_interaction.emit()
 	
-func apply_velocities(force):
+# New function to update grab target - called by player, forwarded to authority
+func update_grab_target(target_position: Vector3, target_forward: Vector3):
 	if is_multiplayer_authority():
-		$Synchronizer.apply_velocities(force)
+		# Direct local call if we're the authority
+		$Synchronizer.update_grab_target(target_position, target_forward)
 	else:
-		$Synchronizer.rpc_id(get_multiplayer_authority(), "apply_velocities", force)
-		
-func apply_angular_velocities(angular_force):
-	if is_multiplayer_authority():
-		$Synchronizer.apply_angular_velocities(angular_force)
-	else:
-		$Synchronizer.rpc_id(get_multiplayer_authority(), "apply_angular_velocities", angular_force)
+		# Forward to authority
+		$Synchronizer.rpc_id(get_multiplayer_authority(), "update_grab_target", target_position, target_forward)

@@ -14,7 +14,7 @@ extends CharacterBody3D
 # Keep this as a fallback or for manual override
 @export var manual_patrol_locations: Array[Vector3] = []
 # Sound variables
-@export var random_laugh_chance: float = 0.005  # Chance per physics frame
+@export var random_laugh_chance: float = 0.003  # Chance per physics frame
 @export var vision_angle_degrees: float = 90.0  # Field of view angle
 @export var vision_distance: float = 15.0       # Maximum vision distance
 @export var player_activation_radius: float = 8.0  # Radius to start looking for player
@@ -186,14 +186,16 @@ func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return
 	
-	# Look for players within activation radius
-	find_closest_player()
+	
 	
 	# Process current state
 	match current_state:
 		State.IDLE:
+			# Look for players within activation radius
+			find_closest_player()
 			process_idle_state(delta)
 		State.PATROL:
+			find_closest_player()
 			process_patrol_state(delta)
 			maybe_play_random_laugh()
 		State.CHASE:
@@ -282,12 +284,12 @@ func check_player_visibility(player):
 	if not is_instance_valid(player):
 		return false
 	
-	# We want the raycast to be from monster's head to player's upper body
-	var ray_start = global_position + Vector3(0, 1.5, 0)
-	var ray_end = player.global_position + Vector3(0, 1.0, 0)
-	
-	# Create raycast query
 	var space_state = get_world_3d().direct_space_state
+	
+	# First ray: monster's head to player's upper body
+	var ray_start = global_position + Vector3(0, 1.5, 0)
+	var ray_end = player.global_position + Vector3(0, 0.3, 0)
+	
 	var ray_query = PhysicsRayQueryParameters3D.new()
 	ray_query.from = ray_start
 	ray_query.to = ray_end
@@ -296,12 +298,45 @@ func check_player_visibility(player):
 	
 	var result = space_state.intersect_ray(ray_query)
 	
-	# Debug visibility check result
-	var hit_player = result.get("collider") == player
-	var hit_nothing = result.is_empty()
-	var is_visible = hit_player
+	# Check result of first ray
+	var hit_player_upper = result.get("collider") == player
 	
-	print("Visibility check: hit_player=", hit_player, " hit_nothing=", hit_nothing, " is_visible=", is_visible)
+	# Third ray: monster's head to player's head
+	var ray3_start = global_position + Vector3(0, 1.5, 0)
+	var ray3_end = player.global_position + Vector3(0, 1.5, 0)
+	
+	var ray3_query = PhysicsRayQueryParameters3D.new()
+	ray3_query.from = ray3_start
+	ray3_query.to = ray3_end
+	ray3_query.exclude = [self]
+	ray3_query.collision_mask = 1
+	
+	var ray3_result = space_state.intersect_ray(ray3_query)
+	
+	# Check result of third ray
+	var hit_player_head = ray3_result.get("collider") == player
+	
+	# Second ray: from above player pointing down
+	var ray2_start = player.global_position + Vector3(0, 2.1, 0)
+	var ray2_end = player.global_position
+	
+	var ray2_query = PhysicsRayQueryParameters3D.new()
+	ray2_query.from = ray2_start
+	ray2_query.to = ray2_end
+	ray2_query.exclude = [self]
+	ray2_query.collision_mask = 1
+	
+	var ray2_result = space_state.intersect_ray(ray2_query)
+	
+	# Check if first hit of ray2 is the player
+	var ray2_visible = ray2_result.get("collider") == player
+	
+	# New visibility condition: (ray1 OR ray3) AND ray2
+	var horizontal_visible = hit_player_upper or hit_player_head
+	var is_visible = horizontal_visible and ray2_visible
+	
+	#print("Visibility check: upper_body=", hit_player_upper, " head=", hit_player_head, 
+	#	  " top_down=", ray2_visible, " is_visible=", is_visible)
 	
 	return is_visible
 

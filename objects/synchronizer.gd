@@ -35,6 +35,11 @@ enum AuthorityMode {
 var _authority_peer_id: int = -1
 var _current_peer_id: int = -1
 
+# Grab state variables
+var is_grabbed := false
+var grab_target_position := Vector3.ZERO
+var grab_target_forward := Vector3.ZERO
+
 func _ready() -> void:
 	# Set up multiplayer properties
 	set_process(true)
@@ -62,11 +67,15 @@ func _process(delta: float) -> void:
 	# Handle physics synchronization based on authority
 	if has_authority():
 		_process_authority(delta)
+		
+		# Handle grab physics on authority
+		if is_grabbed:
+			_process_grab(delta)
 	else:
 		_process_non_authority(delta)
 
 func _process_authority(delta: float) -> void:
-	# Sync timer
+	# Sync timer (only sync if not being grabbed or if it's time)
 	last_sync_time += delta
 	if last_sync_time >= sync_interval:
 		last_sync_time = 0.0
@@ -102,6 +111,95 @@ func _process_authority(delta: float) -> void:
 			target_angular_velocity = state.ang_vel
 			last_state_timestamp = state.timestamp
 			has_initial_state = true
+
+# Process grab physics calculations on the authority side
+func _process_grab(delta: float) -> void:
+	if not is_grabbed or not has_authority():
+		return
+		
+	var ox = get_parent().only_x
+	
+	var target_pos = grab_target_position
+	
+	# Handle vertical limit for only_x objects
+	if ox:
+		var vertical_limit = get_parent().current_y + 0.3
+		if rigid_body.global_position.y < vertical_limit:
+			target_pos.y = vertical_limit
+	
+	# Calculate velocity needed to move toward target position
+	var position_error = target_pos - rigid_body.global_position
+	
+	# Add damping to reduce oscillation
+	var current_velocity = rigid_body.linear_velocity
+	var damping_factor = 2.0 # Increase for more damping
+	
+	# Apply position correction with damping
+	var correction_velocity = position_error / 1.0
+	if correction_velocity.y < 0 and ox:
+		correction_velocity.y = 0
+	
+	# Apply different smoothing factors for each axis
+	if ox:
+		correction_velocity.y *= 50
+		correction_velocity.x *= 10
+		correction_velocity.z *= 10
+	else:
+		correction_velocity *= 10
+		correction_velocity.y *= 2
+	
+	# Apply damping based on current velocity
+	var damped_force = correction_velocity * 30 * rigid_body.mass / 25
+	damped_force -= current_velocity * damping_factor * rigid_body.mass
+	
+	# Calculate rotation correction
+	var target_quat = Quaternion()
+	var target_forward = grab_target_forward
+	
+	# Create a quaternion from target forward direction
+	var up = Vector3.UP
+	if abs(target_forward.dot(up)) > 0.99:
+		up = Vector3.FORWARD
+	var right = target_forward.cross(up).normalized()
+	up = right.cross(target_forward).normalized()
+	
+	# Create basis from vectors
+	var target_basis = Basis(right, up, -target_forward)
+	target_quat = Quaternion(target_basis)
+	
+	# Calculate rotation difference
+	var current_quat = Quaternion(rigid_body.global_transform.basis.get_rotation_quaternion())
+	var rotation_difference = current_quat.inverse() * target_quat
+	
+	# Calculate angular correction
+	var axis = rotation_difference.get_axis()
+	var angle = rotation_difference.get_angle()
+	
+	var angular_correction = Vector3.ZERO
+	if angle > 0.001:
+		angular_correction = (axis * angle) / rotation_smoothing
+	
+	# Apply forces with damping
+	
+	rigid_body.apply_central_force(damped_force)
+	
+	# For only_x objects, modify rotation behavior
+	if get_parent().only_x:
+		# Only rotate around Y axis
+		angular_correction.x = 0
+		angular_correction.z = 0
+		angular_correction.y *= 2.0
+	else:
+		angular_correction *= 2.0
+	
+	# Apply angular damping to reduce rotational jiggling
+	var angular_damping = rigid_body.angular_velocity * damping_factor * 0.5 * rigid_body.mass / 25
+	if ox:
+		rigid_body.angular_velocity = angular_correction * rigid_body.mass / 25 - angular_damping
+	
+	# Apply counter-gravity
+	if is_grabbed:
+		rigid_body.apply_central_force(Vector3(0, 9.8, 0))
 
 func _process_non_authority(delta: float) -> void:
 	if not has_initial_state:
@@ -149,6 +247,13 @@ func receive_state(state: Dictionary) -> void:
 	last_state_timestamp = state.timestamp
 	has_initial_state = true
 
+# New RPC for updating grab target from player
+@rpc("any_peer", "reliable")
+func update_grab_target(target_position: Vector3, target_forward: Vector3) -> void:
+	if has_authority():
+		grab_target_position = target_position
+		grab_target_forward = target_forward
+
 # Authority management
 func has_authority() -> bool:
 	match authority_mode:
@@ -170,57 +275,39 @@ func set_authority(peer_id: int) -> void:
 		_update_debug_label()
 
 @rpc("any_peer", "reliable")
-func touch(force):
-	if is_multiplayer_authority():
+func touch(force: Vector3) -> void:
+	if has_authority():
 		rigid_body.apply_central_impulse(force)
 
-func pickup():
-	rigid_body.linear_damp = 4.0
-	rigid_body.angular_damp = 2.0
-	
-	if get_parent().only_x:
-		var rigid_body :RigidBody3D = get_parent().get_node("RigidBody3D")
-		rigid_body.physics_material_override.friction = 0.0
-func drop():
-	rigid_body.linear_damp = 1.0
-	rigid_body.angular_damp = 1.0
-	if get_parent().only_x:
-		var rigid_body :RigidBody3D = get_parent().get_node("RigidBody3D")
-		rigid_body.physics_material_override.friction = 1.0
+# Grab and release functions
+@rpc("any_peer", "reliable")
+func pickup() -> void:
+	if has_authority():
+		is_grabbed = true
+		rigid_body.linear_damp = 4.0
+		rigid_body.angular_damp = 2.0
+		
+		if get_parent().only_x:
+			rigid_body.physics_material_override.friction = 0.0
 
 @rpc("any_peer", "reliable")
-func apply_velocities(force):
-	if is_multiplayer_authority():
-		# Get the RigidBody3D node
-		var rigid_body = get_parent().get_node("RigidBody3D")  # Adjust path to your actual RigidBody3D node
+func drop(throw_direction: Vector3 = Vector3.ZERO) -> void:
+	if has_authority():
+		is_grabbed = false
+		rigid_body.linear_damp = 1.0
+		rigid_body.angular_damp = 1.0
 		
-		# Apply velocity - using this instead of directly setting position
-		# This approach is better for physics interactions
-		var current_vel = rigid_body.linear_velocity
-		var target_vel = force
-		
-		# Calculate a smooth interpolation between current and target velocity
-		# This makes the movement feel more natural
-		#rigid_body.linear_velocity = current_vel.lerp(target_vel, 0.5)
-		rigid_body.apply_central_force(force * 20.0* rigid_body.mass / 8.0)
-		
-		# Optional: Add a small upward force to counteract gravity slightly
-		# This helps prevent the object from falling while being carried
-		rigid_body.apply_central_force(Vector3(0, 9.8, 0))
+		if get_parent().only_x:
+			rigid_body.physics_material_override.friction = 1.0
+			
+		# Apply throw force if provided
+		if throw_direction != Vector3.ZERO:
+			apply_throw(throw_direction)
 
-@rpc("any_peer", "reliable")
-func apply_angular_velocities(angular_force):
-	if is_multiplayer_authority():
-
-		# Get the RigidBody3D node
-		var rigid_body = get_parent().get_node("RigidBody3D")  # Adjust path if needed
-		if rigid_body:
-			# Apply angular velocity directly
-			rigid_body.apply_torque(angular_force * (25.0 if get_parent().only_x else 2))
-			
-			# Use a more aggressive damping to prevent oscillation
-			
-			
+# Apply throw force
+func apply_throw(force: Vector3) -> void:
+	if has_authority():
+		rigid_body.apply_central_impulse(force * 2.0)
 
 # Event handlers
 func _on_player_connected(id: int) -> void:
@@ -245,5 +332,6 @@ func _update_debug_label() -> void:
 	
 	var owner_id = str(rigid_body.get_multiplayer_authority())
 	var peer_id = str(_current_peer_id)
+	var grab_status = "Grabbed" if is_grabbed else "Not Grabbed"
 	
-	debug_label.text = auth_text + "\nOwner: " + owner_id + "\nPeer: " + peer_id
+	debug_label.text = auth_text + "\nOwner: " + owner_id + "\nPeer: " + peer_id + "\n" + grab_status

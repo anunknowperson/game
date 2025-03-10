@@ -47,6 +47,7 @@ ground_color = Color(0.368627, 0.384314, 0.180392, 1)
 sky_material = SubResource("PhysicalSkyMaterial_qhyq2")
 
 [sub_resource type="Environment" id="Environment_bexhn"]
+background_energy_multiplier = 0.0
 sky = SubResource("Sky_rn17v")
 ambient_light_energy = 0.0
 tonemap_mode = 4
@@ -78,14 +79,14 @@ navigation_mesh = SubResource("NavigationMesh_qhyq2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.58686, 0.313853, 6.81022)
 script = ExtResource("9_86ljf")
 scene_to_spawn = ExtResource("11_ofirr")
-amount_to_spawn = 0
+amount_to_spawn = 1
 spawn_radius = 0.1
 
 [node name="MPSpawner5" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.71507, 0.313853, -1.85789)
 script = ExtResource("9_86ljf")
 scene_to_spawn = ExtResource("11_ofirr")
-amount_to_spawn = 0
+amount_to_spawn = 1
 spawn_radius = 0.1
 
 [node name="MPSpawner4" type="Node3D" parent="."]

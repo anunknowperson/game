@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=4 uid="uid://bm2yhlgk7j4h6"]
 
-[ext_resource type="Script" uid="uid://c3ji80v6iglfv" path="res://objects/valuables/mp_valuable.gd" id="1_776pl"]
+[ext_resource type="Script" uid="uid://2is75bhhucsc" path="res://objects/mp_rigidbody.gd" id="1_776pl"]
 [ext_resource type="Script" uid="uid://eatwwggessoe" path="res://objects/synchronizer.gd" id="2_w1w0w"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_776pl"]

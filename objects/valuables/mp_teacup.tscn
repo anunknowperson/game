@@ -9,7 +9,7 @@ size = Vector3(0.320797, 0.206649, 0.282269)
 
 [node name="MPValuable" type="Node3D" groups=["mp_rigidbody", "mp_valuable", "rc_grabbable"]]
 script = ExtResource("1_5p5we")
-price = 2000
+price = 1000
 
 [node name="RigidBody3D" type="RigidBody3D" parent="." groups=["mp_rigidbody", "mp_valuable", "rc_grabbable"]]
 
