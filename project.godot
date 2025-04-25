@@ -13,6 +13,7 @@ config_version=5
 config/name="game"
 run/main_scene="uid://5waroudohjyx"
 config/features=PackedStringArray("4.4", "Forward Plus")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [audio]
@@ -21,8 +22,12 @@ driver/enable_input=true
 
 [autoload]
 
-WebrtcMultiplayer="*res://WebRTCMultiplayer.gd"
+WebrtcMultiplayer="*res://singletons/WebRTCMultiplayer.gd"
 Globals="*res://singletons/globals.gd"
+
+[display]
+
+window/vsync/vsync_mode=0
 
 [editor]
 
@@ -32,12 +37,14 @@ run/main_run_args="player1"
 
 mp_rigidbody=""
 rc_button=""
-rc_grabbable=""
-rc_interactable=""
 mp_player=""
 ms_loc=""
 floor=""
 mp_valuable=""
+game_container=""
+mp_grabbable=""
+mp_interactible=""
+mp_movable=""
 
 [input]
 

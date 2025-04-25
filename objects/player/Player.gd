@@ -39,14 +39,15 @@ var is_sitting = false
 @onready var camera = $Camera3D
 
 @export
-var push_force = 1.0
+var push_force = 4.0
 
 # Gravity value
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var grabbed_object = null
+var grabbed_object_grabbable
 var grab_distance = 0.0
-var grabbed_object_authority = -1
+var pull_power = 4
 
 # Camera-related variables
 @onready var mesh = $MeshInstance3D
@@ -61,18 +62,18 @@ func _enter_tree():
 	#set_multiplayer_authority(str(name).to_int(), true)
 
 func _ready():
-	if not is_multiplayer_authority():
-		$Control.hide()
-		
-		$Voice.stream = AudioStreamOpusChunked.new()
-		audiostreamopuschunked = $Voice.stream
-		audiostreamopuschunked.audiosamplechunks = 50
-		$Voice.play()
-	else:
-		$AudioStreamPlayer.stream = AudioStreamMicrophone.new()
-		$AudioStreamPlayer.play()
-	
-	var args = Array(OS.get_cmdline_args())
+	#if not is_multiplayer_authority():
+		#$Control.hide()
+		#
+		#$Voice.stream = AudioStreamOpusChunked.new()
+		#audiostreamopuschunked = $Voice.stream
+		#audiostreamopuschunked.audiosamplechunks = 50
+		#$Voice.play()
+	#else:
+		#$AudioStreamPlayer.stream = AudioStreamMicrophone.new()
+		#$AudioStreamPlayer.play()
+	#
+	#var args = Array(OS.get_cmdline_args())
 	
 	# Only process input for the player we control
 	set_process_input(is_multiplayer_authority())
@@ -148,7 +149,7 @@ func _input(event):
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			
 	# Handle interaction with grabbed interactable objects
-	if event.is_action_pressed("interact_secondary") and grabbed_object and grabbed_object.is_in_group("rc_interactable"):
+	if event.is_action_pressed("interact_secondary") and grabbed_object and grabbed_object.is_in_group("mp_interactible"):
 		interact_with_grabbed_object()
 		
 	# Toggle sitting state when CTRL is pressed
@@ -238,8 +239,9 @@ func _physics_process(delta):
 	move_and_slide()
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)
-		if c.get_collider().is_in_group("mp_rigidbody"):
-			c.get_collider().get_parent().touch(-c.get_normal() * push_force * velocity.length())
+		if c.get_collider().is_in_group("mp_movable"):
+
+			c.get_collider().get_node("MPMovable").touch(-c.get_normal() * push_force )
 	
 	# Handle grabbed object - send grab target data to authority
 	if grabbed_object:
@@ -274,7 +276,7 @@ func sync_footstep_sound(is_playing, is_running_sound):
 # Function to update stamina display
 func update_stamina_display():
 	if stamina_label:
-		stamina_label.text = "Stamina: " + str(int(current_stamina)) + "/" + str(max_stamina)
+		stamina_label.text = "Выносливость: " + str(int(current_stamina)) + "/" + str(max_stamina)
 
 # Modified function to play damage sound - now called by an RPC
 func play_damage_sound():
@@ -288,24 +290,15 @@ func sync_damage_sound():
 
 # New function to interact with grabbed objects
 func interact_with_grabbed_object():
-	if grabbed_object and grabbed_object.is_in_group("rc_interactable"):
-		var mp_rigidbody = grabbed_object.get_parent()
-		if mp_rigidbody and mp_rigidbody.is_in_group("mp_rigidbody"):
-			# Call the interact method on the rigidbody
-			mp_rigidbody.interact()
+	grabbed_object.get_node("MPInteractable").interact()
+
 
 # New optimized grab handling - just send target data to authority
 func update_grab_target():
 	# Calculate the target position (in front of the camera)
 	var target_pos = camera.global_position - camera.global_transform.basis.z * grab_distance
-	
-	# Get the mp_rigidbody
-	var mp_rigidbody = grabbed_object.get_parent()
-	
-	if mp_rigidbody and mp_rigidbody.is_in_group("mp_rigidbody"):
-		# Send target position and rotation to the authority
-		var target_forward = -camera.global_transform.basis.z.normalized()
-		mp_rigidbody.update_grab_target(target_pos, target_forward)
+	var target_forward = -camera.global_transform.basis.z.normalized()
+	grabbed_object_grabbable.hold(target_pos, target_forward)
 
 # Modify your perform_raycast function to handle grabbable objects
 func perform_raycast():
@@ -326,11 +319,8 @@ func perform_raycast():
 			# Call the press method on the button
 			collider.press()
 		# Check if the object is in the "rc_grabbable" group
-		elif collider.is_in_group("rc_grabbable") and not grabbed_object:
-			# Get the rigidbody parent
-			var mp_rigidbody = collider.get_parent()
-			if mp_rigidbody and mp_rigidbody.is_in_group("mp_rigidbody"):
-				grab_object(collider, result["position"])
+		elif collider.is_in_group("mp_grabbable") and not grabbed_object:
+			grab_object(collider, result["position"])
 	# If we have a grabbed object and release the interact button, release it
 	elif grabbed_object and Input.is_action_just_released("interact"):
 		release_object()
@@ -338,14 +328,11 @@ func perform_raycast():
 # Add these new functions for grabbing and releasing objects
 func grab_object(object, grab_point):
 	grabbed_object = object
+	grabbed_object_grabbable = object.get_node("MPGrabbable")
 	# Calculate the distance from the camera to the grab point
-	grab_distance = camera.global_position.distance_to(grab_point)
+	grab_distance = camera.global_position.distance_to(grabbed_object.global_position)
 	
-	# Store the authority ID
-	var mp_rigidbody = grabbed_object.get_parent()
-	if mp_rigidbody and mp_rigidbody.is_in_group("mp_rigidbody"):
-		grabbed_object_authority = mp_rigidbody.get_multiplayer_authority()
-		mp_rigidbody.pickup()
+	grabbed_object_grabbable.grab()
 
 # Track explosion impact separately
 var explosion_velocity = Vector3.ZERO
@@ -370,57 +357,53 @@ func apply_explosion_impact(force, hp_damage = 20):
 # Release object with optional throw
 func release_object():
 	if grabbed_object:
-		var throw_direction = -camera.global_transform.basis.z
-		
-		var mp_rigidbody = grabbed_object.get_parent()
-		if mp_rigidbody and mp_rigidbody.is_in_group("mp_rigidbody"):
-			mp_rigidbody.drop(throw_direction)
-		
+		#var throw_direction = -camera.global_transform.basis.z
+		grabbed_object_grabbable.release()
 		grabbed_object = null
-		grabbed_object_authority = -1
+		grabbed_object_grabbable = null
 
-var audiostreamopuschunked : AudioStreamOpusChunked 
-var opuspacketsbuffer = [ ]   # append incoming packets to this list
-
-func _process(delta: float) -> void:
-	if not is_multiplayer_authority():
-		while audiostreamopuschunked.chunk_space_available() and opuspacketsbuffer.size() > 0:
-			audiostreamopuschunked.push_opus_packet(opuspacketsbuffer.pop_front(), 0, 0)
-		return
-		
-	var idx = AudioServer.get_bus_index("Record")
-	var opuschunked = AudioServer.get_bus_effect(idx, 0)
+# var audiostreamopuschunked : AudioStreamOpusChunked 
+# var opuspacketsbuffer = [ ]   # append incoming packets to this list
+#
+#func _process(delta: float) -> void:
+	#if not is_multiplayer_authority():
+		#while audiostreamopuschunked.chunk_space_available() and opuspacketsbuffer.size() > 0:
+			#audiostreamopuschunked.push_opus_packet(opuspacketsbuffer.pop_front(), 0, 0)
+		#return
+		#
+	#var idx = AudioServer.get_bus_index("Record")
+	#var opuschunked = AudioServer.get_bus_effect(idx, 0)
+	#
+	#var chunks = []
+	#
+	#var prepend = PackedByteArray()
+	#while opuschunked.chunk_available():
+		#var opusdata : PackedByteArray = opuschunked.read_opus_packet(prepend)
+		#opuschunked.drop_chunk()
+		#chunks.append(opusdata)
+	#
+	#if chunks.size() > 0:
+		#send_data.rpc(chunks)
 	
-	var chunks = []
-	
-	var prepend = PackedByteArray()
-	while opuschunked.chunk_available():
-		var opusdata : PackedByteArray = opuschunked.read_opus_packet(prepend)
-		opuschunked.drop_chunk()
-		chunks.append(opusdata)
-	
-	if chunks.size() > 0:
-		send_data.rpc(chunks)
-	
-@rpc("any_peer", "call_remote", "unreliable_ordered")
-func send_data(data : Array):
-	if is_multiplayer_authority():
-		return
-		
-	if opuspacketsbuffer.size() < 15:
-		opuspacketsbuffer.append_array(data)
-	else:
-		# If buffer is full, replace oldest chunks with newest ones
-		# This ensures we keep the most recent audio data
-		var overflow = data.size()
-		var to_remove = min(overflow, opuspacketsbuffer.size())
-		
-		# Remove oldest chunks
-		for i in range(to_remove):
-			opuspacketsbuffer.remove_at(0)
-		
-		# Add newest chunks
-		opuspacketsbuffer.append_array(data)
+#@rpc("any_peer", "call_remote", "unreliable_ordered")
+#func send_data(data : Array):
+	#if is_multiplayer_authority():
+		#return
+		#
+	#if opuspacketsbuffer.size() < 15:
+		#opuspacketsbuffer.append_array(data)
+	#else:
+		## If buffer is full, replace oldest chunks with newest ones
+		## This ensures we keep the most recent audio data
+		#var overflow = data.size()
+		#var to_remove = min(overflow, opuspacketsbuffer.size())
+		#
+		## Remove oldest chunks
+		#for i in range(to_remove):
+			#opuspacketsbuffer.remove_at(0)
+		#
+		## Add newest chunks
+		#opuspacketsbuffer.append_array(data)
 
 @rpc("any_peer", "call_local")
 func apply_damage(amount):

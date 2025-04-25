@@ -1,7 +1,7 @@
 extends CSGBox3D
 
 @export
-var spawn_scene = preload("res://objects/mp_rigidbody.tscn")
+var spawn_scene = preload("res://objects/valuables/mp_rigidbody.tscn")
 
 var counter := 0
 

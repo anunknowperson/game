@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://c2pvttx1fs8lv"]
+
+[node name="MPPlayerSpawner" type="Node3D"]

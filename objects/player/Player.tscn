@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cjpsidrjpev6j"]
 
-[ext_resource type="Script" uid="uid://mj1xce237xdb" path="res://Player.gd" id="1_8q7sx"]
+[ext_resource type="Script" uid="uid://mj1xce237xdb" path="res://objects/player/Player.gd" id="1_8q7sx"]
 [ext_resource type="AudioStream" uid="uid://b5s8ljl8jumve" path="res://sounds/concrete-footsteps-1-6265.mp3" id="2_kpjcp"]
 [ext_resource type="AudioStream" uid="uid://muijbc7msadf" path="res://sounds/bomb.mp3" id="3_kne1u"]
 
@@ -80,6 +80,9 @@ shadow_enabled = true
 spot_range = 13.0782
 spot_angle = 61.2585
 
+[node name="Hand" type="Marker3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.75055)
+
 [node name="NameLabel" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 billboard = 1
@@ -110,8 +113,8 @@ replication_config = SubResource("SceneReplicationConfig_0hv48")
 
 [node name="Voice" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69948, 0)
-volume_db = 1.0
-max_distance = 30.0
+volume_db = 3.0
+max_distance = 40.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"Record"

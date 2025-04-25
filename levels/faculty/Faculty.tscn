@@ -1,14 +1,14 @@
-[gd_scene load_steps=16 format=3 uid="uid://bjygiisslvvbr"]
+[gd_scene load_steps=16 format=3 uid="uid://23r23fdfdfse"]
 
-[ext_resource type="PackedScene" uid="uid://bjygiisslvvbr" path="res://scenes/Level3.tscn" id="1_mxnmf"]
-[ext_resource type="PackedScene" uid="uid://bby12cj28wdqy" path="res://objects/valuables/mp_mac.tscn" id="5_86ljf"]
-[ext_resource type="PackedScene" uid="uid://c2ny4trasr1w8" path="res://objects/valuables/mp_cigs.tscn" id="5_m3clv"]
-[ext_resource type="PackedScene" uid="uid://dp13b1igi6v63" path="res://objects/valuables/mp_rigidbody.tscn" id="6_mxnmf"]
-[ext_resource type="PackedScene" uid="uid://b7vn1my568kki" path="res://objects/valuables/mp_teacup.tscn" id="7_3ywx5"]
-[ext_resource type="Script" uid="uid://bsltexsp4epiv" path="res://objects/mp_spawner.gd" id="9_86ljf"]
-[ext_resource type="PackedScene" uid="uid://bm2yhlgk7j4h6" path="res://objects/mp_cart.tscn" id="11_d6u53"]
-[ext_resource type="PackedScene" uid="uid://8q34dnlrnojc" path="res://monsters/monster.tscn" id="11_ofirr"]
-[ext_resource type="Script" uid="uid://3031c5tnaixk" path="res://objects/mp_extraction_point.gd" id="14_dn5x0"]
+[ext_resource type="PackedScene" uid="uid://bgxtusclj7401" path="res://levels/faculty/Scene.tscn" id="1_qw6gt"]
+[ext_resource type="Script" uid="uid://bsltexsp4epiv" path="res://objects/mp_spawner.gd" id="2_2k3qn"]
+[ext_resource type="PackedScene" uid="uid://8q34dnlrnojc" path="res://monsters/monster.tscn" id="3_87ooh"]
+[ext_resource type="PackedScene" uid="uid://bm2yhlgk7j4h6" path="res://objects/mp_cart.tscn" id="4_sggao"]
+[ext_resource type="PackedScene" uid="uid://bby12cj28wdqy" path="res://objects/valuables/mp_mac.tscn" id="5_wd0lr"]
+[ext_resource type="PackedScene" uid="uid://c2ny4trasr1w8" path="res://objects/valuables/mp_cigs.tscn" id="6_kpr3g"]
+[ext_resource type="PackedScene" uid="uid://b7vn1my568kki" path="res://objects/valuables/mp_teacup.tscn" id="7_6io5d"]
+[ext_resource type="PackedScene" uid="uid://dp13b1igi6v63" path="res://objects/valuables/mp_rigidbody.tscn" id="8_hyi8c"]
+[ext_resource type="Script" uid="uid://3031c5tnaixk" path="res://objects/mp_extraction_point.gd" id="9_2gcle"]
 
 [sub_resource type="GDScript" id="GDScript_t7iv1"]
 script/source = "extends Node3D
@@ -73,152 +73,152 @@ environment = SubResource("Environment_bexhn")
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_qhyq2")
 
-[node name="Level" parent="NavigationRegion3D" instance=ExtResource("1_mxnmf")]
+[node name="Level" parent="NavigationRegion3D" instance=ExtResource("1_qw6gt")]
 
 [node name="MPSpawner3" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.58686, 0.313853, 6.81022)
-script = ExtResource("9_86ljf")
-scene_to_spawn = ExtResource("11_ofirr")
+script = ExtResource("2_2k3qn")
+scene_to_spawn = ExtResource("3_87ooh")
 amount_to_spawn = 1
 spawn_radius = 0.1
 
 [node name="MPSpawner5" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.71507, 0.313853, -1.85789)
-script = ExtResource("9_86ljf")
-scene_to_spawn = ExtResource("11_ofirr")
+script = ExtResource("2_2k3qn")
+scene_to_spawn = ExtResource("3_87ooh")
 amount_to_spawn = 1
 spawn_radius = 0.1
 
 [node name="MPSpawner4" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.333092, -3.31765, -1.30298)
-script = ExtResource("9_86ljf")
-scene_to_spawn = ExtResource("11_d6u53")
+script = ExtResource("2_2k3qn")
+scene_to_spawn = ExtResource("4_sggao")
 amount_to_spawn = 1
 spawn_radius = 0.1
 
 [node name="MPSpawner6" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.76341, 1.50982, 3.02409)
-script = ExtResource("9_86ljf")
-scene_to_spawn = ExtResource("5_86ljf")
+script = ExtResource("2_2k3qn")
+scene_to_spawn = ExtResource("5_wd0lr")
 amount_to_spawn = 1
 spawn_radius = 0.1
 
 [node name="MPSpawner7" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.43656, 1.50982, 2.49127)
-script = ExtResource("9_86ljf")
-scene_to_spawn = ExtResource("5_86ljf")
+script = ExtResource("2_2k3qn")
+scene_to_spawn = ExtResource("5_wd0lr")
 amount_to_spawn = 1
 spawn_radius = 0.1
 
 [node name="MPSpawner8" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.1148, 1.50982, 4.5519)
-script = ExtResource("9_86ljf")
-scene_to_spawn = ExtResource("5_m3clv")
+script = ExtResource("2_2k3qn")
+scene_to_spawn = ExtResource("6_kpr3g")
 amount_to_spawn = 1
 spawn_radius = 0.1
 
 [node name="MPSpawner9" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.71384, 1.50982, 3.89614)
-script = ExtResource("9_86ljf")
-scene_to_spawn = ExtResource("5_m3clv")
+script = ExtResource("2_2k3qn")
+scene_to_spawn = ExtResource("6_kpr3g")
 amount_to_spawn = 1
 spawn_radius = 0.1
 
 [node name="MPSpawner10" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61351, 1.50982, -2.58611)
-script = ExtResource("9_86ljf")
-scene_to_spawn = ExtResource("5_m3clv")
+script = ExtResource("2_2k3qn")
+scene_to_spawn = ExtResource("6_kpr3g")
 amount_to_spawn = 1
 spawn_radius = 0.1
 
 [node name="MPSpawner11" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.21029, 1.50982, -3.78595)
-script = ExtResource("9_86ljf")
-scene_to_spawn = ExtResource("5_m3clv")
+script = ExtResource("2_2k3qn")
+scene_to_spawn = ExtResource("6_kpr3g")
 amount_to_spawn = 1
 spawn_radius = 0.1
 
 [node name="MPSpawner12" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99599, -2.46726, -4.89895)
-script = ExtResource("9_86ljf")
-scene_to_spawn = ExtResource("5_m3clv")
+script = ExtResource("2_2k3qn")
+scene_to_spawn = ExtResource("6_kpr3g")
 amount_to_spawn = 1
 spawn_radius = 0.1
 
 [node name="MPSpawner13" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.16034, -2.46726, -12.4222)
-script = ExtResource("9_86ljf")
-scene_to_spawn = ExtResource("5_m3clv")
+script = ExtResource("2_2k3qn")
+scene_to_spawn = ExtResource("6_kpr3g")
 amount_to_spawn = 1
 spawn_radius = 0.1
 
 [node name="MPSpawner14" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.12337, -2.46726, -15.3703)
-script = ExtResource("9_86ljf")
-scene_to_spawn = ExtResource("7_3ywx5")
+script = ExtResource("2_2k3qn")
+scene_to_spawn = ExtResource("7_6io5d")
 amount_to_spawn = 1
 spawn_radius = 0.1
 
 [node name="MPSpawner15" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.90853, -2.46726, -14.5968)
-script = ExtResource("9_86ljf")
-scene_to_spawn = ExtResource("7_3ywx5")
+script = ExtResource("2_2k3qn")
+scene_to_spawn = ExtResource("7_6io5d")
 amount_to_spawn = 1
 spawn_radius = 0.1
 
 [node name="MPSpawner16" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.92432, -2.46726, -14.7262)
-script = ExtResource("9_86ljf")
-scene_to_spawn = ExtResource("7_3ywx5")
+script = ExtResource("2_2k3qn")
+scene_to_spawn = ExtResource("7_6io5d")
 amount_to_spawn = 1
 spawn_radius = 0.1
 
 [node name="MPSpawner17" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.82606, 1.22626, -7.97201)
-script = ExtResource("9_86ljf")
-scene_to_spawn = ExtResource("7_3ywx5")
+script = ExtResource("2_2k3qn")
+scene_to_spawn = ExtResource("7_6io5d")
 amount_to_spawn = 1
 spawn_radius = 0.1
 
 [node name="MPSpawner18" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.70825, 1.22626, -6.2184)
-script = ExtResource("9_86ljf")
-scene_to_spawn = ExtResource("6_mxnmf")
+script = ExtResource("2_2k3qn")
+scene_to_spawn = ExtResource("8_hyi8c")
 amount_to_spawn = 1
 spawn_radius = 0.1
 
 [node name="MPSpawner19" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.79768, -2.38053, -4.61434)
-script = ExtResource("9_86ljf")
-scene_to_spawn = ExtResource("6_mxnmf")
+script = ExtResource("2_2k3qn")
+scene_to_spawn = ExtResource("8_hyi8c")
 amount_to_spawn = 1
 spawn_radius = 0.1
 
 [node name="MPSpawner20" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.72822, -3.37685, -4.72753)
-script = ExtResource("9_86ljf")
-scene_to_spawn = ExtResource("6_mxnmf")
+script = ExtResource("2_2k3qn")
+scene_to_spawn = ExtResource("8_hyi8c")
 amount_to_spawn = 1
 spawn_radius = 0.1
 
 [node name="MPSpawner21" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.09885, -2.70053, -16.5071)
-script = ExtResource("9_86ljf")
-scene_to_spawn = ExtResource("6_mxnmf")
+script = ExtResource("2_2k3qn")
+scene_to_spawn = ExtResource("8_hyi8c")
 amount_to_spawn = 1
 spawn_radius = 0.1
 
 [node name="MPSpawner22" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.86005, -2.70053, -16.3061)
-script = ExtResource("9_86ljf")
-scene_to_spawn = ExtResource("6_mxnmf")
+script = ExtResource("2_2k3qn")
+scene_to_spawn = ExtResource("8_hyi8c")
 amount_to_spawn = 1
 spawn_radius = 0.1
 
 [node name="MPSpawner23" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.29309, -2.41455, -16.5863)
-script = ExtResource("9_86ljf")
-scene_to_spawn = ExtResource("6_mxnmf")
+script = ExtResource("2_2k3qn")
+scene_to_spawn = ExtResource("8_hyi8c")
 amount_to_spawn = 1
 spawn_radius = 0.1
 
@@ -251,7 +251,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.09106, 0.360932, 2.37011)
 
 [node name="ExtractionPoint" type="Area3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1.07854, -3.3777, 3.24187)
-script = ExtResource("14_dn5x0")
+script = ExtResource("9_2gcle")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="ExtractionPoint"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.55537)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://5waroudohjyx"]
 
-[ext_resource type="Script" uid="uid://7r3kxp7sq2u2" path="res://MultiplayerTestUI.gd" id="1_rcbgx"]
-[ext_resource type="Script" uid="uid://t7um0ctjd5d1" path="res://chat.gd" id="2_n32fk"]
+[ext_resource type="Script" uid="uid://7r3kxp7sq2u2" path="res://scenes/main_menu/MainMenu.gd" id="1_eiy7p"]
+[ext_resource type="Script" uid="uid://t7um0ctjd5d1" path="res://chat.gd" id="2_h7a2f"]
 
 [node name="MultiplayerTestUI" type="Control"]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_rcbgx")
+script = ExtResource("1_eiy7p")
 
 [node name="ConnectionPanel" type="Panel" parent="."]
 layout_mode = 1
@@ -193,7 +193,7 @@ size_flags_stretch_ratio = 0.8
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("2_n32fk")
+script = ExtResource("2_h7a2f")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="GamePanel/VBoxContainer"]
 layout_mode = 2

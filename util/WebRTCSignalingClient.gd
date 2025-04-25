@@ -145,7 +145,16 @@ func stop() -> void:
 func _create_peer(id: int) -> WebRTCPeerConnection:
 	var peer: WebRTCPeerConnection = WebRTCPeerConnection.new()
 	peer.initialize({
-		"iceServers": [ { "urls": ["stun:stun.l.google.com:19302"] } ]
+			"iceServers": [
+			{
+				"urls": [ "stun:37.194.195.213:3478" ], # One or more STUN servers.
+			},
+			{
+				"urls": [ "turn:37.194.195.213:3478" ], # One or more TURN servers.
+				"username": "turn1", # Optional username for the TURN server.
+				"credential": "@dmin13524", # Optional password for the TURN server.
+			}
+		]
 	})
 	peer.session_description_created.connect(_offer_created.bind(id))
 	peer.ice_candidate_created.connect(_new_ice_candidate.bind(id))
