@@ -1,29 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2ny4trasr1w8"]
+[gd_scene load_steps=4 format=3 uid="uid://c2ny4trasr1w8"]
 
 [ext_resource type="Script" uid="uid://c3ji80v6iglfv" path="res://objects/valuables/mp_valuable.gd" id="1_5orrk"]
 [ext_resource type="PackedScene" uid="uid://bd4pp843pkf86" path="res://models/valuables/cigs.glb" id="2_5orrk"]
-[ext_resource type="Script" uid="uid://eatwwggessoe" path="res://objects/synchronizer.gd" id="3_rexwx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fvioc"]
 size = Vector3(0.169645, 0.299497, 0.163988)
 
-[node name="MPValuable" type="Node3D" groups=["mp_rigidbody", "mp_valuable", "rc_grabbable"]]
+[node name="MPValuable" type="Node3D"]
 script = ExtResource("1_5orrk")
 price = 1000
 
-[node name="RigidBody3D" type="RigidBody3D" parent="." groups=["mp_rigidbody", "mp_valuable", "rc_grabbable"]]
-
-[node name="cigs" parent="RigidBody3D" instance=ExtResource("2_5orrk")]
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
-
-[node name="Label3D" type="Label3D" parent="RigidBody3D"]
-visible = false
-billboard = 1
-no_depth_test = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00261851, -0.00350551, -0.00735977)
 shape = SubResource("BoxShape3D_fvioc")
 
-[node name="Synchronizer" type="Node3D" parent="."]
-script = ExtResource("3_rexwx")
+[node name="cigs" parent="." instance=ExtResource("2_5orrk")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
