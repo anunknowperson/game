@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dp13b1igi6v63"]
+
+[ext_resource type="Script" uid="uid://gcsv3uxny5n3" path="res://objects/mp/prop/mp_prop.gd" id="1_3ya1l"]
+[ext_resource type="PackedScene" uid="uid://bf2ojfgdq0oe4" path="res://models/valuables/sandwich.glb" id="2_q0jp1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6i5te"]
+size = Vector3(0.288616, 0.229214, 0.264938)
+
+[node name="MPProp" type="RigidBody3D"]
+script = ExtResource("1_3ya1l")
+metadata/_custom_type_script = "uid://gcsv3uxny5n3"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0193958, 0.00692177, 0.00592804)
+shape = SubResource("BoxShape3D_6i5te")
+
+[node name="sandwich" parent="." instance=ExtResource("2_q0jp1")]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0, 0, 0)

@@ -179,7 +179,11 @@ func choose_random_patrol_location():
 		var random_index = randi() % patrol_locations.size()
 		set_movement_target(patrol_locations[random_index])
 
+var nav_tar :Vector3
+
 func set_movement_target(target_pos: Vector3):
+	nav_tar = target_pos
+	
 	navigation_agent.set_target_position(target_pos)
 
 func _physics_process(delta):
@@ -231,8 +235,8 @@ func process_patrol_state(delta):
 	move_along_path(movement_speed)
 
 func process_chase_state(delta):
-	# Lost target or target disappeared
-	if not target_player or not is_instance_valid(target_player):
+	# Lost target or target disappeared or died
+	if not target_player or not is_instance_valid(target_player) or target_player.dead:
 		change_state(State.IDLE)
 		return
 	
@@ -279,10 +283,11 @@ func process_chase_state(delta):
 	
 	move_along_path(run_speed)
 	
-# Add this new function to handle visibility check
 func check_player_visibility(player):
-	if not is_instance_valid(player):
+	if not is_instance_valid(player) or player.dead:  # Skip dead players
+		
 		return false
+
 	
 	var space_state = get_world_3d().direct_space_state
 	
@@ -344,15 +349,17 @@ func process_attack_state(delta):
 	# Check if attack animation is still playing
 	if is_attack_animation_playing:
 		# Make sure we're facing the player even during attack animation
-		if target_player and is_instance_valid(target_player):
+		if target_player and is_instance_valid(target_player) and not target_player.dead:
 			look_at(target_player.global_position, Vector3.UP)
 		return
 		
 	# Animation completed, determine next state based on player position
-	if not target_player or not is_instance_valid(target_player):
-		print("Target invalid, returning to IDLE")
+	if not target_player or not is_instance_valid(target_player) or target_player.dead:
+		print("Target invalid or dead, returning to IDLE")
 		change_state(State.IDLE)
 		return
+	
+	# Rest of the function remains the same...
 	
 	# Calculate distance to player
 	var distance_to_player = global_position.distance_to(target_player.global_position)
@@ -421,21 +428,21 @@ func find_closest_player():
 	target_player = null
 	
 	for player in players:
-		if not is_instance_valid(player):
+		if not is_instance_valid(player) or player.dead:  # Skip dead players
 			continue
 			
 		var distance = global_position.distance_to(player.global_position)
-		if distance < min_distance and distance < player_activation_radius:  # Only detect within activation radius
+		if distance < min_distance and distance < player_activation_radius:
 			min_distance = distance
 			target_player = player
 
 func is_player_in_range(player, range_distance):
-	if not is_instance_valid(player):
+	if not is_instance_valid(player) or player.dead:  # Skip dead players
 		return false
 	return global_position.distance_to(player.global_position) <= range_distance
 
 func is_player_detected(player):
-	if not is_instance_valid(player):
+	if not is_instance_valid(player) or player.dead:  # Skip dead players
 		return false
 	
 	# Check if player is in activation radius first
@@ -447,11 +454,11 @@ func is_player_detected(player):
 	if distance > vision_distance:
 		return false
 	
-	
 	# Use our new visibility check function
 	return check_player_visibility(player)
 
 func move_along_path(speed):
+
 	if navigation_agent.is_navigation_finished():
 		# If we've stopped moving, stop the walking sound
 		if is_walking:
@@ -481,6 +488,7 @@ func move_along_path(speed):
 	
 	# Set velocity and move
 	velocity = new_velocity
+	
 	move_and_slide()
 
 func maybe_play_random_laugh():

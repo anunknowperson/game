@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://d2ue04toi1bmm"]
+
+[ext_resource type="Script" uid="uid://buf0d5sfmfkad" path="res://objects/monsters/basov/basov.gd" id="1_demxc"]
+[ext_resource type="AudioStream" uid="uid://b5s8ljl8jumve" path="res://sounds/concrete-footsteps-1-6265.mp3" id="3_6x5ux"]
+[ext_resource type="AudioStream" uid="uid://dioloax75bqtj" path="res://objects/monsters/basov/basov21.mp3" id="4_demxc"]
+[ext_resource type="AudioStream" uid="uid://c0dor3owqva5h" path="res://sounds/laugh-1-40698.mp3" id="4_s7clk"]
+[ext_resource type="AudioStream" uid="uid://cn6oxmpu06r0q" path="res://sounds/large-monster-attack-195713.mp3" id="6_cft7j"]
+[ext_resource type="Texture2D" uid="uid://dvx0bas1hoa4j" path="res://objects/monsters/basov/basov.jpg" id="6_demxc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7d0jg"]
+radius = 0.2
+height = 1.08046
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_dbe51"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="Basov" type="CharacterBody3D"]
+script = ExtResource("1_demxc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.565923, 0)
+shape = SubResource("CapsuleShape3D_7d0jg")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_dbe51")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01112, 0)
+visible = false
+billboard = 1
+
+[node name="FootstepSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_6x5ux")
+volume_db = -11.667
+max_db = 1.0
+max_distance = 10.0
+
+[node name="LaughSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_s7clk")
+volume_db = -80.0
+max_db = 1.0
+
+[node name="AlertSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_demxc")
+volume_db = 2.0
+max_distance = 10.0
+
+[node name="AttackSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_cft7j")
+volume_db = -1.0
+max_distance = 10.0
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0, 0.644647, 0)
+billboard = 2
+shaded = true
+texture = ExtResource("6_demxc")

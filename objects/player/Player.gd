@@ -6,15 +6,24 @@ const RUN_SPEED = 5.0   # Faster run speed when shift is pressed
 const JUMP_VELOCITY = 6.0
 const MOUSE_SENSITIVITY = 0.002
 
+var dead = false
+
+# Add these variables at the top of your class
+var reviving_player = null
+var revive_progress = 0.0
+var revive_duration = 10.0  # 10 seconds to complete revive
+@onready var revive_bar = $Control/ReviveBar  # Make sure to add this ProgressBar to your scene
+
+
 # Health system
-var max_health = 100
-var current_health = 100
+var max_health = 150
+var current_health = 150
 @onready var health_label = $Control/Label
 
 # Stamina system
-var max_stamina = 100
+var max_stamina = 200
 var current_stamina = 100
-var stamina_regen_rate = 10  # Points per second
+var stamina_regen_rate = 30  # Points per second
 var stamina_run_cost = 70    # Points per second
 var is_running = false
 @onready var stamina_label = $Control/StaminaLabel  # Add this UI element
@@ -62,8 +71,10 @@ func _enter_tree():
 	#set_multiplayer_authority(str(name).to_int(), true)
 
 func _ready():
-	#if not is_multiplayer_authority():
-		#$Control.hide()
+	# Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	if not is_multiplayer_authority():
+		$Control.hide()
 		#
 		#$Voice.stream = AudioStreamOpusChunked.new()
 		#audiostreamopuschunked = $Voice.stream
@@ -181,6 +192,9 @@ func _physics_process(delta):
 	
 	update_stamina_display()
 	
+	if dead:
+		return
+	
 	# Get movement input direction
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -253,6 +267,35 @@ func _physics_process(delta):
 	# Check for releasing grabbed object
 	if Input.is_action_just_released("interact") and grabbed_object:
 		release_object()
+	
+	 # Handle reviving logic
+	if reviving_player != null:
+		if Input.is_action_pressed("interact"):
+			# Continue reviving
+			revive_progress += delta
+			revive_bar.value = (revive_progress / revive_duration) * 100
+			
+			# Check if revive is complete
+			if revive_progress >= revive_duration:
+				# Revive is complete
+				complete_revive()
+		else:
+			# Player released the interact button, cancel revive
+			cancel_revive()
+
+func cancel_revive():
+	reviving_player = null
+	revive_progress = 0.0
+	revive_bar.visible = false
+
+func complete_revive():
+	# Call the revive method on the downed player
+	reviving_player.revive.rpc()
+	
+	# Reset our revive state
+	revive_bar.visible = false
+	reviving_player = null
+	revive_progress = 0.0
 
 # Flag to track running state changes
 var was_running = false
@@ -300,7 +343,7 @@ func update_grab_target():
 	var target_forward = -camera.global_transform.basis.z.normalized()
 	grabbed_object_grabbable.hold(target_pos, target_forward)
 
-# Modify your perform_raycast function to handle grabbable objects
+# Modify your perform_raycast function to detect downed players
 func perform_raycast():
 	# Create a new physics raycast
 	var space_state = get_world_3d().direct_space_state
@@ -318,12 +361,28 @@ func perform_raycast():
 		if collider.is_in_group("rc_button"):
 			# Call the press method on the button
 			collider.press()
-		# Check if the object is in the "rc_grabbable" group
+		# Check if the object is in the "mp_grabbable" group
 		elif collider.is_in_group("mp_grabbable") and not grabbed_object:
 			grab_object(collider, result["position"])
+		# Check if we're looking at a player that needs reviving
+		elif collider.is_in_group("mp_player") and collider.get("current_health") != null and collider.current_health <= 0:
+			# This is a downed player, we can start reviving
+			if Input.is_action_pressed("interact") and reviving_player == null:
+				# Start reviving
+				reviving_player = collider
+				revive_progress = 0.0
+				revive_bar.visible = true
+				revive_bar.value = 0
+				
+		# If we're reviving but looking at something else, cancel the revive
+		elif reviving_player != null:
+			cancel_revive()
 	# If we have a grabbed object and release the interact button, release it
 	elif grabbed_object and Input.is_action_just_released("interact"):
 		release_object()
+	# If we're reviving and not looking at the player anymore, cancel
+	elif reviving_player != null:
+		cancel_revive()
 
 # Add these new functions for grabbing and releasing objects
 func grab_object(object, grab_point):
@@ -422,7 +481,22 @@ func apply_damage(amount):
 		
 		# Check if player died
 		if current_health <= 0:
-			handle_death()
+			handle_death.rpc()
+
+@rpc("any_peer", "call_local")
+func revive():
+	$SOS.hide()
+	dead = false
+	
+	if is_multiplayer_authority():
+		print("undead")
+		
+		$Control/Label2.visible = false
+		
+		sync_health.rpc(100)
+		current_health = 100
+		# Update local health display
+		update_health_display()
 
 # Add a new RPC to sync health across clients
 @rpc("authority", "call_remote", "reliable")
@@ -435,13 +509,19 @@ func update_health_display():
 	if health_label:
 		health_label.text = "HP: " + str(current_health) + "/" + str(max_health)
 
+
 # Add a function to handle player death
+@rpc("any_peer", "call_local")
 func handle_death():
 	# Implement death behavior (respawn, game over, etc.)
+	print(multiplayer.get_unique_id(), "dead", get_multiplayer_authority())
+	dead = true
+	
 	if is_multiplayer_authority():
 		$Control/Label2.visible = true
-	
-	global_position.y += 50
+		
+		$SOS.show()
+	# global_position.y += 50
 
 func damage(amount):
 	apply_damage.rpc(amount)

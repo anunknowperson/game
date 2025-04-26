@@ -1,29 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://bby12cj28wdqy"]
+[gd_scene load_steps=4 format=3 uid="uid://bby12cj28wdqy"]
 
-[ext_resource type="Script" uid="uid://c3ji80v6iglfv" path="res://objects/valuables/mp_valuable.gd" id="1_jnnpg"]
+[ext_resource type="Script" uid="uid://gcsv3uxny5n3" path="res://objects/mp/prop/mp_prop.gd" id="1_rx3rq"]
 [ext_resource type="PackedScene" uid="uid://bnuk3opd52vr6" path="res://models/valuables/mac.glb" id="2_jnnpg"]
-[ext_resource type="Script" uid="uid://eatwwggessoe" path="res://objects/synchronizer.gd" id="3_guh6p"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_fvioc"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_jnnpg"]
 size = Vector3(0.543223, 0.421561, 0.507213)
 
-[node name="MPValuable" type="Node3D" groups=["mp_rigidbody", "mp_valuable", "rc_grabbable"]]
-script = ExtResource("1_jnnpg")
-price = 3000
+[node name="MPProp" type="RigidBody3D"]
+script = ExtResource("1_rx3rq")
+value = 1000
+metadata/_custom_type_script = "uid://gcsv3uxny5n3"
 
-[node name="RigidBody3D" type="RigidBody3D" parent="." groups=["mp_rigidbody", "mp_valuable", "rc_grabbable"]]
-
-[node name="mac" parent="RigidBody3D" instance=ExtResource("2_jnnpg")]
+[node name="mac" parent="." instance=ExtResource("2_jnnpg")]
 transform = Transform3D(0.285, 0, 0, 0, 0.285, 0, 0, 0, 0.285, 0, 0, 0)
 
-[node name="Label3D" type="Label3D" parent="RigidBody3D"]
-visible = false
-billboard = 1
-no_depth_test = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0431943, 0.00219581, 0.0239277)
-shape = SubResource("BoxShape3D_fvioc")
-
-[node name="Synchronizer" type="Node3D" parent="."]
-script = ExtResource("3_guh6p")
+shape = SubResource("BoxShape3D_jnnpg")

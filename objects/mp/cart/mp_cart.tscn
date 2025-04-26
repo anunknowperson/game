@@ -33,7 +33,6 @@ metadata/_custom_type_script = "uid://dfse0bf1frgdo"
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.869728, 0.493532, 0, -0.493532, 0.869728, 0.00116134, 0.47477, 0.733755)
 pixel_size = 0.001
-no_depth_test = true
 text = "0"
 font_size = 128
 

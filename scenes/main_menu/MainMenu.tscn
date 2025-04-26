@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://5waroudohjyx"]
+[gd_scene load_steps=4 format=3 uid="uid://5waroudohjyx"]
 
 [ext_resource type="Script" uid="uid://7r3kxp7sq2u2" path="res://scenes/main_menu/MainMenu.gd" id="1_eiy7p"]
 [ext_resource type="Script" uid="uid://t7um0ctjd5d1" path="res://chat.gd" id="2_h7a2f"]
+
+[sub_resource type="GDScript" id="GDScript_axelx"]
+script/source = "extends Button
+
+
+func _on_pressed() -> void:
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN) 
+"
 
 [node name="MultiplayerTestUI" type="Control"]
 layout_mode = 3
@@ -68,6 +76,11 @@ placeholder_text = "Enter your name"
 [node name="ConnectButton" type="Button" parent="ConnectionPanel/VBoxContainer"]
 layout_mode = 2
 text = "Connect"
+
+[node name="ConnectButton2" type="Button" parent="ConnectionPanel/VBoxContainer"]
+layout_mode = 2
+text = "фулскрин))"
+script = SubResource("GDScript_axelx")
 
 [node name="StatusLabel" type="Label" parent="ConnectionPanel/VBoxContainer"]
 layout_mode = 2
@@ -217,5 +230,6 @@ text = "Start Game"
 layout_mode = 2
 text = "Leave Lobby"
 
+[connection signal="pressed" from="ConnectionPanel/VBoxContainer/ConnectButton2" to="ConnectionPanel/VBoxContainer/ConnectButton2" method="_on_pressed"]
 [connection signal="text_changed" from="GamePanel/VBoxContainer/HBoxContainer2/LineEdit" to="GamePanel/VBoxContainer/ScrollContainer/Chat" method="_on_line_edit_text_changed"]
 [connection signal="pressed" from="GamePanel/VBoxContainer/HBoxContainer2/Button" to="GamePanel/VBoxContainer/ScrollContainer/Chat" method="_on_button_pressed"]

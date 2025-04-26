@@ -8,8 +8,8 @@
 [ext_resource type="AudioStream" uid="uid://cn6oxmpu06r0q" path="res://sounds/large-monster-attack-195713.mp3" id="6_hhngd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7d0jg"]
-radius = 0.15
-height = 1.74192
+radius = 0.2
+height = 1.08046
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_dbe51"]
 properties/0/path = NodePath(".:position")
@@ -26,7 +26,7 @@ script = ExtResource("1_7d0jg")
 transform = Transform3D(-100, 0, -8.74228e-06, 0, 100, 0, 8.74228e-06, 0, -100, -0.0435368, -0.00391215, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.042529, 0.970875, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.565923, 0)
 shape = SubResource("CapsuleShape3D_7d0jg")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

@@ -13,9 +13,8 @@ size = Vector3(0.25, 0.25, 0.25)
 
 [node name="TestLevel" type="Node3D"]
 
-[node name="MPPlayerSpawner" parent="." node_paths=PackedStringArray("spawn_points") instance=ExtResource("1_dysod")]
+[node name="MPPlayerSpawner" parent="." instance=ExtResource("1_dysod")]
 script = ExtResource("2_41a43")
-spawn_points = [NodePath("Marker3D"), NodePath("Marker3D2"), NodePath("Marker3D3")]
 
 [node name="Marker3D" type="Marker3D" parent="MPPlayerSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)

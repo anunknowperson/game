@@ -3,8 +3,6 @@ extends Node3D
 @export
 var player_scene = preload("res://objects/player/Player.tscn")
 
-@export
-var spawn_points :Array[Marker3D]
 
 func _ready():
 	
@@ -41,9 +39,10 @@ func _add_player(id):
 	var peers :PackedInt32Array = multiplayer.get_peers()
 	peers.sort()
 	
-	var spawn_position :Vector3 = spawn_points[peers.find(id)].global_position
+	var spawn_position :Vector3 = get_children()[peers.find(id)].global_position
 	
 	player_instance.position = spawn_position
 	add_child(player_instance, true)
+	player_instance.position = spawn_position
 	
 	Globals.players[id] = player_instance
