@@ -11,6 +11,7 @@ func _init() -> void:
 @export var rotation_smoothing: float = 0.3
 @export var threshold_position: float = 0.1  # Minimum position difference to sync
 @export var threshold_rotation: float = 0.1  # Minimum rotation difference to sync
+@export var teleport_threshold: float = 1.0  # if >1m off, snap instantly
 @export var authority_mode: AuthorityMode = AuthorityMode.OWNER  # Default to owner authority
 
 # Target transform for non-authoritative instances
@@ -98,6 +99,16 @@ func _process_non_authority(delta: float) -> void:
 	# Apply received physics state using velocities
 	# Calculate positional difference
 	var position_error = target_position - rigid_body.global_position
+	var position_error_len = position_error.length()
+
+	# if we've drifted too far, teleport
+	if position_error_len > teleport_threshold:
+		# build a new transform with the correct basis and origin
+		
+		rigid_body.global_position = target_position
+
+		return  # skip smoothing entirely
+	
 	
 	# Apply linear velocity with correction factor
 	var correction_velocity = position_error / position_smoothing

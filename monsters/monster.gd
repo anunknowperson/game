@@ -6,8 +6,8 @@ extends CharacterBody3D
 @export var attack_range: float = 2.0
 @export var attack_range_outer: float = 4.0
 @export var attack_cooldown: float = 2.0
-@export var idle_time_min: float = 3.0
-@export var idle_time_max: float = 8.0
+@export var idle_time_min: float = 5.0
+@export var idle_time_max: float = 15.0
 # Patrol locations will now be fetched from group instead of manually setting
 @export var use_group_locations: bool = true
 @export var patrol_group_name: String = "ms_loc"
@@ -229,6 +229,12 @@ func process_patrol_state(delta):
 	# If target is in range and detected by vision, chase them
 	if target_player and is_player_detected(target_player):
 		change_state(State.CHASE)
+		return
+	
+	# Add this check to select a new patrol point when current one is reached
+	if navigation_agent.is_navigation_finished():
+		print("TO IDLE")
+		change_state(State.IDLE)
 		return
 	
 	# Otherwise, continue patrolling

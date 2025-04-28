@@ -41,8 +41,10 @@ func _add_player(id):
 	
 	var spawn_position :Vector3 = get_children()[peers.find(id)].global_position
 	
-	player_instance.position = spawn_position
+	player_instance.position = Vector3()
+	
 	add_child(player_instance, true)
-	player_instance.position = spawn_position
+	
+	player_instance.set_body_position(spawn_position)
 	
 	Globals.players[id] = player_instance

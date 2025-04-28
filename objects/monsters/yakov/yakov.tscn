@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://lmmtjxr3fdhq"]
+
+[ext_resource type="AudioStream" uid="uid://b5s8ljl8jumve" path="res://sounds/concrete-footsteps-1-6265.mp3" id="1_mud1m"]
+[ext_resource type="Script" uid="uid://duyvoirufifqa" path="res://objects/monsters/yakov/yakov.gd" id="1_v2vbr"]
+[ext_resource type="AudioStream" uid="uid://b4dgtivjamwep" path="res://objects/monsters/yakov/alert.mp3" id="3_31giv"]
+[ext_resource type="AudioStream" uid="uid://bc0gg7djssv7v" path="res://objects/monsters/yakov/attack.mp3" id="4_mud1m"]
+[ext_resource type="Texture2D" uid="uid://dvy0gga1quwqn" path="res://objects/monsters/yakov/yakov.png" id="5_mud1m"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v8155"]
+radius = 0.1
+height = 1.08046
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ydat6"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="Yakov" type="CharacterBody3D"]
+script = ExtResource("1_v2vbr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.565923, 0)
+shape = SubResource("CapsuleShape3D_v8155")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.2
+target_desired_distance = 0.5
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ydat6")
+
+[node name="FootstepSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("1_mud1m")
+volume_db = -11.667
+max_db = 1.0
+max_distance = 10.0
+
+[node name="AlertSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_31giv")
+volume_db = 2.0
+max_distance = 10.0
+
+[node name="AttackSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_mud1m")
+volume_db = 2.0
+max_distance = 10.0
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.57, 0, 0, 0, 0.57, 0, 0, 0, 0.57, 0, 0.644647, 0)
+billboard = 2
+shaded = true
+texture = ExtResource("5_mud1m")

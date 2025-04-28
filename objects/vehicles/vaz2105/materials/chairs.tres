@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bvp0pd302w5nq"]
+
+[ext_resource type="Texture2D" uid="uid://c2k6kxk4ywqyv" path="res://objects/vehicles/vaz2105/textures/2105salon_final_chairs_BaseColor.png" id="1_xp5qv"]
+[ext_resource type="Texture2D" uid="uid://cb83vvjfmdmfr" path="res://objects/vehicles/vaz2105/textures/2105salon_final_chairs_Normal.png" id="2_jfbec"]
+
+[resource]
+resource_name = "chairs"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_xp5qv")
+emission_enabled = true
+normal_enabled = true
+normal_scale = 0.0
+normal_texture = ExtResource("2_jfbec")

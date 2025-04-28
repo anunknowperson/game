@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbx4g35equ327"]
+
+[ext_resource type="PackedScene" uid="uid://hp6uqlieb87t" path="res://temp/микроволновка.fbx" id="1_78a1b"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="микроволновка" parent="." instance=ExtResource("1_78a1b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.637863, 0, -0.846288)

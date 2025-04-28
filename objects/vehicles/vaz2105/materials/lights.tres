@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://j0cfq6uk7m2v"]
+
+[ext_resource type="Texture2D" uid="uid://dnxl1pbodl8f1" path="res://objects/vehicles/vaz2105/textures/2105glass_lights_BaseColor.png" id="1_1cofr"]
+[ext_resource type="Texture2D" uid="uid://duubdntwlea7c" path="res://objects/vehicles/vaz2105/textures/2105glass_lights_Normal.png" id="2_wkkuo"]
+
+[resource]
+resource_name = "lights"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_1cofr")
+normal_enabled = true
+normal_scale = 0.0
+normal_texture = ExtResource("2_wkkuo")

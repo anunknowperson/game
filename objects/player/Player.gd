@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+var active := true
+
 # Movement parameters
 const WALK_SPEED = 2.0  # Reduced from 5.0 for slower movement
 const RUN_SPEED = 5.0   # Faster run speed when shift is pressed
@@ -14,6 +16,8 @@ var revive_progress = 0.0
 var revive_duration = 10.0  # 10 seconds to complete revive
 @onready var revive_bar = $Control/ReviveBar  # Make sure to add this ProgressBar to your scene
 
+var being_revived = false
+var being_revived_by = null
 
 # Health system
 var max_health = 150
@@ -143,6 +147,10 @@ func sync_sitting_standing(sitting):
 		setup_sitting_standing_state(sitting)
 
 func _input(event):
+
+	if !active:
+		return
+
 	if not is_multiplayer_authority():
 		return
 	
@@ -168,6 +176,9 @@ func _input(event):
 		setup_sitting_standing_state(!is_sitting)
 
 func _physics_process(delta):
+	if !active:
+		return
+	
 	if not is_multiplayer_authority():
 		return
 		
@@ -205,7 +216,7 @@ func _physics_process(delta):
 		# direction = Vector3.ZERO
 		
 		# Or reduce movement speed significantly:
-		direction = direction * 0.3
+		direction = direction * 1.0
 	
 	# Check if player is walking or running
 	was_walking = is_walking
@@ -260,20 +271,33 @@ func _physics_process(delta):
 	# Handle grabbed object - send grab target data to authority
 	if grabbed_object:
 		update_grab_target()
-	
-	# Check for button interaction (raycast)
 	if Input.is_action_just_pressed("interact"): # You'll need to define this action
+
+		perform_raycast()
+	# Check for button interaction (raycast)
+	if Input.is_action_just_pressed("interact_secondary"): # You'll need to define this action
+
 		perform_raycast()
 	# Check for releasing grabbed object
 	if Input.is_action_just_released("interact") and grabbed_object:
 		release_object()
 	
 	 # Handle reviving logic
+	# Handle reviving logic
 	if reviving_player != null:
 		if Input.is_action_pressed("interact"):
+			# Check if still looking at the player being revived
+			if !is_looking_at_player(reviving_player):
+				cancel_revive()
+				return
+				
 			# Continue reviving
 			revive_progress += delta
-			revive_bar.value = (revive_progress / revive_duration) * 100
+			var progress_percent = (revive_progress / revive_duration) * 100
+			revive_bar.value = progress_percent
+			
+			# Send progress update to downed player
+			reviving_player.update_revive_progress.rpc(progress_percent)
 			
 			# Check if revive is complete
 			if revive_progress >= revive_duration:
@@ -284,6 +308,10 @@ func _physics_process(delta):
 			cancel_revive()
 
 func cancel_revive():
+	if reviving_player != null:
+		# Notify downed player that revive was cancelled
+		reviving_player.cancel_being_revived.rpc()
+	
 	reviving_player = null
 	revive_progress = 0.0
 	revive_bar.visible = false
@@ -291,6 +319,9 @@ func cancel_revive():
 func complete_revive():
 	# Call the revive method on the downed player
 	reviving_player.revive.rpc()
+	
+	# Make sure to cancel being_revived state on downed player
+	reviving_player.cancel_being_revived.rpc()
 	
 	# Reset our revive state
 	revive_bar.visible = false
@@ -333,7 +364,7 @@ func sync_damage_sound():
 
 # New function to interact with grabbed objects
 func interact_with_grabbed_object():
-	grabbed_object.get_node("MPInteractable").interact()
+	grabbed_object.get_node("MPInteractable").interact(self.get_parent())
 
 
 # New optimized grab handling - just send target data to authority
@@ -342,6 +373,19 @@ func update_grab_target():
 	var target_pos = camera.global_position - camera.global_transform.basis.z * grab_distance
 	var target_forward = -camera.global_transform.basis.z.normalized()
 	grabbed_object_grabbable.hold(target_pos, target_forward)
+
+# Add this new function to check if still looking at the player
+func is_looking_at_player(player_to_check):
+	var space_state = get_world_3d().direct_space_state
+	var ray_origin = camera.global_position
+	var ray_end = ray_origin + camera.global_transform.basis.z * -raycast_distance * 5
+	
+	var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
+	var result = space_state.intersect_ray(query)
+	
+	if result and result["collider"] == player_to_check:
+		return true
+	return false
 
 # Modify your perform_raycast function to detect downed players
 func perform_raycast():
@@ -357,6 +401,10 @@ func perform_raycast():
 	# Check if we hit something
 	if result:
 		var collider = result["collider"]
+		
+		if collider.is_in_group("mp_interactable") and Input.is_action_just_pressed("interact_secondary"):
+			
+			collider.get_node("MPInteractable").interact(self.get_parent())
 		# Check if the object is in the "rc_button" group
 		if collider.is_in_group("rc_button"):
 			# Call the press method on the button
@@ -373,6 +421,8 @@ func perform_raycast():
 				revive_progress = 0.0
 				revive_bar.visible = true
 				revive_bar.value = 0
+				
+				reviving_player.begin_being_revived.rpc(multiplayer.get_unique_id())
 				
 		# If we're reviving but looking at something else, cancel the revive
 		elif reviving_player != null:
@@ -467,8 +517,9 @@ func release_object():
 @rpc("any_peer", "call_local")
 func apply_damage(amount):
 	if is_multiplayer_authority():
-		# Play damage sound using RPC to ensure all clients hear it
-		sync_damage_sound.rpc()
+		if amount > 10:
+			# Play damage sound using RPC to ensure all clients hear it
+			sync_damage_sound.rpc()
 		
 		# Lower HP
 		current_health = max(0, current_health - amount)
@@ -483,10 +534,11 @@ func apply_damage(amount):
 		if current_health <= 0:
 			handle_death.rpc()
 
-@rpc("any_peer", "call_local")
+@rpc("any_peer", "call_local", "reliable")
 func revive():
 	$SOS.hide()
 	dead = false
+	
 	
 	if is_multiplayer_authority():
 		print("undead")
@@ -497,6 +549,47 @@ func revive():
 		current_health = 100
 		# Update local health display
 		update_health_display()
+
+# RPC to inform a player they're being revived
+@rpc("any_peer", "call_remote", "reliable")
+func begin_being_revived(reviver_id):
+	if !is_multiplayer_authority():
+		return
+		
+	# Track who is reviving us
+	being_revived = true
+	being_revived_by = reviver_id
+	
+	# Show the progress bar to the downed player
+	revive_bar.value = 0
+	revive_bar.visible = true
+
+# RPC to update revive progress on the downed player
+@rpc("any_peer", "call_remote", "reliable")
+func update_revive_progress(progress_percent):
+	if !is_multiplayer_authority():
+		return
+		
+	if being_revived:
+		revive_bar.value = progress_percent
+
+# RPC to cancel revive on the downed player
+@rpc("any_peer", "call_remote", "reliable")
+func cancel_being_revived():
+	if !is_multiplayer_authority():
+		return
+		
+	being_revived = false
+	being_revived_by = null
+	revive_bar.visible = false
+
+@rpc("any_peer", "call_local", "reliable")
+func yakov_screamer():
+	if !is_multiplayer_authority():
+		return
+	
+	$Control/ScreamBG.show()
+	$Control/ScreamBG/yakov.play()
 
 # Add a new RPC to sync health across clients
 @rpc("authority", "call_remote", "reliable")
@@ -511,17 +604,20 @@ func update_health_display():
 
 
 # Add a function to handle player death
-@rpc("any_peer", "call_local")
+@rpc("any_peer", "call_local", "reliable")
 func handle_death():
 	# Implement death behavior (respawn, game over, etc.)
-	print(multiplayer.get_unique_id(), "dead", get_multiplayer_authority())
 	dead = true
 	
 	if is_multiplayer_authority():
 		$Control/Label2.visible = true
-		
+	else:
 		$SOS.show()
 	# global_position.y += 50
 
 func damage(amount):
 	apply_damage.rpc(amount)
+
+
+func _on_video_stream_player_finished() -> void:
+	$Control/ScreamBG.hide()

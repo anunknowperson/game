@@ -1,5 +1,5 @@
-class_name MultiplayerManager
 extends Node
+class_name MultiplayerManager
 
 # Signaling properties
 var signaling: WebRTCSignalingClient
@@ -19,6 +19,7 @@ signal lobby_created(lobby_name)
 signal lobby_joined(lobby_name)
 signal lobby_list_updated(lobbies)
 signal game_started()
+signal player_class_updated(id, player_class)
 
 # Dictionary of players with their names
 var players = {}
@@ -70,6 +71,7 @@ func disconnect_from_server() -> void:
 	players.clear()
 	current_lobby = ""
 	is_host = false
+	Globals.player_options.clear()
 
 # Start the game (only host can call this)
 func start_game() -> void:
@@ -93,9 +95,27 @@ func set_player_name(name: String) -> void:
 	if signaling.my_id != 0:
 		rpc("_register_player", signaling.my_id, name)
 
+# Set player class
+func set_player_class(player_class: String) -> void:
+	# Update local class
+	Globals.player_class = player_class
+	
+	# Add to player options
+	if not Globals.player_options.has(signaling.my_id):
+		Globals.player_options[signaling.my_id] = {}
+	
+	Globals.player_options[signaling.my_id]["class"] = player_class
+	
+	# Share with other players
+	rpc("_update_player_class", signaling.my_id, player_class)
+
 # Update the _on_signaling_connected function
 func _on_signaling_connected(id, use_mesh) -> void:
 	print("Connected to signaling server with ID: ", id)
+	
+	# Initialize our player options
+	if not Globals.player_options.has(id):
+		Globals.player_options[id] = {"class": Globals.player_class}
 	
 	connection_established.emit()
 	
@@ -148,6 +168,10 @@ func _on_network_peer_connected(id: int) -> void:
 	# If we're already in the players list, send our info to the new player
 	if signaling.my_id != 0:
 		rpc_id(id, "_register_player", signaling.my_id, player_name)
+		
+		# Send our class information
+		if Globals.player_options.has(signaling.my_id) and Globals.player_options[signaling.my_id].has("class"):
+			rpc_id(id, "_update_player_class", signaling.my_id, Globals.player_options[signaling.my_id]["class"])
 
 # Callback when a peer disconnects from the multiplayer network
 func _on_network_peer_disconnected(id: int) -> void:
@@ -156,6 +180,11 @@ func _on_network_peer_disconnected(id: int) -> void:
 	if players.has(id):
 		var disconnected_player_name = players[id]
 		players.erase(id)
+		
+		# Remove from player options
+		if Globals.player_options.has(id):
+			Globals.player_options.erase(id)
+		
 		player_left.emit(id)
 		print("Player left: ", disconnected_player_name)
 
@@ -167,7 +196,26 @@ func _register_player(id: int, name: String) -> void:
 	
 	players[id] = name
 	print("Player registered: ", id, " as ", name)
+	
+	# Add player to options if not exists
+	if not Globals.player_options.has(id):
+		Globals.player_options[id] = {"class": "TP"}  # Default class
+	
 	player_joined.emit(id, name)
+
+# RPC method to update a player's class
+@rpc("any_peer", "call_local", "reliable")
+func _update_player_class(id: int, player_class: String) -> void:
+	print("Received player class update: ", id, " class: ", player_class)
+	
+	# Update the player class in the global dictionary
+	if not Globals.player_options.has(id):
+		Globals.player_options[id] = {}
+	
+	Globals.player_options[id]["class"] = player_class
+	
+	# Emit signal for UI updates
+	player_class_updated.emit(id, player_class)
 
 # RPC method called when the game starts
 @rpc("any_peer", "reliable")

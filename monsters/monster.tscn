@@ -23,7 +23,7 @@ properties/1/replication_mode = 1
 script = ExtResource("1_7d0jg")
 
 [node name="Model" parent="." instance=ExtResource("1_tmeky")]
-transform = Transform3D(-100, 0, -8.74228e-06, 0, 100, 0, 8.74228e-06, 0, -100, -0.0435368, -0.00391215, 0)
+transform = Transform3D(-100, 0, -8.74228e-06, 0, 100, 0, 8.74228e-06, 0, -100, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.565923, 0)

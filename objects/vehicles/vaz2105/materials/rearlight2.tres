@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://vlbambg1sn3w"]
+
+[ext_resource type="Texture2D" uid="uid://bqgmm17josuq7" path="res://objects/vehicles/vaz2105/textures/2105lights_final_rearlight2_BaseColor-2105lights_final_rearl.png" id="1_bx7u5"]
+[ext_resource type="Texture2D" uid="uid://dg1cnt0vs0hxc" path="res://objects/vehicles/vaz2105/textures/2105lights_final_rearlight2_Metallic-2105lights_final_rearli.png" id="2_2i7c2"]
+
+[resource]
+resource_name = "rearlight2"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_bx7u5")
+metallic = 1.0
+metallic_texture = ExtResource("2_2i7c2")
+emission_enabled = true

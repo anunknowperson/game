@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bg8gmbcbw5f0u"]
+
+[ext_resource type="Texture2D" uid="uid://b8xm41dc2cdfn" path="res://objects/vehicles/vaz2105/textures/2105plastic_plastic1_BaseColor.png" id="1_ecyfj"]
+
+[resource]
+resource_name = "plastic1"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_ecyfj")
+emission_enabled = true

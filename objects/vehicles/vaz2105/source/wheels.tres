@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://d1tpr44axj2bg"]
+
+[ext_resource type="Texture2D" uid="uid://djrxt8w6lkuco" path="res://objects/vehicles/vaz2105/textures/2105suspension_wheels_BaseColor.png" id="1_iwhmn"]
+[ext_resource type="Texture2D" uid="uid://cvyc2jw4u4cki" path="res://objects/vehicles/vaz2105/textures/2105suspension_wheels_Normal.png" id="2_1lrvr"]
+
+[resource]
+resource_name = "wheels"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_iwhmn")
+emission_enabled = true
+normal_enabled = true
+normal_scale = 0.0
+normal_texture = ExtResource("2_1lrvr")

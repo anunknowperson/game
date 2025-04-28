@@ -1,6 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjpsidrjpev6j"]
+[gd_scene load_steps=13 format=3 uid="uid://cjpsidrjpev6j"]
 
 [ext_resource type="Script" uid="uid://mj1xce237xdb" path="res://objects/player/Player.gd" id="1_8q7sx"]
+[ext_resource type="Script" uid="uid://by5yxxi4xf58h" path="res://objects/player/player_container.gd" id="1_h7ooo"]
+[ext_resource type="VideoStream" uid="uid://dr0twe08fgaux" path="res://objects/monsters/yakov/yakov.ogv" id="2_6o7ef"]
 [ext_resource type="AudioStream" uid="uid://b5s8ljl8jumve" path="res://sounds/concrete-footsteps-1-6265.mp3" id="2_kpjcp"]
 [ext_resource type="AudioStream" uid="uid://muijbc7msadf" path="res://sounds/bomb.mp3" id="3_kne1u"]
 
@@ -17,7 +19,7 @@ height = 1.5
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_kne1u"]
 height = 0.479614
-radius = 0.523926
+radius = 0.302246
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_6qmwl"]
 viewport_path = NodePath("NameViewport")
@@ -41,92 +43,97 @@ func _ready() -> void:
 		make_current()
 "
 
-[node name="Player" type="CharacterBody3D" groups=["mp_player"]]
+[node name="PlayerContainer" type="Node3D"]
+script = ExtResource("1_h7ooo")
+
+[node name="Player" type="CharacterBody3D" parent="." groups=["mp_player"]]
 collision_layer = 3
 script = ExtResource("1_8q7sx")
 
-[node name="StandingMesh" type="MeshInstance3D" parent="."]
+[node name="StandingMesh" type="MeshInstance3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+layers = 2
 mesh = SubResource("CapsuleMesh_o1t54")
 surface_material_override/0 = SubResource("StandardMaterial3D_m24f3")
 
-[node name="StandingShape" type="CollisionShape3D" parent="."]
+[node name="StandingShape" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("CapsuleShape3D_njs2f")
 
-[node name="SittingMesh" type="MeshInstance3D" parent="."]
+[node name="SittingMesh" type="MeshInstance3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 0.264342, 0, 0, 0, 1, 0, 0.35594, 0)
 visible = false
+layers = 2
 mesh = SubResource("CapsuleMesh_o1t54")
 surface_material_override/0 = SubResource("StandardMaterial3D_m24f3")
 
-[node name="SittingShape" type="CollisionShape3D" parent="."]
+[node name="SittingShape" type="CollisionShape3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3349, 0)
 visible = false
 shape = SubResource("CylinderShape3D_kne1u")
 disabled = true
 
-[node name="StandingCamera" type="Marker3D" parent="."]
+[node name="StandingCamera" type="Marker3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15401, 0)
 
-[node name="SittingCamera" type="Marker3D" parent="."]
+[node name="SittingCamera" type="Marker3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5541, 0)
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15401, 0)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.233941, -0.093827, -0.543271)
+[node name="SpotLight3D" type="SpotLight3D" parent="Player/Camera3D"]
+transform = Transform3D(0.999943, 0, 0.0106289, 0, 1, 0, -0.0106289, 0, 0.999943, 0.0691728, 0.00610447, -0.4013)
 light_color = Color(1, 0.992144, 0.907744, 1)
 light_energy = 0.4
 shadow_enabled = true
 spot_range = 6.215
 spot_attenuation = 1.2
-spot_angle = 60.0
+spot_angle = 57.9126
 
-[node name="Hand" type="Marker3D" parent="Camera3D"]
+[node name="Hand" type="Marker3D" parent="Player/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.75055)
 
-[node name="NameLabel" type="Label3D" parent="."]
+[node name="NameLabel" type="Label3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 billboard = 1
 text = "Player"
 font_size = 24
 outline_size = 4
 
-[node name="NameViewport" type="SubViewport" parent="."]
+[node name="NameViewport" type="SubViewport" parent="Player"]
 transparent_bg = true
 size = Vector2i(200, 50)
 
-[node name="Label" type="Label" parent="NameViewport"]
+[node name="Label" type="Label" parent="Player/NameViewport"]
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Player"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="Sprite3D" type="Sprite3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 visible = false
 billboard = 1
 texture = SubResource("ViewportTexture_6qmwl")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Player"]
 delta_interval = 1.0
 replication_config = SubResource("SceneReplicationConfig_0hv48")
 
-[node name="Voice" type="AudioStreamPlayer3D" parent="."]
+[node name="Voice" type="AudioStreamPlayer3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.69948, 0)
 volume_db = 3.0
 max_distance = 40.0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Player"]
 bus = &"Record"
 
-[node name="AudioListener3D" type="AudioListener3D" parent="."]
+[node name="AudioListener3D" type="AudioListener3D" parent="Player"]
 script = SubResource("GDScript_kpjcp")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="Player"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -134,7 +141,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Control"]
+[node name="Label" type="Label" parent="Player/Control"]
 layout_mode = 0
 offset_left = 28.0
 offset_top = 30.0
@@ -144,7 +151,7 @@ theme_override_colors/font_color = Color(0.819153, 4.52429e-06, 9.62615e-07, 1)
 theme_override_font_sizes/font_size = 50
 text = "HP: 150/150"
 
-[node name="StaminaLabel" type="Label" parent="Control"]
+[node name="StaminaLabel" type="Label" parent="Player/Control"]
 layout_mode = 0
 offset_left = 23.0
 offset_top = 95.0
@@ -154,7 +161,7 @@ theme_override_colors/font_color = Color(0.819608, 1, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "Stamina: 200/200"
 
-[node name="Label2" type="Label" parent="Control"]
+[node name="Label2" type="Label" parent="Player/Control"]
 visible = false
 layout_mode = 0
 offset_left = 217.0
@@ -166,7 +173,7 @@ theme_override_font_sizes/font_size = 45
 text = "ВЫ УМЕРЛИ!!!
 (ждите возрождения от союзника)"
 
-[node name="ColorRect" type="ColorRect" parent="Control"]
+[node name="ColorRect" type="ColorRect" parent="Player/Control"]
 custom_minimum_size = Vector2(4, 4)
 layout_mode = 1
 anchors_preset = 8
@@ -177,15 +184,32 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ReviveBar" type="ProgressBar" parent="Control"]
+[node name="ReviveBar" type="ProgressBar" parent="Player/Control"]
 visible = false
-layout_mode = 0
-offset_left = 159.0
-offset_top = 479.0
-offset_right = 998.0
-offset_bottom = 522.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.7
+anchor_right = 0.85
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
 
-[node name="Label3" type="Label" parent="Control"]
+[node name="Label" type="Label" parent="Player/Control/ReviveBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -116.0
+offset_top = -76.0
+offset_right = 116.0
+offset_bottom = 42.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Возрождение..."
+
+[node name="Label3" type="Label" parent="Player/Control"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -199,20 +223,42 @@ grow_vertical = 0
 text = "E/ЛКМ
 ESC - захват мыши"
 
-[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="."]
+[node name="ScreamBG" type="ColorRect" parent="Player/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="yakov" type="VideoStreamPlayer" parent="Player/Control/ScreamBG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_6o7ef")
+expand = true
+
+[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="Player"]
 stream = ExtResource("2_kpjcp")
 max_db = 1.0
 
-[node name="DamagePlayer" type="AudioStreamPlayer3D" parent="."]
+[node name="DamagePlayer" type="AudioStreamPlayer3D" parent="Player"]
 stream = ExtResource("3_kne1u")
 
-[node name="SOS" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.973554, 0)
+[node name="SOS" type="Label3D" parent="Player"]
+transform = Transform3D(0.43, 0, 0, 0, 0.43, 0, 0, 0, 0.43, 0, 0.973554, 0)
 visible = false
 billboard = 1
 no_depth_test = true
 modulate = Color(1, 0, 0, 1)
 text = "ВОЗРОДИТЕ МЕНЯ ПЖ
-Я ЛОХ Я СДОХ
+Я СДОХ
 (возрождать ЛКМ если чё)"
 font_size = 77
+
+[connection signal="finished" from="Player/Control/ScreamBG/yakov" to="Player" method="_on_video_stream_player_finished"]

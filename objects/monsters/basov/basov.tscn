@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://b5s8ljl8jumve" path="res://sounds/concrete-footsteps-1-6265.mp3" id="3_6x5ux"]
 [ext_resource type="AudioStream" uid="uid://dioloax75bqtj" path="res://objects/monsters/basov/basov21.mp3" id="4_demxc"]
 [ext_resource type="AudioStream" uid="uid://c0dor3owqva5h" path="res://sounds/laugh-1-40698.mp3" id="4_s7clk"]
-[ext_resource type="AudioStream" uid="uid://cn6oxmpu06r0q" path="res://sounds/large-monster-attack-195713.mp3" id="6_cft7j"]
+[ext_resource type="AudioStream" uid="uid://cfs4k3ygxv0ho" path="res://objects/monsters/basov/attack(1).mp3" id="5_demxc"]
 [ext_resource type="Texture2D" uid="uid://dvx0bas1hoa4j" path="res://objects/monsters/basov/basov.jpg" id="6_demxc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7d0jg"]
@@ -27,6 +27,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.565923, 0)
 shape = SubResource("CapsuleShape3D_7d0jg")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.4
+target_desired_distance = 0.6
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_dbe51")
@@ -53,8 +55,8 @@ volume_db = 2.0
 max_distance = 10.0
 
 [node name="AttackSound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("6_cft7j")
-volume_db = -1.0
+stream = ExtResource("5_demxc")
+volume_db = 2.0
 max_distance = 10.0
 
 [node name="Sprite3D" type="Sprite3D" parent="."]

@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://blwvj07080h8y"]
+
+[ext_resource type="Script" uid="uid://d1k2cvgmcqc0d" path="res://objects/monsters/cockroach/cockroach.gd" id="1_6guc5"]
+[ext_resource type="AudioStream" uid="uid://dna7sthorhljj" path="res://objects/monsters/cockroach/witch-laugh-189108.mp3" id="3_6guc5"]
+[ext_resource type="AudioStream" uid="uid://c0dor3owqva5h" path="res://sounds/laugh-1-40698.mp3" id="3_bkacl"]
+[ext_resource type="AudioStream" uid="uid://baquyfo16cclg" path="res://objects/monsters/cockroach/mixkit-juicy-insect-fast-squish-324.wav" id="5_bkacl"]
+[ext_resource type="PackedScene" uid="uid://cnm7h4auwq7vd" path="res://objects/monsters/cockroach/bug.tscn" id="6_6guc5"]
+[ext_resource type="Script" uid="uid://d3vxic8wj41ax" path="res://objects/monsters/cockroach/bug.gd" id="7_bkacl"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5ioby"]
+radius = 0.079446
+height = 0.158892
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_1f1lg"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[node name="Cockroach" type="CharacterBody3D"]
+script = ExtResource("1_6guc5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0919309, 0)
+shape = SubResource("CapsuleShape3D_5ioby")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.2
+target_desired_distance = 0.2
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_1f1lg")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01112, 0)
+visible = false
+billboard = 1
+
+[node name="LaughSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_bkacl")
+volume_db = -11.667
+max_db = 1.0
+
+[node name="AlertSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_6guc5")
+volume_db = -3.0
+max_distance = 10.0
+
+[node name="AttackSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_bkacl")
+volume_db = -1.0
+max_distance = 10.0
+
+[node name="Model" parent="." instance=ExtResource("6_6guc5")]
+transform = Transform3D(0.19, 0, 0, 0, 0.19, 0, 0, 0, 0.19, 0, 0, 0)
+script = ExtResource("7_bkacl")

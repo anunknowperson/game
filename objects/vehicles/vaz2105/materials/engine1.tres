@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bdlxhqnyhqayw"]
+
+[ext_resource type="Texture2D" uid="uid://cq6oxncph3to4" path="res://objects/vehicles/vaz2105/textures/2105engine_final_1_engine1_BaseColor.png" id="1_oyp2w"]
+[ext_resource type="Texture2D" uid="uid://bbemvgwdyv0w1" path="res://objects/vehicles/vaz2105/textures/2105engine_final_1_engine1_Normal.png" id="2_bthv5"]
+
+[resource]
+resource_name = "engine1"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_oyp2w")
+emission_enabled = true
+normal_enabled = true
+normal_scale = 0.0
+normal_texture = ExtResource("2_bthv5")

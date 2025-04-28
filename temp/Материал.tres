@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://buxnc8mm15sfu"]
+
+[ext_resource type="Texture2D" uid="uid://8y3nkcjep6m2" path="res://temp/2105glass_upper_FINAL_glass1_BaseColor.png" id="1_fjw6b"]
+
+[resource]
+resource_name = "Материал"
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0.168627)
+albedo_texture = ExtResource("1_fjw6b")
+metallic = 0.81
+roughness = 0.05
+emission_enabled = true
+refraction_enabled = true

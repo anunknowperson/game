@@ -36,6 +36,9 @@ func _ready():
 	# Initialize the multiplayer manager
 	multiplayer_manager = WebrtcMultiplayer.manager
 	
+	# Initialize player options dictionary
+	Globals.player_options = {}
+	
 	# Connect signals
 	multiplayer_manager.connection_established.connect(_on_connection_established)
 	multiplayer_manager.connection_failed.connect(_on_connection_failed)
@@ -45,6 +48,7 @@ func _ready():
 	multiplayer_manager.player_joined.connect(_on_player_joined)
 	multiplayer_manager.player_left.connect(_on_player_left)
 	multiplayer_manager.game_started.connect(_on_game_started)
+	multiplayer_manager.player_class_updated.connect(_on_player_class_updated)
 	
 	# Set up initial state
 	connection_panel.visible = true
@@ -74,7 +78,7 @@ func _on_connect_button_pressed():
 	multiplayer_manager.connect_to_server(server_url_input.text)
 
 func _on_connection_established():
-	print("CONNECTION WAS ESTABLISHED (this isn't priting)")
+	print("CONNECTION WAS ESTABLISHED")
 	
 	status_label.text = "Connected!"
 	
@@ -122,23 +126,28 @@ func _on_lobby_joined(lobby_name):
 	# Update UI
 	lobby_name_label.text = "Lobby: " + lobby_name
 	
-	# Clear player list and add ourselves
-	player_list.clear()
-	player_list.add_item("You: " + multiplayer_manager.player_name + " (Host)" if multiplayer_manager.is_host else "You: " + multiplayer_manager.player_name)
+	# Initialize player options for ourselves
+	var my_id = multiplayer_manager.signaling.my_id
+	if not Globals.player_options.has(my_id):
+		Globals.player_options[my_id] = {"class": Globals.player_class}
+	
+	# Update player list
+	update_player_list()
 	
 	# Disable start game button if not host
 	start_game_button.disabled = !multiplayer_manager.is_host
 
 func _on_player_joined(id, name):
-	player_list.add_item(str(id) + ": " + name)
+	# Update player list with new player
+	update_player_list()
 
 func _on_player_left(id):
-	# Find and remove the player from the list
-	for i in range(player_list.get_item_count()):
-		var item_text = player_list.get_item_text(i)
-		if item_text.begins_with(str(id) + ":"):
-			player_list.remove_item(i)
-			break
+	# Update player list after player left
+	update_player_list()
+
+func _on_player_class_updated(id, player_class):
+	# Update player list to show updated class
+	update_player_list()
 
 func _on_start_game_button_pressed():
 	multiplayer_manager.start_game()
@@ -158,3 +167,49 @@ func _on_game_started():
 	game_panel.visible = false
 	
 	Globals.game_start.emit()
+
+func _on_tp_button_pressed() -> void:
+	Globals.player_class = "TP"
+	$"%ClassDescription".text = "🧮 Математическое превосходство: [color=#FF0000]Басов[/color] жалеет тпшек и не уебывает с первого раза.\n🚗 Жигули: [color=#FF0000]Яков Кирилленко[/color] не доебется (но если доебется можно отправиться в лабу), а также + ключи от [color=#FFFF00]жигулей[/color]"
+	
+	# Send class update to other players if connected
+	if multiplayer_manager.signaling.my_id != 0:
+		multiplayer_manager.set_player_class("TP")
+
+func _on_se_button_pressed() -> void:
+	Globals.player_class = "SE"
+	$"%ClassDescription".text = "👨💻 Программисты: есть шанс 75% что [color=#FF0000]басов[/color] не доебется, т.к. не ведет у них. Однако если [color=#FF0000]басов[/color] доебется, то решить один легкий диффурчик не получиться.\n🧪 Завсегдатаи лабы: скорее всего, [color=#FF0000]Яков Кирилленко[/color] попросит убрать камеру, что может привести к проблемам.\n🚗 [color=#FFFF00]Ламборгини[/color]: автоматически даются ключи от [color=#FFFF00]ламборгини[/color] 🎉"
+	
+	# Send class update to other players if connected
+	if multiplayer_manager.signaling.my_id != 0:
+		multiplayer_manager.set_player_class("SE")
+
+# Helper function to update the player list with classes
+func update_player_list():
+	player_list.clear()
+	
+	# Add ourselves
+	var my_id = multiplayer_manager.signaling.my_id
+	var my_class = Globals.player_class
+	
+	if my_class == "TP": my_class = "ТП"
+	if my_class == "SE": my_class = "ПИ"
+	
+	var my_display = "You: " + multiplayer_manager.player_name + " [" + my_class + "]"
+	if multiplayer_manager.is_host:
+		my_display += " (Host)"
+	player_list.add_item(my_display)
+	
+	# Add other players
+	for id in multiplayer_manager.players.keys():
+		var name = multiplayer_manager.players[id]
+		var player_class = "ТП"  # Default
+		
+		# Get player class if available
+		if Globals.player_options.has(id) and Globals.player_options[id].has("class"):
+			player_class = Globals.player_options[id]["class"]
+		
+		if player_class == "TP": player_class = "ТП"
+		if player_class == "SE": player_class = "ПИ"
+		
+		player_list.add_item(str(id) + ": " + name + " [" + player_class + "]")

@@ -6,8 +6,8 @@ extends CharacterBody3D
 @export var attack_range: float = 2.0
 @export var attack_range_outer: float = 4.0
 @export var attack_cooldown: float = 2.0
-@export var idle_time_min: float = 3.0
-@export var idle_time_max: float = 8.0
+@export var idle_time_min: float = 5.0
+@export var idle_time_max: float = 10.0
 # Patrol locations will now be fetched from group instead of manually setting
 @export var use_group_locations: bool = true
 @export var patrol_group_name: String = "ms_loc"
@@ -79,6 +79,21 @@ func play_alert_sound() -> void:
 func play_attack_sound() -> void:
 	attack_sound.play()
 
+# Add to your variable declarations section
+var ignored_players = {}  # Dictionary to track which SE players are being ignored
+var last_visible_time = {}  # Dictionary to track when players were last visible
+var currently_visible_players = {}  # Dictionary to track which players are currently visible
+
+# Add this helper function to determine player class
+func get_player_class(player) -> String:
+	if player and is_instance_valid(player):
+		# Get player class from globals
+		
+		
+		if Globals.player_options.has(player.get_multiplayer_authority()):
+			return Globals.player_options[player.get_multiplayer_authority()]["class"]
+	return ""
+
 func _ready():
 	if is_multiplayer_authority():
 		# Get patrol locations from group if enabled
@@ -91,8 +106,8 @@ func _ready():
 			push_warning("No patrol locations found for monster!")
 		
 		# Configure navigation agent
-		navigation_agent.path_desired_distance = 0.5
-		navigation_agent.target_desired_distance = 0.5
+		#navigation_agent.path_desired_distance = 0.5
+		#navigation_agent.target_desired_distance = 0.5
 		
 		# Set up the initial state
 		change_state(State.IDLE)
@@ -132,6 +147,7 @@ func actor_setup():
 func set_idle_timer():
 	idle_timer = randf_range(idle_time_min, idle_time_max)
 
+# Modified change_state function to handle SE player ignore logic when switching to CHASE
 func change_state(new_state: int):
 	if current_state == new_state:
 		return
@@ -151,19 +167,47 @@ func change_state(new_state: int):
 		State.IDLE:
 			sync_animation_state.rpc("idle")
 			set_idle_timer()
+			
+			# Reset all player tracking when going to idle
+			if prev_state == State.CHASE or prev_state == State.ATTACK:
+				currently_visible_players.clear()
+				last_visible_time.clear()
 		State.PATROL:
 			sync_animation_state.rpc("move")
 			choose_random_patrol_location()
 		State.CHASE:
-			sync_animation_state.rpc("move")
-			if target_player:
-				# Play alert sound when first detecting player
-				if prev_state != State.CHASE and prev_state != State.ATTACK:
-					play_alert_sound.rpc()
-				set_movement_target(target_player.global_position)
-				# Update last known position
-				last_known_player_position = target_player.global_position
-				time_since_last_seen = 0.0
+			play_alert_sound.rpc()
+			
+			# Check if we should ignore SE class player before proceeding with chase
+			if target_player and is_instance_valid(target_player):
+				var player_class = get_player_class(target_player)
+				var player_id = target_player.get_multiplayer_authority()
+				
+				# Only roll for ignoring SE players when first starting to chase them
+				if player_class == "SE" and prev_state != State.CHASE and prev_state != State.ATTACK:
+					# Decide whether to ignore this SE player (50% chance)
+					ignored_players[player_id] = randf() < 0.5
+					
+					if ignored_players[player_id]:
+						print("Decided to ignore SE player: ", player_id)
+						# Instead of just setting current_state = prev_state, properly resume previous behavior
+						if prev_state == State.IDLE:
+							current_state = State.IDLE
+							set_idle_timer()
+							sync_animation_state.rpc("idle")
+						elif prev_state == State.PATROL:
+							current_state = State.PATROL
+							sync_animation_state.rpc("move")
+							choose_random_patrol_location()
+						else:
+							# Fallback to IDLE if somehow in an unexpected state
+							current_state = State.IDLE
+							set_idle_timer()
+							sync_animation_state.rpc("idle")
+						return
+					else:
+						print("Decided to chase SE player: ", player_id)
+				
 		State.ATTACK:
 			stop_walking_sound.rpc()
 			is_walking = false
@@ -222,21 +266,41 @@ func process_idle_state(delta):
 		change_state(State.PATROL)
 
 func process_patrol_state(delta):
-	# If we're stuck or reached our destination
-	if navigation_agent.is_navigation_finished():
-		change_state(State.IDLE)
+	# If target is in range and detected by vision, chase them
+	if target_player and is_player_detected(target_player):
+		change_state(State.CHASE)
 		return
+	
+	# Check if any previously detected player has left our vision
+	for player_id in currently_visible_players.keys():
+		if not currently_visible_players[player_id]:
+			# Player is no longer visible
+			var current_time = Time.get_ticks_msec() / 1000.0
+			var time_since_visible = current_time - last_visible_time.get(player_id, 0)
+			
+			# After 5 seconds of not seeing a player, reset their tracking
+			if time_since_visible > 5.0:
+				# Clear this player from ignored list if they're an SE class
+				if player_id in ignored_players:
+					ignored_players.erase(player_id)
 	
 	# If target is in range and detected by vision, chase them
 	if target_player and is_player_detected(target_player):
 		change_state(State.CHASE)
 		return
 	
+	# Add this check to select a new patrol point when current one is reached
+	if navigation_agent.is_navigation_finished():
+		print("TO IDLE")
+		change_state(State.IDLE)
+		return
+	
 	# Otherwise, continue patrolling
 	move_along_path(movement_speed)
 
+# Modified process_chase_state function to reset ignored status
 func process_chase_state(delta):
-	# Lost target or target disappeared or died
+	# If target is no longer valid
 	if not target_player or not is_instance_valid(target_player) or target_player.dead:
 		change_state(State.IDLE)
 		return
@@ -247,36 +311,44 @@ func process_chase_state(delta):
 	# Check if player is beyond chase_max_distance
 	if distance_to_player > chase_max_distance:
 		print("Player beyond chase range, returning to idle")
+		# Clear this player from ignored list if they're an SE class
+		if get_player_class(target_player) == "SE":
+			var player_id = target_player.get_multiplayer_authority()
+			if ignored_players.has(player_id):
+				ignored_players.erase(player_id)
+				print("SE player left chase range, will recalculate ignore status next detection")
+		
 		change_state(State.IDLE)
 		return
 	
-	# Check if player is visible 
 	var is_visible = check_player_visibility(target_player)
 	
-	# If player not visible for too long, stop chasing
 	if not is_visible:
 		time_since_last_seen += delta
 		if time_since_last_seen > 3.0:
 			print("Lost sight of player for too long, returning to idle")
+			# Clear this player from ignored list if they're an SE class
+			if get_player_class(target_player) == "SE":
+				var player_id = target_player.get_multiplayer_authority()
+				if ignored_players.has(player_id):
+					ignored_players.erase(player_id)
+					print("SE player lost from sight, will recalculate ignore status next detection")
+			
 			change_state(State.IDLE)
 			return
 	else:
-		# Reset timer and update last known position when player is visible
 		time_since_last_seen = 0.0
 		last_known_player_position = target_player.global_position
 	
-	# Always face the player during chase regardless of movement
+	# The rest of the function remains unchanged
 	look_at(target_player.global_position, Vector3.UP)
 	
-	# If within attack range and player is visible, attack
 	if is_visible and distance_to_player <= attack_range:
-		# Only transition to attack if not in cooldown
 		var current_time = Time.get_ticks_msec() / 1000.0
 		if current_time - last_attack_time > attack_cooldown:
 			change_state(State.ATTACK)
 		return
 	
-	# Set movement target to player position if visible
 	if is_visible:
 		set_movement_target(target_player.global_position)
 	else:
@@ -407,6 +479,7 @@ func start_attack_sequence():
 	timer.start()
 	timer.timeout.connect(_on_attack_animation_completed)
 
+# Modify the _on_attack_animation_completed function
 func _on_attack_animation_completed():
 	# Remove the sequence timer
 	if has_node("AttackSequence"):
@@ -414,9 +487,21 @@ func _on_attack_animation_completed():
 	
 	# Deal damage only if player still in range
 	if target_player and is_instance_valid(target_player) and is_player_in_range(target_player, attack_range_outer):
-		# Call damage on player
-		print("Dealing damage to player")
-		target_player.damage(50)
+		var player_class = get_player_class(target_player)
+		
+		# Determine damage based on player class
+		if player_class == "TP":
+			# Standard damage for TP class
+			print("Dealing 100 damage to TP class player")
+			target_player.damage(50)
+		elif player_class == "SE":
+			# For SE class, always hit with 150 damage (since ignored ones never get to this point)
+			print("Dealing 150 damage to SE class player")
+			target_player.damage(150)
+		else:
+			# Fallback to default behavior for unknown classes
+			print("Dealing default damage to player")
+			target_player.damage(50)
 	
 	# Mark animation as completed
 	is_attack_animation_playing = false
@@ -440,6 +525,7 @@ func is_player_in_range(player, range_distance):
 		return false
 	return global_position.distance_to(player.global_position) <= range_distance
 
+# Modify the is_player_detected function to track visibility
 func is_player_detected(player):
 	if not is_instance_valid(player) or player.dead:  # Skip dead players
 		return false
@@ -447,18 +533,53 @@ func is_player_detected(player):
 	# Check if player is in activation radius first
 	var distance = global_position.distance_to(player.global_position)
 	if distance > player_activation_radius:
+		# Player outside of activation radius
+		currently_visible_players[player.get_multiplayer_authority()] = false
 		return false
 	
 	# Now check if player is in vision range
 	if distance > vision_distance:
+		# Player outside of vision range
+		currently_visible_players[player.get_multiplayer_authority()] = false
 		return false
 	
-	# Use our new visibility check function
-	return check_player_visibility(player)
+	# Use our visibility check function
+	var player_visible = check_player_visibility(player)
+	var player_id = player.get_multiplayer_authority()
+	
+	# Update visibility tracking
+	if player_visible:
+		# Player became visible
+		if player_id in currently_visible_players and not currently_visible_players[player_id]:
+			# Player was previously not visible but now is visible
+			# Reset ignore decision for SE players
+			var player_class = get_player_class(player)
+			if player_class == "SE" and player_id in ignored_players:
+				# Re-roll the ignore decision
+				print("SE player re-entered vision, recalculating ignore decision")
+				ignored_players[player_id] = randf() < 0.5
+				
+				
+				if ignored_players[player_id]:
+					print("Decided to ignore returning SE player: ", player_id)
+				else:
+					print("Decided to chase returning SE player: ", player_id)
+		
+		# Record that player is currently visible
+		currently_visible_players[player_id] = true
+		last_visible_time[player_id] = Time.get_ticks_msec() / 1000.0
+	else:
+		# Player is not visible
+		currently_visible_players[player_id] = false
+	
+	# Check if this is an SE player we've decided to ignore
+	var player_class = get_player_class(player)
+	if player_class == "SE" and player_id in ignored_players and ignored_players[player_id]:
+		return false
+	
+	return player_visible
 
 func move_along_path(speed):
-	print("move")
-	print(nav_tar - global_position)
 	if navigation_agent.is_navigation_finished():
 		# If we've stopped moving, stop the walking sound
 		if is_walking:
@@ -471,7 +592,6 @@ func move_along_path(speed):
 	
 	# Calculate velocity
 	var new_velocity = current_position.direction_to(next_position) * speed
-	print(new_velocity)
 	# Look in the direction of movement
 	if new_velocity.length() > 0.1:
 		look_at(global_position + Vector3(new_velocity.x, 0, new_velocity.z), Vector3.UP)

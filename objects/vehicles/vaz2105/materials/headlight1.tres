@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ddu7ak0t6nolw"]
+
+[resource]
+resource_name = "headlight1"
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0)
+roughness = 0.0
+emission_enabled = true
+refraction_enabled = true
+refraction_scale = 0.03

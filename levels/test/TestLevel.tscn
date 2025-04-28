@@ -1,15 +1,54 @@
-[gd_scene load_steps=7 format=3 uid="uid://w2fat1c7evc"]
+[gd_scene load_steps=19 format=3 uid="uid://w2fat1c7evc"]
 
 [ext_resource type="PackedScene" uid="uid://c2pvttx1fs8lv" path="res://objects/mp/player_spawner/mp_player_spawner.tscn" id="1_dysod"]
 [ext_resource type="Script" uid="uid://dg4b7rapk3g8a" path="res://objects/mp/player_spawner/mp_player_spawner.gd" id="2_41a43"]
 [ext_resource type="Script" uid="uid://gcsv3uxny5n3" path="res://objects/mp/prop/mp_prop.gd" id="3_3yhe8"]
 [ext_resource type="PackedScene" uid="uid://q2t671t211n6" path="res://objects/mp/cart/mp_cart.tscn" id="4_wi48r"]
+[ext_resource type="Script" uid="uid://xo2rimt61ugf" path="res://objects/mp/vehicle/mp_vehicle.gd" id="5_2djib"]
+[ext_resource type="PackedScene" uid="uid://bxsilaqxap5kw" path="res://objects/vehicles/vaz2105/source/body.fbx" id="5_jci28"]
+[ext_resource type="PackedScene" uid="uid://d1dgi6iamgkv0" path="res://objects/vehicles/vaz2105/source/wheel.fbx" id="6_qwnw3"]
+[ext_resource type="Script" uid="uid://djohcwel5mma3" path="res://objects/mp/interactable/mp_interactable.gd" id="8_i18ul"]
+[ext_resource type="Script" uid="uid://b3m6233tgdidj" path="res://objects/mp/authority/mp_authority.gd" id="9_3yhe8"]
+[ext_resource type="Script" uid="uid://b6y763xdh5ykm" path="res://objects/mp/vehicle/car_3rd_person_camera_controller.gd" id="10_6tnsb"]
+[ext_resource type="Script" uid="uid://sshji8aawcov" path="res://objects/mp/vehicle/mp_car_controller.gd" id="10_rr81x"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_dysod"]
 size = Vector3(0.25, 0.25, 0.25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_41a43"]
 size = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gjesk"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:scale")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qwnw3"]
+size = Vector3(2.64355, 0.99408, 6.73627)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2djib"]
+size = Vector3(2.17798, 0.99408, 3.44774)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6tnsb"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="GDScript" id="GDScript_6tnsb"]
+script/source = "extends MultiplayerSynchronizer
+
+func _process(delta: float) -> void:
+	print(get_multiplayer_authority())
+"
 
 [node name="TestLevel" type="Node3D"]
 
@@ -25,9 +64,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.63077, -0.5, 121.197)
 use_collision = true
-size = Vector3(20, 1, 20)
+size = Vector3(394.915, 1, 486.468)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.278689, 0.960381, 0, -0.960381, 0.278689, 0, 1.88143, 0)
@@ -65,3 +104,165 @@ shape = SubResource("BoxShape3D_41a43")
 
 [node name="MPCart" parent="." instance=ExtResource("4_wi48r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.46591, -2.38419e-07, 2.2821)
+
+[node name="VehicleBody3D" type="VehicleBody3D" parent="." node_paths=PackedStringArray("seats_positions")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.06752, 0.948239, -1.06556)
+mass = 100.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, 0, 0.7)
+script = ExtResource("5_2djib")
+seats_positions = [NodePath("Sit1"), NodePath("Sit2"), NodePath("Sit3"), NodePath("Sit4"), NodePath("Sit5")]
+
+[node name="FrontLeft" type="VehicleWheel3D" parent="VehicleBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 7.54979e-08, 0, -7.54979e-08, 1, 1.17485, -0.330535, 2.2684)
+use_as_steering = true
+wheel_radius = 0.55
+wheel_rest_length = 0.14
+wheel_friction_slip = 2.5
+suspension_travel = 0.4
+suspension_stiffness = 20.0
+
+[node name="wheel" parent="VehicleBody3D/FrontLeft" instance=ExtResource("6_qwnw3")]
+transform = Transform3D(1, 0, 0, 0, 1, -7.54979e-08, 0, 7.54979e-08, 1, 0, 0, 0)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="VehicleBody3D/FrontLeft"]
+replication_config = SubResource("SceneReplicationConfig_gjesk")
+
+[node name="FrontRight" type="VehicleWheel3D" parent="VehicleBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.42109e-14, 0, 1.42109e-14, 1, -1.16137, -0.330549, 2.26833)
+use_as_steering = true
+wheel_radius = 0.55
+wheel_rest_length = 0.14
+wheel_friction_slip = 2.5
+suspension_travel = 0.4
+suspension_stiffness = 20.0
+
+[node name="wheel" parent="VehicleBody3D/FrontRight" instance=ExtResource("6_qwnw3")]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 8.74228e-08, -1, 1.62921e-07, -1.04216e-14, 1.62921e-07, 1, 0, 0, 0)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="VehicleBody3D/FrontRight"]
+replication_config = SubResource("SceneReplicationConfig_gjesk")
+
+[node name="RearLeft" type="VehicleWheel3D" parent="VehicleBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.42109e-14, 0, 1.42109e-14, 1, 1.17485, -0.330535, -1.82689)
+use_as_traction = true
+wheel_radius = 0.55
+wheel_rest_length = 0.14
+wheel_friction_slip = 2.0
+suspension_travel = 0.4
+suspension_stiffness = 20.0
+
+[node name="wheel" parent="VehicleBody3D/RearLeft" instance=ExtResource("6_qwnw3")]
+transform = Transform3D(1, 0, 0, 0, 1, 1.69407e-21, 0, -1.69407e-21, 1, 0, 0, 0)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="VehicleBody3D/RearLeft"]
+replication_config = SubResource("SceneReplicationConfig_gjesk")
+
+[node name="RearRight" type="VehicleWheel3D" parent="VehicleBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.42109e-14, 0, 1.42109e-14, 1, -1.16137, -0.330549, -1.82697)
+use_as_traction = true
+wheel_radius = 0.55
+wheel_rest_length = 0.14
+wheel_friction_slip = 2.0
+suspension_travel = 0.4
+suspension_stiffness = 20.0
+
+[node name="wheel" parent="VehicleBody3D/RearRight" instance=ExtResource("6_qwnw3")]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 8.74228e-08, -1, 1.62921e-07, -1.04216e-14, 1.62921e-07, 1, 0, 0, 0)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="VehicleBody3D/RearRight"]
+replication_config = SubResource("SceneReplicationConfig_gjesk")
+
+[node name="SteeringWheel" type="MeshInstance3D" parent="VehicleBody3D"]
+transform = Transform3D(100, 1.328e-16, -2.42484e-15, 2.42484e-15, -10.9205, 99.4019, -1.328e-16, -99.4019, -10.9205, 0.55526, 0.816677, 0.759505)
+skeleton = NodePath("")
+
+[node name="body" parent="VehicleBody3D" instance=ExtResource("5_jci28")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.670595, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VehicleBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00830078, 0.430573, -0.0923767)
+shape = SubResource("BoxShape3D_qwnw3")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="VehicleBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00817871, 1.24489, -0.266945)
+shape = SubResource("BoxShape3D_2djib")
+
+[node name="Sit1" type="Marker3D" parent="VehicleBody3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.591295, 0.21354, 0.252728)
+
+[node name="Sit2" type="Marker3D" parent="VehicleBody3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.596045, 0.21354, 0.260012)
+
+[node name="Sit3" type="Marker3D" parent="VehicleBody3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.608489, 0.21354, -0.95075)
+
+[node name="Sit4" type="Marker3D" parent="VehicleBody3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.611814, 0.21354, -0.979325)
+
+[node name="Sit5" type="Marker3D" parent="VehicleBody3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0160623, 0.21354, -0.979325)
+
+[node name="MPInteractable" type="Node3D" parent="VehicleBody3D"]
+script = ExtResource("8_i18ul")
+metadata/_custom_type_script = "uid://djohcwel5mma3"
+
+[node name="MPAuthority" type="Node3D" parent="VehicleBody3D"]
+script = ExtResource("9_3yhe8")
+offset = 2.0
+metadata/_custom_type_script = "uid://b3m6233tgdidj"
+
+[node name="3RDPersonCameraController" type="Node3D" parent="VehicleBody3D"]
+script = ExtResource("10_6tnsb")
+
+[node name="3RDPersonCamera" type="Camera3D" parent="VehicleBody3D/3RDPersonCameraController"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 2.79647, -7.6362)
+
+[node name="MPCarController" type="Node3D" parent="VehicleBody3D"]
+script = ExtResource("10_rr81x")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="VehicleBody3D"]
+replication_config = SubResource("SceneReplicationConfig_6tnsb")
+script = SubResource("GDScript_6tnsb")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.892326, 0.451392, 0, -0.451392, 0.892326, 9.25498, -0.838009, 16.9687)
+use_collision = true
+size = Vector3(9.99164, 4.40186, 5.91895)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="."]
+transform = Transform3D(0.386952, -0.416228, 0.822814, 0, 0.892326, 0.451392, -0.9221, -0.174667, 0.345288, 23.0324, -0.838009, -2.73231)
+use_collision = true
+size = Vector3(9.99164, 4.40186, 5.91895)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="."]
+transform = Transform3D(0.919012, -0.988542, 1.95418, 0, 2.11927, 1.07206, -2.18999, -0.414834, 0.820058, 26.1793, -1.83611, 35.8602)
+use_collision = true
+size = Vector3(9.99164, 4.40186, 5.91895)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(0.395, 0, 0, 0, 0.395, 0, 0, 0, 0.395, -4.28216, -0.340088, 19.8089)
+use_collision = true
+size = Vector3(9.99164, 4.40186, 5.91895)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(0.395, 0, 0, 0, 0.395, 0, 0, 0, 0.395, -7.4492, -0.00941658, 21.6656)
+use_collision = true
+size = Vector3(9.99164, 4.40186, 5.91895)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(0.395, 0, 0, 0, 0.395, 0, 0, 0, 0.395, -3.93912, -0.523306, 22.5248)
+use_collision = true
+size = Vector3(9.99164, 4.40186, 5.91895)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(0.395, 0, 0, 0, 0.395, 0, 0, 0, 0.395, -6.71383, -0.523306, 24.5649)
+use_collision = true
+size = Vector3(9.99164, 4.40186, 5.91895)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(0.395, 0, 0, 0, 0.395, 0, 0, 0, 0.395, -6.71383, -0.208215, 24.5649)
+use_collision = true
+size = Vector3(9.99164, 4.40186, 5.91895)
+
+[connection signal="on_interact" from="VehicleBody3D/MPInteractable" to="VehicleBody3D" method="_on_mp_interactable_on_interact"]

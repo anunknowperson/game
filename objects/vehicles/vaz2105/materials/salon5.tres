@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://dmpnvnb0n85tw"]
+
+[ext_resource type="Texture2D" uid="uid://dghun4025yi52" path="res://objects/vehicles/vaz2105/textures/2105salon_final_salon5_BaseColor.png" id="1_ben6q"]
+[ext_resource type="Texture2D" uid="uid://b5qbxgr7m58tk" path="res://objects/vehicles/vaz2105/textures/2105salon_final_salon5_Normal.png" id="2_hpu8a"]
+
+[resource]
+resource_name = "salon5"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_ben6q")
+emission_enabled = true
+normal_enabled = true
+normal_scale = 0.0
+normal_texture = ExtResource("2_hpu8a")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://5waroudohjyx"]
+[gd_scene load_steps=5 format=3 uid="uid://5waroudohjyx"]
 
 [ext_resource type="Script" uid="uid://7r3kxp7sq2u2" path="res://scenes/main_menu/MainMenu.gd" id="1_eiy7p"]
 [ext_resource type="Script" uid="uid://t7um0ctjd5d1" path="res://chat.gd" id="2_h7a2f"]
@@ -11,6 +11,9 @@ func _on_pressed() -> void:
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN) 
 "
 
+[sub_resource type="ButtonGroup" id="ButtonGroup_axelx"]
+resource_local_to_scene = false
+
 [node name="MultiplayerTestUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -21,16 +24,17 @@ grow_vertical = 2
 script = ExtResource("1_eiy7p")
 
 [node name="ConnectionPanel" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -150.0
-offset_right = 200.0
-offset_bottom = 150.0
+offset_left = -300.0
+offset_top = -175.0
+offset_right = 300.0
+offset_bottom = 175.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -49,7 +53,8 @@ alignment = 1
 
 [node name="Label" type="Label" parent="ConnectionPanel/VBoxContainer"]
 layout_mode = 2
-text = "WebRTC Multiplayer Test"
+text = "Добро пожаловать в СПбГУ, 
+пожалуйста заполните форму для поступления"
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="ConnectionPanel/VBoxContainer"]
@@ -87,17 +92,16 @@ layout_mode = 2
 horizontal_alignment = 1
 
 [node name="LobbyPanel" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -332.0
-offset_top = -190.0
-offset_right = 356.0
-offset_bottom = 218.0
+offset_left = -350.0
+offset_top = -250.0
+offset_right = 350.0
+offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -166,10 +170,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -200.0
-offset_right = 250.0
-offset_bottom = 200.0
+offset_left = -475.0
+offset_top = -375.0
+offset_right = 475.0
+offset_bottom = 375.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -222,6 +226,29 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.0
 text = "Отправить"
 
+[node name="Label2" type="Label" parent="GamePanel/VBoxContainer"]
+layout_mode = 2
+text = "Специальность"
+
+[node name="TPButton" type="CheckBox" parent="GamePanel/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+button_group = SubResource("ButtonGroup_axelx")
+text = "Технологии Программирования"
+
+[node name="SEButton" type="CheckBox" parent="GamePanel/VBoxContainer"]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_axelx")
+text = "Программная Инженерия"
+
+[node name="ClassDescription" type="RichTextLabel" parent="GamePanel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "🧮 Математическое превосходство: [color=#FF0000]Басов[/color] жалеет тпшек и не уебывает с первого раза.
+🚗 Жигули: [color=#FF0000]Яков Кирилленко[/color] вряд-ли доебется (но если доебется можно отправиться в лабу), а также + ключи от [color=#FFFF00]жигулей[/color]"
+
 [node name="StartGameButton" type="Button" parent="GamePanel/VBoxContainer"]
 layout_mode = 2
 text = "Start Game"
@@ -233,3 +260,5 @@ text = "Leave Lobby"
 [connection signal="pressed" from="ConnectionPanel/VBoxContainer/ConnectButton2" to="ConnectionPanel/VBoxContainer/ConnectButton2" method="_on_pressed"]
 [connection signal="text_changed" from="GamePanel/VBoxContainer/HBoxContainer2/LineEdit" to="GamePanel/VBoxContainer/ScrollContainer/Chat" method="_on_line_edit_text_changed"]
 [connection signal="pressed" from="GamePanel/VBoxContainer/HBoxContainer2/Button" to="GamePanel/VBoxContainer/ScrollContainer/Chat" method="_on_button_pressed"]
+[connection signal="pressed" from="GamePanel/VBoxContainer/TPButton" to="." method="_on_tp_button_pressed"]
+[connection signal="pressed" from="GamePanel/VBoxContainer/SEButton" to="." method="_on_se_button_pressed"]

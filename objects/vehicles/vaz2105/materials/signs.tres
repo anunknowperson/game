@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cfpw1gyuh7aml"]
+
+[ext_resource type="Texture2D" uid="uid://dl2hjxoakofn3" path="res://objects/vehicles/vaz2105/textures/2105salon_final_signs_BaseColor.png" id="1_n85lr"]
+
+[resource]
+resource_name = "signs"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_n85lr")
+emission_enabled = true

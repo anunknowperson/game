@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://c3pg4pmxydgv"]
+
+[ext_resource type="Texture2D" uid="uid://bxmalrgwx5qe3" path="res://objects/vehicles/vaz2105/textures/2105lights_final_turnsignals2_BaseColor-2105lights_final_tur.png" id="1_v6pu1"]
+[ext_resource type="Texture2D" uid="uid://buo52t5sqabn6" path="res://objects/vehicles/vaz2105/textures/2105lights_final_turnsignals2_Metallic-2105lights_final_turn.png" id="2_k6kbj"]
+
+[resource]
+resource_name = "turnsignals2"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_v6pu1")
+metallic = 1.0
+metallic_texture = ExtResource("2_k6kbj")
+emission_enabled = true

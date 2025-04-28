@@ -1,0 +1,173 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://bxsilaqxap5kw"
+path="res://.godot/imported/body.fbx-00594e69d51fe16f1e23d74006236c72.scn"
+
+[deps]
+
+source_file="res://objects/vehicles/vaz2105/source/body.fbx"
+dest_files=["res://.godot/imported/body.fbx-00594e69d51fe16f1e23d74006236c72.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=true
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"materials": {
+"Material": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/Material.tres"
+},
+"Material.001": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/Material.001.tres"
+},
+"carcass": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/carcass.tres"
+},
+"carcass2": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/carcass2.tres"
+},
+"chairs": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/chairs.tres"
+},
+"doorcards": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/doorcards.tres"
+},
+"engine1": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/engine1.tres"
+},
+"engine2": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/engine2.tres"
+},
+"engine3": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/engine3.tres"
+},
+"glass1": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/glass1.tres"
+},
+"headlight1": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/headlight1.tres"
+},
+"headlight2": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/headlight2.tres"
+},
+"lights": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/lights.tres"
+},
+"plastic1": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/plastic1.tres"
+},
+"plastic2": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/plastic2.tres"
+},
+"rearlight1": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/rearlight1.tres"
+},
+"rearlight2": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/rearlight2.tres"
+},
+"salon1": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/salon1.tres"
+},
+"salon2": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/salon2.tres"
+},
+"salon3": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/salon3.tres"
+},
+"salon4": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/salon4.tres"
+},
+"salon5": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/salon5.tres"
+},
+"salon6": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/salon6.tres"
+},
+"seals": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/seals.tres"
+},
+"signs": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/signs.tres"
+},
+"stuff": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/stuff.tres"
+},
+"suspension1": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/suspension1.tres"
+},
+"suspension2": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/suspension2.tres"
+},
+"tubes": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/tubes.tres"
+},
+"turnsignals": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/turnsignals.tres"
+},
+"turnsignals2": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/turnsignals2.tres"
+},
+"under": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/under.tres"
+},
+"wires": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/vehicles/vaz2105/materials/wires.tres"
+}
+}
+}
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1

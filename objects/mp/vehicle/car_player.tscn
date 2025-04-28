@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctatmx8w2iusk"]
+
+[ext_resource type="Script" uid="uid://sqfurk728hap" path="res://objects/mp/vehicle/car_player.gd" id="1_bkf6i"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3yhe8"]
+radius = 0.3
+height = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rr81x"]
+albedo_color = Color(0.27451, 0.317647, 0.980392, 1)
+
+[node name="CarPlayer" type="Node3D"]
+script = ExtResource("1_bkf6i")
+
+[node name="StandingMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0.525171, 0)
+layers = 2
+mesh = SubResource("CapsuleMesh_3yhe8")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_rr81x")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.857339, 0)
