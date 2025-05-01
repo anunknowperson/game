@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var engine_force_value: float = 400.0    # How hard the engine pushes
+@export var engine_force_value: float = 100.0    # How hard the engine pushes
 @export var brake_force_value: float = 4.0    # How strong the brakes are
 @export var steering_angle_deg: float = 30.0     # Max wheel turn in degrees
 @export var steering_speed: float = 5.0          # How quickly steering interpolates

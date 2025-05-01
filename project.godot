@@ -37,6 +37,10 @@ window/vsync/vsync_mode=0
 
 run/main_run_args="player1"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
+
 [filesystem]
 
 import/blender/enabled=false
