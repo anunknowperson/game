@@ -109845,14 +109845,9 @@ transform = Transform3D(-0.408809, 0.000713506, -1.00678, 0.00189649, 1.08661, -
 size = Vector3(16.8138, 0.0589452, 4.47389)
 material = SubResource("StandardMaterial3D_e8cfa")
 
-[node name="CSGBox3D30" type="CSGBox3D" parent="Project"]
-transform = Transform3D(1.0094, -0.00183233, -0.402283, 0.00196596, 1.08661, -1.63759e-05, 0.402282, -0.000712618, 1.0094, -113.709, 2.41165, -520.33)
-size = Vector3(0.0674042, 3.61984, 9.19411)
-material = SubResource("StandardMaterial3D_e8cfa")
-
 [node name="CSGBox3D65" type="CSGBox3D" parent="Project"]
-transform = Transform3D(0.82056, -0.00147387, 0.712323, 0.00196596, 1.08661, -1.6376e-05, -0.712322, 0.00130114, 0.820562, -117.864, 2.37945, -517.991)
-size = Vector3(0.0674042, 3.67906, 5.52973)
+transform = Transform3D(0.82056, -0.00147387, 0.712323, 0.00196596, 1.08661, -1.6376e-05, -0.712322, 0.00130114, 0.820562, -117.737, 2.37945, -517.845)
+size = Vector3(0.0674042, 3.67906, 5.88597)
 material = SubResource("StandardMaterial3D_e8cfa")
 
 [node name="CSGBox3D66" type="CSGBox3D" parent="Project"]
