@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8uklaall863s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pywd4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_enfxl"]
+metallic = 1.0
+roughness = 0.0
+
+[node name="windowsh" type="Node3D"]
+transform = Transform3D(0.960228, 0, -0.344038, 0, 1.02, 0, 0.344038, 0, 0.960228, 0, 0, 0)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(0.99728, 0, -0.0737082, 0, 1, 0, 0.0737082, 0, 0.99728, -1.55632, 5.99399, 28.4177)
+size = Vector3(2.84467, 5.18603, 0.248703)
+material = SubResource("StandardMaterial3D_pywd4")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGBox3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.810928, 1.97913, 0.160889)
+operation = 2
+size = Vector3(0.909538, 0.84497, 0.239523)
+material = SubResource("StandardMaterial3D_enfxl")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGBox3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.540268, 1.98563, 0.160583)
+operation = 2
+size = Vector3(1.58324, 0.83197, 0.239523)
+material = SubResource("StandardMaterial3D_enfxl")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGBox3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.830551, -0.438031, 0.160706)
+operation = 2
+size = Vector3(0.870354, 3.79932, 0.239523)
+material = SubResource("StandardMaterial3D_enfxl")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGBox3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.538803, -0.419782, 0.160767)
+operation = 2
+size = Vector3(1.58617, 3.83581, 0.239523)
+material = SubResource("StandardMaterial3D_enfxl")
