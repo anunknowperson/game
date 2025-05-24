@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bakyy8o2o2rjj"
 path.s3tc="res://.godot/imported/photo_2025-05-01_15-52-09.jpg-a17eaace29abd38b9b41295015192e33.s3tc.ctex"
+path.etc2="res://.godot/imported/photo_2025-05-01_15-52-09.jpg-a17eaace29abd38b9b41295015192e33.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://levels/punc/20/photo_2025-05-01_15-52-09.jpg"
-dest_files=["res://.godot/imported/photo_2025-05-01_15-52-09.jpg-a17eaace29abd38b9b41295015192e33.s3tc.ctex"]
+dest_files=["res://.godot/imported/photo_2025-05-01_15-52-09.jpg-a17eaace29abd38b9b41295015192e33.s3tc.ctex", "res://.godot/imported/photo_2025-05-01_15-52-09.jpg-a17eaace29abd38b9b41295015192e33.etc2.ctex"]
 
 [params]
 

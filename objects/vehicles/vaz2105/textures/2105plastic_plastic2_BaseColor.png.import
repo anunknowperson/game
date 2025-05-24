@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://u5xe0a28oltd"
 path.s3tc="res://.godot/imported/2105plastic_plastic2_BaseColor.png-c873ef293c3ec7d7caf1c5f4e301b1ed.s3tc.ctex"
+path.etc2="res://.godot/imported/2105plastic_plastic2_BaseColor.png-c873ef293c3ec7d7caf1c5f4e301b1ed.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://objects/vehicles/vaz2105/textures/2105plastic_plastic2_BaseColor.png"
-dest_files=["res://.godot/imported/2105plastic_plastic2_BaseColor.png-c873ef293c3ec7d7caf1c5f4e301b1ed.s3tc.ctex"]
+dest_files=["res://.godot/imported/2105plastic_plastic2_BaseColor.png-c873ef293c3ec7d7caf1c5f4e301b1ed.s3tc.ctex", "res://.godot/imported/2105plastic_plastic2_BaseColor.png-c873ef293c3ec7d7caf1c5f4e301b1ed.etc2.ctex"]
 
 [params]
 

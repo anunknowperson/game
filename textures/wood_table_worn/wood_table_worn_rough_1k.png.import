@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bdxymrphy0xye"
 path.s3tc="res://.godot/imported/wood_table_worn_rough_1k.png-6889144a44c6bc21c28fffdf9213c5a8.s3tc.ctex"
+path.etc2="res://.godot/imported/wood_table_worn_rough_1k.png-6889144a44c6bc21c28fffdf9213c5a8.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/wood_table_worn/wood_table_worn_rough_1k.png"
-dest_files=["res://.godot/imported/wood_table_worn_rough_1k.png-6889144a44c6bc21c28fffdf9213c5a8.s3tc.ctex"]
+dest_files=["res://.godot/imported/wood_table_worn_rough_1k.png-6889144a44c6bc21c28fffdf9213c5a8.s3tc.ctex", "res://.godot/imported/wood_table_worn_rough_1k.png-6889144a44c6bc21c28fffdf9213c5a8.etc2.ctex"]
 
 [params]
 

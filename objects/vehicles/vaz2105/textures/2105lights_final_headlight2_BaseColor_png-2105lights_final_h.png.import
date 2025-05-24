@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://j3miy4ooj0wu"
 path.s3tc="res://.godot/imported/2105lights_final_headlight2_BaseColor_png-2105lights_final_h.png-3601262ac29703a0840857d77fc58faf.s3tc.ctex"
+path.etc2="res://.godot/imported/2105lights_final_headlight2_BaseColor_png-2105lights_final_h.png-3601262ac29703a0840857d77fc58faf.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://objects/vehicles/vaz2105/textures/2105lights_final_headlight2_BaseColor_png-2105lights_final_h.png"
-dest_files=["res://.godot/imported/2105lights_final_headlight2_BaseColor_png-2105lights_final_h.png-3601262ac29703a0840857d77fc58faf.s3tc.ctex"]
+dest_files=["res://.godot/imported/2105lights_final_headlight2_BaseColor_png-2105lights_final_h.png-3601262ac29703a0840857d77fc58faf.s3tc.ctex", "res://.godot/imported/2105lights_final_headlight2_BaseColor_png-2105lights_final_h.png-3601262ac29703a0840857d77fc58faf.etc2.ctex"]
 
 [params]
 

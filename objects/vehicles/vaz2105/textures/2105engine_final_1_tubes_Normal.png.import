@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://q3bmpdkvqico"
 path.s3tc="res://.godot/imported/2105engine_final_1_tubes_Normal.png-a4b8d09b96cb84e65b9c442c7fc213bf.s3tc.ctex"
+path.etc2="res://.godot/imported/2105engine_final_1_tubes_Normal.png-a4b8d09b96cb84e65b9c442c7fc213bf.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://objects/vehicles/vaz2105/textures/2105engine_final_1_tubes_Normal.png"
-dest_files=["res://.godot/imported/2105engine_final_1_tubes_Normal.png-a4b8d09b96cb84e65b9c442c7fc213bf.s3tc.ctex"]
+dest_files=["res://.godot/imported/2105engine_final_1_tubes_Normal.png-a4b8d09b96cb84e65b9c442c7fc213bf.s3tc.ctex", "res://.godot/imported/2105engine_final_1_tubes_Normal.png-a4b8d09b96cb84e65b9c442c7fc213bf.etc2.ctex"]
 
 [params]
 
