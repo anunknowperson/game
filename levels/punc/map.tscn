@@ -10820,7 +10820,6 @@ sides = 32
 material = SubResource("StandardMaterial3D_fklqs")
 
 [node name="windowsh" parent="shaiba" instance=ExtResource("38_sf4yc")]
-transform = Transform3D(0.960228, 0, -0.344038, 0, 1.02, 0, 0.344038, 0, 0.960228, 0, 0, 0)
 
 [node name="windowsh2" parent="shaiba" instance=ExtResource("38_sf4yc")]
 transform = Transform3D(0.992198, 0, -0.236521, 0, 1.02, 0, 0.236521, 0, 0.992198, 0, 0, 0)

@@ -1,7 +1,7 @@
 extends Node3D
 
 
-var level_scene = preload("res://levels/test/TestLevel.tscn")
+var level_scene = preload("res://levels/faculty/Faculty.tscn")
 
 
 func _ready():
