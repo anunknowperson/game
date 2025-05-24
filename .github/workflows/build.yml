@@ -32,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Punk game - Linux
-          path: ${{ github.workspace }}/build/linux/punk.x86_64
+          path: ${{ github.workspace }}/build/linux/
 
   windows:
     runs-on: ubuntu-22.04
@@ -55,4 +55,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Punk game - Windows
-          path: ${{ github.workspace }}/build/windows/punk.exe
+          path: ${{ github.workspace }}/build/windows/
