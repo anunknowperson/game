@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ywfqykx00t7h"
 path.s3tc="res://.godot/imported/expressive-152-herringbone-1131-mm-architextures.jpg-4cf45695b07870e6ad500df63e315783.s3tc.ctex"
+path.etc2="res://.godot/imported/expressive-152-herringbone-1131-mm-architextures.jpg-4cf45695b07870e6ad500df63e315783.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/expressive-152-herringbone-1131-mm-architextures.jpg"
-dest_files=["res://.godot/imported/expressive-152-herringbone-1131-mm-architextures.jpg-4cf45695b07870e6ad500df63e315783.s3tc.ctex"]
+dest_files=["res://.godot/imported/expressive-152-herringbone-1131-mm-architextures.jpg-4cf45695b07870e6ad500df63e315783.s3tc.ctex", "res://.godot/imported/expressive-152-herringbone-1131-mm-architextures.jpg-4cf45695b07870e6ad500df63e315783.etc2.ctex"]
 
 [params]
 

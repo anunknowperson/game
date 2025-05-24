@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dpu7atmw62hsf"
 path.s3tc="res://.godot/imported/puncreal.png-2d7593decefa5ec49cc903f8cdf1c782.s3tc.ctex"
+path.etc2="res://.godot/imported/puncreal.png-2d7593decefa5ec49cc903f8cdf1c782.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://levels/punc/puncreal.png"
-dest_files=["res://.godot/imported/puncreal.png-2d7593decefa5ec49cc903f8cdf1c782.s3tc.ctex"]
+dest_files=["res://.godot/imported/puncreal.png-2d7593decefa5ec49cc903f8cdf1c782.s3tc.ctex", "res://.godot/imported/puncreal.png-2d7593decefa5ec49cc903f8cdf1c782.etc2.ctex"]
 
 [params]
 

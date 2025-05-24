@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bi1pxs0ebngbg"
 path.s3tc="res://.godot/imported/Mutant Swiping_0.png-4ba0341ab972e0330cdc61510b676454.s3tc.ctex"
+path.etc2="res://.godot/imported/Mutant Swiping_0.png-4ba0341ab972e0330cdc61510b676454.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://monsters/Mutant Swiping_0.png"
-dest_files=["res://.godot/imported/Mutant Swiping_0.png-4ba0341ab972e0330cdc61510b676454.s3tc.ctex"]
+dest_files=["res://.godot/imported/Mutant Swiping_0.png-4ba0341ab972e0330cdc61510b676454.s3tc.ctex", "res://.godot/imported/Mutant Swiping_0.png-4ba0341ab972e0330cdc61510b676454.etc2.ctex"]
 
 [params]
 

@@ -4,8 +4,9 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://brkd6hdc7n1gd"
 path.s3tc="res://.godot/imported/bochka_Bochka.png-ea1a19a36342822b61b07a152268d578.s3tc.ctex"
+path.etc2="res://.godot/imported/bochka_Bochka.png-ea1a19a36342822b61b07a152268d578.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 generator_parameters={
@@ -15,7 +16,7 @@ generator_parameters={
 [deps]
 
 source_file="res://models/bochka_Bochka.png"
-dest_files=["res://.godot/imported/bochka_Bochka.png-ea1a19a36342822b61b07a152268d578.s3tc.ctex"]
+dest_files=["res://.godot/imported/bochka_Bochka.png-ea1a19a36342822b61b07a152268d578.s3tc.ctex", "res://.godot/imported/bochka_Bochka.png-ea1a19a36342822b61b07a152268d578.etc2.ctex"]
 
 [params]
 

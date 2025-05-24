@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://crw7tnc04nf0a"
 path.s3tc="res://.godot/imported/travertine-cubic-2118-mm-architextures.jpg-91d745f388e9d1177846f66fd54a0661.s3tc.ctex"
+path.etc2="res://.godot/imported/travertine-cubic-2118-mm-architextures.jpg-91d745f388e9d1177846f66fd54a0661.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/travertine-cubic-2118-mm-architextures.jpg"
-dest_files=["res://.godot/imported/travertine-cubic-2118-mm-architextures.jpg-91d745f388e9d1177846f66fd54a0661.s3tc.ctex"]
+dest_files=["res://.godot/imported/travertine-cubic-2118-mm-architextures.jpg-91d745f388e9d1177846f66fd54a0661.s3tc.ctex", "res://.godot/imported/travertine-cubic-2118-mm-architextures.jpg-91d745f388e9d1177846f66fd54a0661.etc2.ctex"]
 
 [params]
 
