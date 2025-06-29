@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddyenukwbrxo3"]
+
+[ext_resource type="PackedScene" uid="uid://ohlkrh210add" path="res://models/hookah.glb" id="1_a3usc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4gyp2"]
+blend_mode = 1
+albedo_color = Color(0.472656, 0.472656, 0.472656, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8rnoc"]
+albedo_color = Color(0.546875, 0.546875, 0.546875, 1)
+metallic = 1.0
+roughness = 0.55
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ic161"]
+albedo_color = Color(0.545098, 0.545098, 0.545098, 1)
+metallic = 1.0
+roughness = 0.55
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4nc4r"]
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="hookah" instance=ExtResource("1_a3usc")]
+
+[node name="Цилиндр" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_4gyp2")
+
+[node name="Цилиндр_001" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_8rnoc")
+
+[node name="Цилиндр_003" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ic161")
+
+[node name="BézierCurve" parent="." index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_4nc4r")
