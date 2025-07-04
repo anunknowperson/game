@@ -66,6 +66,7 @@ albedo_texture = ExtResource("4_mxnmf")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dcckh"]
 albedo_texture = ExtResource("3_m3clv")
 uv1_triplanar = true
+uv1_world_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jftiw"]
 albedo_texture = ExtResource("2_q4iis")
@@ -76,6 +77,7 @@ albedo_texture = ExtResource("2_q4iis")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pd0bf"]
 albedo_texture = ExtResource("1_wkftn")
 uv1_triplanar = true
+uv1_world_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_viiqw"]
 albedo_texture = ExtResource("2_q4iis")
@@ -366,21 +368,6 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AACAwM3MTL0AAKBAAACAwM3MTL0AAKDAAACAwM3MTD0AAKDAAACAQM3MTL0AAKDAAACAwM3MTL0AAKDAAACAwM3MTL0AAKBAAACAwM3MTD0AAKDAAACAwM3MTL0AAKDAAACAQM3MTL0AAKDAAACAwM3MTD0AAKBAAACAwM3MTL0AAKBAAACAwM3MTD0AAKBAAACAQM3MTD0AAKBAAACAQM3MTD0AAKBAAACAwM3MTD0AAKBAAACAwM3MTD0AAKDAAACAQM3MTL0AAKBAAACAQM3MTL0AAKBAAACAQM3MTL0AAKDAAACAQM3MTL0AAKBAAACAQM3MTD0AAKBAAACAQM3MTD0AAKDAAACAQM3MTD0AAKDAAACAQM3MTD0AAKDAAAAAgP9//n8AAACA/3/+fwAAAID/f/5/AIAAAP//AAAAgAAA//8AAACAAAD//wAA/////wAA/z//////AAD/P/////8AAP8/AAAAgP9//n//f/9/AAD/P/9//38AAP8//3//fwAA/z8AgP////8AAACA/////wAAAID/////AAAAgAAA//8AAP9//38AAP8///8AgP9//n///wCA/3/+f///AID/f/5//////wAA/z8AgP////8AAP//AID/f/5/")
 }]
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_edbn6"]
-lightmap_size_hint = Vector2i(326, 234)
-_surfaces = [{
-"aabb": AABB(-4, -0.05, -5, 8, 0.1, 10),
-"attribute_data": PackedByteArray("AACAPwAAgD/OXyE/a7N2PwAAgD8AAAAA1ihiPGuzdj8AAAAAAAAAANYoYjwUO3E/AACAPwAAgD+MLQE/TckUPQAAgD8AAAAAfJt/P03JFD0AAAAAAAAAAHybfz9TMmU/AACAPwAAgD+U9gE/93N/PwAAgD8AAAAAlPYBP6D7eT8AAAAAAAAAANYoYjyg+3k/AAAAAAAAgD/OXyE/FDtxPwAAgD8AAIA/6KT9Pvy5Xz8AAIA/AAAAAOik/T5TMmU/AAAAAAAAAADaB8k6UzJlPwAAAAAAAAAA6KT9PsdxXD8AAAAAAACAP9oHyTrHcVw/AACAPwAAgD/aB8k6wQgMOwAAAAAAAIA/jC0BP1MyZT8AAAAAAACAP9oHyTr8uV8/AACAPwAAgD9YmNU83/JtPwAAgD8AAAAA7YMkP9/ybT8AAAAAAAAAAO2DJD+Iemg/AAAAAAAAgD/WKGI893N/PwAAgD8AAAAA6KT9PsEIDDsAAAAAAACAP1iY1TyIemg/"),
-"format": 34359742519,
-"index_count": 36,
-"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgAAgAJAAAACgALAAwADQAOAA8ABQAQAAMADAARAAoAEgATABQACAAVAAYADwAWAA0AFAAXABIA"),
-"material": SubResource("StandardMaterial3D_jftiw"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 24,
-"vertex_data": PackedByteArray("AACAwM3MTL0AAKBAAACAwM3MTL0AAKDAAACAwM3MTD0AAKDAAACAQM3MTL0AAKDAAACAwM3MTL0AAKDAAACAwM3MTL0AAKBAAACAwM3MTD0AAKDAAACAwM3MTL0AAKDAAACAQM3MTL0AAKDAAACAwM3MTD0AAKBAAACAwM3MTL0AAKBAAACAwM3MTD0AAKBAAACAQM3MTD0AAKBAAACAQM3MTD0AAKBAAACAwM3MTD0AAKBAAACAwM3MTD0AAKDAAACAQM3MTL0AAKBAAACAQM3MTL0AAKBAAACAQM3MTL0AAKDAAACAQM3MTL0AAKBAAACAQM3MTD0AAKBAAACAQM3MTD0AAKDAAACAQM3MTD0AAKDAAACAQM3MTD0AAKDAAAAAgP9//n8AAACA/3/+fwAAAID/f/5/AIAAAP//AAAAgAAA//8AAACAAAD//wAA/////wAA/z//////AAD/P/////8AAP8/AAAAgP9//n//f/9/AAD/P/9//38AAP8//3//fwAA/z8AgP////8AAACA/////wAAAID/////AAAAgAAA//8AAP9//38AAP8///8AgP9//n///wCA/3/+f///AID/f/5//////wAA/z8AgP////8AAP//AID/f/5/")
-}]
-
 [sub_resource type="ArrayMesh" id="ArrayMesh_o88gs"]
 lightmap_size_hint = Vector2i(190, 210)
 _surfaces = [{
@@ -394,6 +381,21 @@ _surfaces = [{
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 24,
 "vertex_data": PackedByteArray("zcxMvQAAAMAAAKBAzcxMvQAAAMAAAKDAzcxMvQAAAEAAAKDAzcxMPQAAAMAAAKDAzcxMvQAAAMAAAKDAzcxMvQAAAMAAAKBAzcxMvQAAAEAAAKDAzcxMvQAAAMAAAKDAzcxMPQAAAMAAAKDAzcxMvQAAAEAAAKBAzcxMvQAAAMAAAKBAzcxMvQAAAEAAAKBAzcxMPQAAAEAAAKBAzcxMPQAAAEAAAKBAzcxMvQAAAEAAAKBAzcxMvQAAAEAAAKDAzcxMPQAAAMAAAKBAzcxMPQAAAMAAAKBAzcxMPQAAAMAAAKDAzcxMPQAAAMAAAKBAzcxMPQAAAEAAAKBAzcxMPQAAAEAAAKDAzcxMPQAAAEAAAKDAzcxMPQAAAEAAAKDAAAAAgP9//n8AAACA/3/+fwAAAID/f/5/AIAAAP//AAAAgAAA//8AAACAAAD//wAA/////wAA/z//////AAD/P/////8AAP8/AAAAgP9//n//f/9/AAD/P/9//38AAP8//3//fwAA/z8AgP////8AAACA/////wAAAID/////AAAAgAAA//8AAP9//38AAP8///8AgP9//n///wCA/3/+f///AID/f/5//////wAA/z8AgP////8AAP//AID/f/5/")
+}]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_edbn6"]
+lightmap_size_hint = Vector2i(326, 234)
+_surfaces = [{
+"aabb": AABB(-4, -0.05, -5, 8, 0.1, 10),
+"attribute_data": PackedByteArray("AACAPwAAgD/OXyE/a7N2PwAAgD8AAAAA1ihiPGuzdj8AAAAAAAAAANYoYjwUO3E/AACAPwAAgD+MLQE/TckUPQAAgD8AAAAAfJt/P03JFD0AAAAAAAAAAHybfz9TMmU/AACAPwAAgD+U9gE/93N/PwAAgD8AAAAAlPYBP6D7eT8AAAAAAAAAANYoYjyg+3k/AAAAAAAAgD/OXyE/FDtxPwAAgD8AAIA/6KT9Pvy5Xz8AAIA/AAAAAOik/T5TMmU/AAAAAAAAAADaB8k6UzJlPwAAAAAAAAAA6KT9PsdxXD8AAAAAAACAP9oHyTrHcVw/AACAPwAAgD/aB8k6wQgMOwAAAAAAAIA/jC0BP1MyZT8AAAAAAACAP9oHyTr8uV8/AACAPwAAgD9YmNU83/JtPwAAgD8AAAAA7YMkP9/ybT8AAAAAAAAAAO2DJD+Iemg/AAAAAAAAgD/WKGI893N/PwAAgD8AAAAA6KT9PsEIDDsAAAAAAACAP1iY1TyIemg/"),
+"format": 34359742519,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAwAEAAUABgAHAAgAAgAJAAAACgALAAwADQAOAA8ABQAQAAMADAARAAoAEgATABQACAAVAAYADwAWAA0AFAAXABIA"),
+"material": SubResource("StandardMaterial3D_jftiw"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AACAwM3MTL0AAKBAAACAwM3MTL0AAKDAAACAwM3MTD0AAKDAAACAQM3MTL0AAKDAAACAwM3MTL0AAKDAAACAwM3MTL0AAKBAAACAwM3MTD0AAKDAAACAwM3MTL0AAKDAAACAQM3MTL0AAKDAAACAwM3MTD0AAKBAAACAwM3MTL0AAKBAAACAwM3MTD0AAKBAAACAQM3MTD0AAKBAAACAQM3MTD0AAKBAAACAwM3MTD0AAKBAAACAwM3MTD0AAKDAAACAQM3MTL0AAKBAAACAQM3MTL0AAKBAAACAQM3MTL0AAKDAAACAQM3MTL0AAKBAAACAQM3MTD0AAKBAAACAQM3MTD0AAKDAAACAQM3MTD0AAKDAAACAQM3MTD0AAKDAAAAAgP9//n8AAACA/3/+fwAAAID/f/5/AIAAAP//AAAAgAAA//8AAACAAAD//wAA/////wAA/z//////AAD/P/////8AAP8/AAAAgP9//n//f/9/AAD/P/9//38AAP8//3//fwAA/z8AgP////8AAACA/////wAAAID/////AAAAgAAA//8AAP9//38AAP8///8AgP9//n///wCA/3/+f///AID/f/5//////wAA/z8AgP////8AAP//AID/f/5/")
 }]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_2g7sq"]
@@ -1665,13 +1667,13 @@ transform = Transform3D(-4.07827e-08, 0, 0.933, 0, 0.7, 0, -0.933, 0, -4.07827e-
 transform = Transform3D(0.933, 0, 0, 0, 0.7, 0, 0, 0, 0.933, -3.51624, 0.47, -8.02193)
 
 [node name="school_chair" parent="LightmapGI/STATIC_CSG/Educational_department" instance=ExtResource("7_d6u53")]
-transform = Transform3D(-2.84124e-08, 0, 0.65, 0, 0.65, 0, -0.65, 0, -2.84124e-08, -7.83596, 0.648926, -6.79989)
+transform = Transform3D(0.233183, 0, 0.606734, 0, 0.65, 0, -0.606734, 0, 0.233183, -7.68238, 0.648926, -6.79989)
 
 [node name="school_chair2" parent="LightmapGI/STATIC_CSG/Educational_department" instance=ExtResource("7_d6u53")]
-transform = Transform3D(7.75117e-09, 0, -0.65, 0, 0.65, 0, 0.65, 0, 7.75117e-09, -3.34681, 0.648926, -3.98458)
+transform = Transform3D(0.357898, 0, -0.542595, 0, 0.65, 0, 0.542595, 0, 0.357898, -3.16758, 0.648926, -4.39747)
 
 [node name="school_chair3" parent="LightmapGI/STATIC_CSG/Educational_department" instance=ExtResource("7_d6u53")]
-transform = Transform3D(-0.65, 0, -5.68248e-08, 0, 0.65, 0, 5.68248e-08, 0, -0.65, -5.52323, 0.648926, -1.73417)
+transform = Transform3D(-0.603554, 0, -0.241294, 0, 0.65, 0, 0.241294, 0, -0.603554, -4.79551, 0.648926, -1.3947)
 
 [node name="computer" parent="LightmapGI/STATIC_CSG/Educational_department" instance=ExtResource("9_dcckh")]
 transform = Transform3D(-5.24537e-08, 0, -1.2, 0, 1.2, 0, 1.2, 0, -5.24537e-08, -6.76614, 1.24286, -6.78459)
@@ -1704,23 +1706,23 @@ transform = Transform3D(-6.55671e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.55671e-08, 
 metadata/_edit_lock_ = true
 
 [node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="LightmapGI/STATIC_CSG/Classroom_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0, 3.5)
+transform = Transform3D(1.17303, 0, 0, 0, 1, 0, 0, 0, 1, 7.22007, 0, 3.5)
 mesh = SubResource("ArrayMesh_kucke")
 
-[node name="CSGBakedMeshInstance3D2" type="MeshInstance3D" parent="LightmapGI/STATIC_CSG/Classroom_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 4, 3.5)
-mesh = SubResource("ArrayMesh_edbn6")
-
 [node name="CSGBakedMeshInstance3D3" type="MeshInstance3D" parent="LightmapGI/STATIC_CSG/Classroom_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 2, 3.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8642, 2, 3.5)
 mesh = SubResource("ArrayMesh_o88gs")
 
+[node name="CSGBakedMeshInstance3D2" type="MeshInstance3D" parent="LightmapGI/STATIC_CSG/Classroom_1"]
+transform = Transform3D(1.18069, 0, 0, 0, 1, 0, 0, 0, 1, 7.19949, 4, 3.5)
+mesh = SubResource("ArrayMesh_edbn6")
+
 [node name="CSGBakedMeshInstance3D4" type="MeshInstance3D" parent="LightmapGI/STATIC_CSG/Classroom_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 2, -1.5)
+transform = Transform3D(1.28359, 0, 0, 0, 1, 0, 0, 0, 1, 7.63153, 2, -1.5)
 mesh = SubResource("ArrayMesh_2g7sq")
 
 [node name="CSGBakedMeshInstance3D5" type="MeshInstance3D" parent="LightmapGI/STATIC_CSG/Classroom_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 2, 8.5)
+transform = Transform3D(1.17937, 0, 0, 0, 1, 0, 0, 0, 1, 7.2199, 2, 8.5)
 mesh = SubResource("ArrayMesh_uvdu4")
 
 [node name="CSGBakedMeshInstance3D6" type="MeshInstance3D" parent="LightmapGI/STATIC_CSG/Classroom_1"]
@@ -1728,118 +1730,109 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.52716, 2, 3.5)
 mesh = SubResource("ArrayMesh_vp7sk")
 
 [node name="textured_mesh" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("3_3ywx5")]
-transform = Transform3D(0.933, 0, 0, 0, 0.7, 0, 0, 0, 0.933, 3.52406, 0.47, 2.50966)
+transform = Transform3D(0.93128, 0, -0.0566332, 0, 0.7, 0, 0.0566332, 0, 0.93128, 3.83879, 0.47, 2.50966)
 
 [node name="textured_mesh2" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("3_3ywx5")]
-transform = Transform3D(0.933, 0, 0, 0, 0.7, 0, 0, 0, 0.933, 6.52406, 0.47, 2.50966)
+transform = Transform3D(0.927394, 0, 0.102123, 0, 0.7, 0, -0.102123, 0, 0.927394, 7.08963, 0.47, 2.50966)
 
 [node name="textured_mesh3" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("3_3ywx5")]
-transform = Transform3D(0.933, 0, 0, 0, 0.7, 0, 0, 0, 0.933, 9.52406, 0.47, 2.50966)
+transform = Transform3D(0.931678, 0, -0.0496588, 0, 0.7, 0, 0.0496588, 0, 0.931678, 10.5287, 0.47, 2.50966)
 
 [node name="textured_mesh4" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("3_3ywx5")]
-transform = Transform3D(0.933, 0, 0, 0, 0.7, 0, 0, 0, 0.933, 3.52406, 0.47, 0.50966)
+transform = Transform3D(0.890131, 0, 0.279564, 0, 0.7, 0, -0.279564, 0, 0.890131, 3.92969, 0.47, 0.146872)
 
 [node name="textured_mesh5" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("3_3ywx5")]
-transform = Transform3D(0.933, 0, 0, 0, 0.7, 0, 0, 0, 0.933, 6.52406, 0.47, 0.50966)
+transform = Transform3D(0.928506, 0, -0.0914662, 0, 0.7, 0, 0.0914662, 0, 0.928506, 7.08472, 0.47, 0.418094)
 
 [node name="textured_mesh6" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("3_3ywx5")]
-transform = Transform3D(0.933, 0, 0, 0, 0.7, 0, 0, 0, 0.933, 9.52406, 0.47, 0.50966)
+transform = Transform3D(0.91886, 0, 0.161821, 0, 0.7, 0, -0.161821, 0, 0.91886, 10.542, 0.47, 0.399292)
 
 [node name="textured_mesh7" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("3_3ywx5")]
-transform = Transform3D(0.933, 0, 0, 0, 0.7, 0, 0, 0, 0.933, 3.52406, 0.47, 4.50966)
+transform = Transform3D(0.915408, 0, 0.180326, 0, 0.7, 0, -0.180326, 0, 0.915408, 3.83189, 0.47, 4.66229)
 
 [node name="textured_mesh8" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("3_3ywx5")]
-transform = Transform3D(0.933, 0, 0, 0, 0.7, 0, 0, 0, 0.933, 6.52406, 0.47, 4.50966)
+transform = Transform3D(0.929785, 0, -0.0773899, 0, 0.7, 0, 0.0773899, 0, 0.929785, 7.08963, 0.47, 4.58934)
 
 [node name="textured_mesh9" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("3_3ywx5")]
-transform = Transform3D(0.933, 0, 0, 0, 0.7, 0, 0, 0, 0.933, 9.52406, 0.47, 4.50966)
+transform = Transform3D(0.916471, 0, 0.174843, 0, 0.7, 0, -0.174843, 0, 0.916471, 10.533, 0.47, 4.8278)
 
 [node name="textured_mesh10" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("3_3ywx5")]
-transform = Transform3D(0.933, 0, 0, 0, 0.7, 0, 0, 0, 0.933, 6.52406, 0.47, 5.50966)
+transform = Transform3D(0.90935, 0, 0.208737, 0, 0.7, 0, -0.208737, 0, 0.90935, 7.08963, 0.47, 5.91733)
 
 [node name="school_chair" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 4.0021, 0.648926, 1.68577)
+transform = Transform3D(0.641571, 0, 0.104337, 0, 0.65, 0, -0.104337, 0, 0.641571, 4.16637, 0.648926, 1.68577)
 
 [node name="school_chair2" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 3.0021, 0.648926, 1.68577)
+transform = Transform3D(0.632922, 0, -0.148019, 0, 0.65, 0, 0.148019, 0, 0.632922, 3.25432, 0.648926, 1.68577)
 
 [node name="school_chair3" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 7.0021, 0.648926, 1.68577)
-
-[node name="school_chair4" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 6.0021, 0.648926, 1.68577)
+transform = Transform3D(0.639915, 0, -0.114055, 0, 0.65, 0, 0.114055, 0, 0.639915, 7.24127, 0.648926, 1.78666)
 
 [node name="school_chair5" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 10.0021, 0.648926, 1.68577)
+transform = Transform3D(0.630747, 0, 0.157029, 0, 0.65, 0, -0.157029, 0, 0.630747, 11.0033, 0.648926, 1.56997)
 
 [node name="school_chair6" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 9.0021, 0.648926, 1.68577)
-
-[node name="school_chair7" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 4.0021, 0.648926, -0.314232)
+transform = Transform3D(0.644051, 0, -0.087743, 0, 0.65, 0, 0.087743, 0, 0.644051, 10.1014, 0.648926, 1.74045)
 
 [node name="school_chair8" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 3.0021, 0.648926, -0.314232)
+transform = Transform3D(0.441703, 0, 0.476863, 0, 0.65, 0, -0.476863, 0, 0.441703, 3.55498, 0.648926, -0.569154)
 
 [node name="school_chair9" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 7.0021, 0.648926, -0.314232)
+transform = Transform3D(0.635492, 0, 0.136563, 0, 0.65, 0, -0.136563, 0, 0.635492, 7.56767, 0.648926, -0.813623)
 
 [node name="school_chair10" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 6.0021, 0.648926, -0.314232)
+transform = Transform3D(0.629159, 0, -0.163274, 0, 0.65, 0, 0.163274, 0, 0.629159, 6.56767, 0.648926, -0.164509)
 
 [node name="school_chair11" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 10.0021, 0.648926, -0.314232)
+transform = Transform3D(0.577788, 0, -0.297759, 0, 0.65, 0, 0.297759, 0, 0.577788, 11.0338, 0.648926, -0.795572)
 
 [node name="school_chair12" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 9.0021, 0.648926, -0.314232)
-
-[node name="school_chair13" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 4.0021, 0.648926, 3.68577)
+transform = Transform3D(0.64606, 0, -0.0714626, 0, 0.65, 0, 0.0714626, 0, 0.64606, 10.1014, 0.648926, -0.684951)
 
 [node name="school_chair14" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 3.0021, 0.648926, 3.68577)
+transform = Transform3D(0.636856, 0, -0.130056, 0, 0.65, 0, 0.130056, 0, 0.636856, 3.48606, 0.648926, 3.83932)
 
 [node name="school_chair15" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 7.0021, 0.648926, 3.68577)
+transform = Transform3D(0.629638, 0, -0.161418, 0, 0.65, 0, 0.161418, 0, 0.629638, 7.56767, 0.648926, 3.61611)
 
 [node name="school_chair16" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 6.0021, 0.648926, 3.68577)
+transform = Transform3D(0.626369, 0, 0.173672, 0, 0.65, 0, -0.173672, 0, 0.626369, 6.56767, 0.648926, 3.75628)
 
 [node name="school_chair17" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 10.0021, 0.648926, 3.68577)
+transform = Transform3D(0.647062, 0, 0.0617351, 0, 0.65, 0, -0.0617351, 0, 0.647062, 11.1014, 0.648926, 3.82239)
 
 [node name="school_chair18" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 9.0021, 0.648926, 3.68577)
+transform = Transform3D(0.314729, 0, -0.568723, 0, 0.65, 0, 0.568723, 0, 0.314729, 10.1511, 0.648926, 3.68577)
 
 [node name="school_chair19" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("7_d6u53")]
-transform = Transform3D(-0.65, 0, -5.68248e-08, 0, 0.65, 0, 5.68248e-08, 0, -0.65, 6.49085, 0.648926, 6.36417)
+transform = Transform3D(-0.59712, 0, -0.256802, 0, 0.65, 0, 0.256802, 0, -0.59712, 7.36733, 0.648926, 6.64106)
 
 [node name="Blind_Livingroom_IKEA_VECKLARFLY3" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("15_viiqw")]
-transform = Transform3D(-6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 10.3882, 3.37237, -0.818794)
+transform = Transform3D(-6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 11.7524, 3.37237, -0.818794)
 
 [node name="Blind_Livingroom_IKEA_VECKLARFLY4" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("15_viiqw")]
-transform = Transform3D(-6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 10.3882, 3.37237, 2.45321)
+transform = Transform3D(-6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 11.7524, 3.37237, 2.45321)
 
 [node name="Blind_Livingroom_IKEA_VECKLARFLY5" parent="LightmapGI/STATIC_CSG/Classroom_1" instance=ExtResource("15_viiqw")]
-transform = Transform3D(-6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 10.3882, 3.37237, 5.64863)
+transform = Transform3D(-6.55671e-08, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.55671e-08, 11.7524, 3.37237, 5.64863)
 
 [node name="Classroom_2" type="Node3D" parent="LightmapGI/STATIC_CSG"]
 metadata/_edit_lock_ = true
 
 [node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="LightmapGI/STATIC_CSG/Classroom_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 3.5)
+transform = Transform3D(1.19067, 0, 0, 0, 1, 0, 0, 0, 1.14765, -5.48039, 0, 4.08273)
 mesh = SubResource("ArrayMesh_iqbni")
 
 [node name="CSGBakedMeshInstance3D2" type="MeshInstance3D" parent="LightmapGI/STATIC_CSG/Classroom_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 4, 3.5)
+transform = Transform3D(1.31765, 0, 0, 0, 0.999999, 0, 0, 0, 1.11707, -5.80236, 4, 3.97319)
 mesh = SubResource("ArrayMesh_kalr3")
 
 [node name="CSGBakedMeshInstance3D3" type="MeshInstance3D" parent="LightmapGI/STATIC_CSG/Classroom_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2, 7.5)
+transform = Transform3D(1.37246, 0, 0, 0, 1, 0, 0, 0, 1, -5.9146, 2, 8.21832)
 mesh = SubResource("ArrayMesh_jm4yq")
 
 [node name="CSGBakedMeshInstance3D4" type="MeshInstance3D" parent="LightmapGI/STATIC_CSG/Classroom_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2, 3.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.16902, -8.36389, 2, 4.15427)
 mesh = SubResource("ArrayMesh_r662g")
 
 [node name="CSGBakedMeshInstance3D5" type="MeshInstance3D" parent="LightmapGI/STATIC_CSG/Classroom_2"]
@@ -1851,70 +1844,64 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5267, 2, 3.5)
 mesh = SubResource("ArrayMesh_ksmij")
 
 [node name="textured_mesh" parent="LightmapGI/STATIC_CSG/Classroom_2" instance=ExtResource("3_3ywx5")]
-transform = Transform3D(0.933, 0, 0, 0, 0.7, 0, 0, 0, 0.933, -6.47594, 0.47, 3.024)
+transform = Transform3D(0.926381, 0, -0.11094, 0, 0.7, 0, 0.11094, 0, 0.926381, -7.09507, 0.47, 3.024)
 
 [node name="school_chair" parent="LightmapGI/STATIC_CSG/Classroom_2" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -2.9979, 0.648926, 2.20011)
+transform = Transform3D(0.646102, 0, -0.0710792, 0, 0.65, 0, 0.0710792, 0, 0.646102, -3.2807, 0.648926, 2.32668)
 
 [node name="textured_mesh2" parent="LightmapGI/STATIC_CSG/Classroom_2" instance=ExtResource("3_3ywx5")]
-transform = Transform3D(0.933, 0, 0, 0, 0.7, 0, 0, 0, 0.933, -3.47594, 0.47, 3.024)
+transform = Transform3D(0.932412, 0, 0.0331145, 0, 0.7, 0, -0.0331145, 0, 0.932412, -3.60752, 0.47, 3.024)
 
 [node name="textured_mesh3" parent="LightmapGI/STATIC_CSG/Classroom_2" instance=ExtResource("3_3ywx5")]
-transform = Transform3D(0.933, 0, 0, 0, 0.7, 0, 0, 0, 0.933, -6.47594, 0.47, 1.024)
+transform = Transform3D(0.933, 0, 0, 0, 0.7, 0, 0, 0, 0.933, -7.11072, 0.47, 1.024)
 
 [node name="textured_mesh4" parent="LightmapGI/STATIC_CSG/Classroom_2" instance=ExtResource("3_3ywx5")]
-transform = Transform3D(0.933, 0, 0, 0, 0.7, 0, 0, 0, 0.933, -3.47594, 0.47, 1.024)
+transform = Transform3D(0.798914, 0, -0.481898, 0, 0.7, 0, 0.481898, 0, 0.798914, -3.80016, 0.47, 0.697821)
 
 [node name="textured_mesh5" parent="LightmapGI/STATIC_CSG/Classroom_2" instance=ExtResource("3_3ywx5")]
-transform = Transform3D(0.933, 0, 0, 0, 0.7, 0, 0, 0, 0.933, -6.47594, 0.47, 5.024)
+transform = Transform3D(0.927643, 0, 0.0998406, 0, 0.7, 0, -0.0998406, 0, 0.927643, -7.11072, 0.47, 4.90253)
 
 [node name="textured_mesh6" parent="LightmapGI/STATIC_CSG/Classroom_2" instance=ExtResource("3_3ywx5")]
-transform = Transform3D(0.933, 0, 0, 0, 0.7, 0, 0, 0, 0.933, -3.47594, 0.47, 5.024)
+transform = Transform3D(0.92992, 0, -0.0757508, 0, 0.7, 0, 0.0757508, 0, 0.92992, -3.60752, 0.47, 5.024)
 
 [node name="textured_mesh7" parent="LightmapGI/STATIC_CSG/Classroom_2" instance=ExtResource("3_3ywx5")]
-transform = Transform3D(0.933, 0, 0, 0, 0.7, 0, 0, 0, 0.933, -6.47594, 0.47, 6.024)
+transform = Transform3D(0.932557, 0, 0.0287529, 0, 0.7, 0, -0.0287529, 0, 0.932557, -7.11343, 0.47, 6.23065)
 
 [node name="school_chair2" parent="LightmapGI/STATIC_CSG/Classroom_2" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -3.9979, 0.648926, 2.20011)
+transform = Transform3D(0.406443, 0, -0.507251, 0, 0.65, 0, 0.507251, 0, 0.406443, -4.24829, 0.648926, 2.01949)
 
 [node name="school_chair3" parent="LightmapGI/STATIC_CSG/Classroom_2" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -5.9979, 0.648926, 2.20011)
+transform = Transform3D(0.636416, 0, 0.132189, 0, 0.65, 0, -0.132189, 0, 0.636416, -6.63268, 0.648926, 2.20011)
 
 [node name="school_chair4" parent="LightmapGI/STATIC_CSG/Classroom_2" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -6.9979, 0.648926, 2.20011)
+transform = Transform3D(0.618201, 0, -0.200818, 0, 0.65, 0, 0.200818, 0, 0.618201, -7.54678, 0.648926, 2.06164)
 
 [node name="school_chair5" parent="LightmapGI/STATIC_CSG/Classroom_2" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -2.9979, 0.648926, 0.200108)
-
-[node name="school_chair6" parent="LightmapGI/STATIC_CSG/Classroom_2" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -3.9979, 0.648926, 0.200108)
+transform = Transform3D(0.598346, 0, -0.253933, 0, 0.65, 0, 0.253933, 0, 0.598346, -3.54099, 0.648926, 0.142195)
 
 [node name="school_chair7" parent="LightmapGI/STATIC_CSG/Classroom_2" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -5.9979, 0.648926, 0.200108)
+transform = Transform3D(0.645432, 0, 0.0769288, 0, 0.65, 0, -0.0769288, 0, 0.645432, -6.63268, 0.648926, 0.0884414)
 
 [node name="school_chair8" parent="LightmapGI/STATIC_CSG/Classroom_2" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -6.9979, 0.648926, 0.200108)
+transform = Transform3D(0.593477, 0, -0.265114, 0, 0.65, 0, 0.265114, 0, 0.593477, -7.59016, 0.648926, 0.0454093)
 
 [node name="school_chair9" parent="LightmapGI/STATIC_CSG/Classroom_2" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -2.9979, 0.648926, 4.20011)
+transform = Transform3D(0.634693, 0, 0.140232, 0, 0.65, 0, -0.140232, 0, 0.634693, -3.17721, 0.648926, 4.261)
 
 [node name="school_chair10" parent="LightmapGI/STATIC_CSG/Classroom_2" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -3.9979, 0.648926, 4.20011)
-
-[node name="school_chair11" parent="LightmapGI/STATIC_CSG/Classroom_2" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -5.9979, 0.648926, 4.20011)
+transform = Transform3D(0.647257, 0, -0.0596568, 0, 0.65, 0, 0.0596568, 0, 0.647257, -3.97844, 0.648926, 4.44619)
 
 [node name="school_chair12" parent="LightmapGI/STATIC_CSG/Classroom_2" instance=ExtResource("7_d6u53")]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, -6.9979, 0.648926, 4.20011)
+transform = Transform3D(0.602162, 0, 0.244745, 0, 0.65, 0, -0.244745, 0, 0.602162, -7.48804, 0.648926, 4.20011)
 
 [node name="school_chair13" parent="LightmapGI/STATIC_CSG/Classroom_2" instance=ExtResource("7_d6u53")]
-transform = Transform3D(-0.65, 0, -5.68248e-08, 0, 0.65, 0, 5.68248e-08, 0, -0.65, -6.50915, 0.648926, 6.87851)
+transform = Transform3D(-0.270892, 0, 0.590862, 0, 0.65, 0, -0.590862, 0, -0.270892, -7.38839, 0.648926, 7.10394)
 
 [node name="Blind_Livingroom_IKEA_VECKLARFLY3" parent="LightmapGI/STATIC_CSG/Classroom_2" instance=ExtResource("15_viiqw")]
-transform = Transform3D(1.78873e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.78873e-08, -7.4426, 3.37237, 2.93815)
+transform = Transform3D(1.78873e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.78873e-08, -8.30649, 3.37237, 2.93815)
 
 [node name="Blind_Livingroom_IKEA_VECKLARFLY4" parent="LightmapGI/STATIC_CSG/Classroom_2" instance=ExtResource("15_viiqw")]
-transform = Transform3D(1.78873e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.78873e-08, -7.4426, 3.37237, 6.64169)
+transform = Transform3D(1.78873e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.78873e-08, -8.30649, 3.37237, 6.64169)
 
 [node name="Stairs" type="Node3D" parent="LightmapGI/STATIC_CSG"]
 metadata/_edit_lock_ = true
