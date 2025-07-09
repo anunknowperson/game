@@ -1,0 +1,289 @@
+[gd_scene load_steps=11 format=3 uid="uid://b2tmnk5lmlvpi"]
+
+[ext_resource type="Script" uid="uid://bpo6qtk56llsy" path="res://scenes/game_lobby/game_lobby.gd" id="1_vu1bq"]
+[ext_resource type="Script" uid="uid://bjia2ovjjrd0n" path="res://scenes/game_lobby/players_podium.gd" id="2_l8kb7"]
+[ext_resource type="PackedScene" uid="uid://bc6crie6likje" path="res://scenes/game_lobby/LobbyPlayerContainer.tscn" id="3_wyv3p"]
+[ext_resource type="Script" uid="uid://c0h7fsrgdwsoa" path="res://scenes/game_lobby/ui.gd" id="4_64b87"]
+[ext_resource type="PackedScene" uid="uid://d0gmdh1d64msj" path="res://scenes/emotion_window/emotion_window.tscn" id="4_mciba"]
+[ext_resource type="Script" uid="uid://buhsd2sbdluqi" path="res://scenes/game_lobby/key_hint_label.gd" id="5_1n3ni"]
+[ext_resource type="Texture2D" uid="uid://6jm2b5uig7vw" path="res://scenes/game_lobby/phone.png" id="5_d8ih7"]
+[ext_resource type="Texture2D" uid="uid://bdfjlip3otfpn" path="res://scenes/game_lobby/phone_clip.png" id="5_hqqa0"]
+[ext_resource type="Texture2D" uid="uid://j45dxnwtj3o" path="res://scenes/game_lobby/logo-gosuslugi-ru.png" id="6_x00rq"]
+[ext_resource type="Texture2D" uid="uid://c1awpc2233fre" path="res://scenes/game_lobby/block_ru1.jpg" id="7_64b87"]
+
+[node name="GameLobby" type="Node3D"]
+script = ExtResource("1_vu1bq")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+size = Vector3(10, 1, 10)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.937464, 0.348081, 0, -0.348081, 0.937464, 0, 1.88284, 6.03791)
+
+[node name="SpawnAnchor" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.72079, 0, 2.86001)
+
+[node name="PlayersPodium" type="Node3D" parent="." node_paths=PackedStringArray("spawn_anchor")]
+script = ExtResource("2_l8kb7")
+lobby_player_container = ExtResource("3_wyv3p")
+spawn_anchor = NodePath("../SpawnAnchor")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_64b87")
+game_scene = "uid://ovt82fow1cg"
+
+[node name="StudentSelect" type="Control" parent="UI"]
+visible = false
+layout_mode = 1
+anchor_left = 0.1
+anchor_top = 0.65
+anchor_right = 0.9
+anchor_bottom = 0.9
+offset_top = 0.223999
+offset_right = 0.111938
+offset_bottom = 0.175964
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/StudentSelect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftStudentButton" type="Button" parent="UI/StudentSelect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "<"
+
+[node name="Control" type="Control" parent="UI/StudentSelect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 17.38
+
+[node name="Panel" type="Panel" parent="UI/StudentSelect/HBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/StudentSelect/HBoxContainer/Control/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.1
+anchor_right = 0.95
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/StudentSelect/HBoxContainer/Control/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.21
+
+[node name="StudentName" type="Label" parent="UI/StudentSelect/HBoxContainer/Control/Panel/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Иван Похабов"
+
+[node name="SelectStudentButton" type="Button" parent="UI/StudentSelect/HBoxContainer/Control/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Выбрать"
+
+[node name="Control" type="Control" parent="UI/StudentSelect/HBoxContainer/Control/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SkillList" type="HBoxContainer" parent="UI/StudentSelect/HBoxContainer/Control/Panel/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="StudentDesc" type="Label" parent="UI/StudentSelect/HBoxContainer/Control/Panel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RightStudentButton" type="Button" parent="UI/StudentSelect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = ">"
+
+[node name="Main" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/Main"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -43.0
+offset_right = 114.0
+offset_bottom = -20.0
+grow_vertical = 0
+text = "J - действие"
+script = ExtResource("5_1n3ni")
+
+[node name="EmotionWindow" parent="UI/Main" instance=ExtResource("4_mciba")]
+layout_mode = 1
+
+[node name="Phone" type="Control" parent="UI/Main"]
+layout_mode = 1
+anchor_left = 0.7
+anchor_top = 0.05
+anchor_right = 1.0
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="UI/Main/Phone"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 0.5
+
+[node name="TextureRect2" type="TextureRect" parent="UI/Main/Phone/AspectRatioContainer"]
+clip_children = 1
+layout_mode = 2
+texture = ExtResource("5_hqqa0")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="UI/Main/Phone/AspectRatioContainer/TextureRect2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Main/Phone/AspectRatioContainer/TextureRect2/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Main/Phone/AspectRatioContainer/TextureRect2/ColorRect/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_x00rq")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UI/Main/Phone/AspectRatioContainer/TextureRect2/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "Поступление в вуз"
+
+[node name="TextureRect2" type="TextureRect" parent="UI/Main/Phone/AspectRatioContainer/TextureRect2/ColorRect/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_64b87")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label3" type="Label" parent="UI/Main/Phone/AspectRatioContainer/TextureRect2/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Ваше имя"
+
+[node name="NameEdit" type="LineEdit" parent="UI/Main/Phone/AspectRatioContainer/TextureRect2/ColorRect/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+
+[node name="Label2" type="Label" parent="UI/Main/Phone/AspectRatioContainer/TextureRect2/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Программа"
+
+[node name="MajorSelect" type="OptionButton" parent="UI/Main/Phone/AspectRatioContainer/TextureRect2/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+selected = 0
+item_count = 2
+popup/item_0/text = "Технологии Программирования"
+popup/item_0/id = 0
+popup/item_1/text = "Программная Инженерия"
+popup/item_1/id = 1
+
+[node name="Label4" type="Label" parent="UI/Main/Phone/AspectRatioContainer/TextureRect2/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Любимый цвет"
+
+[node name="ColorSelect" type="ColorPickerButton" parent="UI/Main/Phone/AspectRatioContainer/TextureRect2/ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "Выбрать"
+color = Color(1, 1, 1, 1)
+
+[node name="Label5" type="Label" parent="UI/Main/Phone/AspectRatioContainer/TextureRect2/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Ваш бекграунд"
+
+[node name="StudentSelect" type="Button" parent="UI/Main/Phone/AspectRatioContainer/TextureRect2/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Выбрать"
+
+[node name="Control" type="Control" parent="UI/Main/Phone/AspectRatioContainer/TextureRect2/ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ReadyButton" type="Button" parent="UI/Main/Phone/AspectRatioContainer/TextureRect2/ColorRect/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0.0283561, 1)
+text = "ОТПРАВИТЬ ДОКУМЕНТЫ"
+
+[node name="StartGameButton" type="Button" parent="UI/Main/Phone/AspectRatioContainer/TextureRect2/ColorRect/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Начать"
+
+[node name="TextureRect" type="TextureRect" parent="UI/Main/Phone/AspectRatioContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("5_d8ih7")
+expand_mode = 1
+
+[connection signal="pressed" from="UI/StudentSelect/HBoxContainer/LeftStudentButton" to="UI" method="_on_left_student_button_pressed"]
+[connection signal="pressed" from="UI/StudentSelect/HBoxContainer/Control/Panel/VBoxContainer/HBoxContainer/SelectStudentButton" to="UI" method="_on_select_student_button_pressed"]
+[connection signal="pressed" from="UI/StudentSelect/HBoxContainer/RightStudentButton" to="UI" method="_on_right_student_button_pressed"]
+[connection signal="focus_entered" from="UI/Main/Phone/AspectRatioContainer/TextureRect2/ColorRect/VBoxContainer/NameEdit" to="UI" method="_on_name_edit_focus_entered"]
+[connection signal="focus_exited" from="UI/Main/Phone/AspectRatioContainer/TextureRect2/ColorRect/VBoxContainer/NameEdit" to="UI" method="_on_name_edit_focus_exited"]
+[connection signal="text_changed" from="UI/Main/Phone/AspectRatioContainer/TextureRect2/ColorRect/VBoxContainer/NameEdit" to="UI" method="_on_name_edit_text_changed"]
+[connection signal="item_selected" from="UI/Main/Phone/AspectRatioContainer/TextureRect2/ColorRect/VBoxContainer/MajorSelect" to="UI" method="_on_major_select_item_selected"]
+[connection signal="color_changed" from="UI/Main/Phone/AspectRatioContainer/TextureRect2/ColorRect/VBoxContainer/ColorSelect" to="UI" method="_on_color_select_color_changed"]
+[connection signal="pressed" from="UI/Main/Phone/AspectRatioContainer/TextureRect2/ColorRect/VBoxContainer/StudentSelect" to="UI" method="_on_student_select_pressed"]
+[connection signal="pressed" from="UI/Main/Phone/AspectRatioContainer/TextureRect2/ColorRect/VBoxContainer/ReadyButton" to="UI" method="_on_ready_button_pressed"]
+[connection signal="pressed" from="UI/Main/Phone/AspectRatioContainer/TextureRect2/ColorRect/VBoxContainer/StartGameButton" to="UI" method="_on_start_game_button_pressed"]

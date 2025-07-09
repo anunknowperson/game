@@ -1,0 +1,86 @@
+[gd_scene load_steps=5 format=3 uid="uid://crcg04m63h4kp"]
+
+[ext_resource type="Script" uid="uid://f0w2ynrn3rsk" path="res://scenes/scene_manager/scene_manager.gd" id="1_k2lqh"]
+[ext_resource type="Script" uid="uid://bshqe7stsvso1" path="res://scenes/scene_manager/loading_screen.gd" id="2_e6rkc"]
+[ext_resource type="Texture2D" uid="uid://copg7n5six50h" path="res://scenes/scene_manager/radial.png" id="2_rkd0b"]
+[ext_resource type="Texture2D" uid="uid://ddu7hyedrwqg6" path="res://ramis_games.png" id="3_7fgbg"]
+
+[node name="SceneManager" type="Node"]
+script = ExtResource("1_k2lqh")
+default_scene = "uid://l4jv8obulfae"
+
+[node name="SceneContainer" type="Node" parent="."]
+
+[node name="LoadingScreen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_e6rkc")
+
+[node name="ColorRect" type="ColorRect" parent="LoadingScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoadingScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="LoadingScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 60
+text = "PUNK GAME"
+
+[node name="TextureRect" type="TextureRect" parent="LoadingScreen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+texture = ExtResource("3_7fgbg")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="LoadingScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.895
+anchor_top = 0.838
+anchor_right = 0.895
+anchor_bottom = 0.838
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 0
+grow_vertical = 0
+fill_mode = 4
+texture_progress = ExtResource("2_rkd0b")
+
+[node name="StatusLabel" type="Label" parent="LoadingScreen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.838
+anchor_right = 0.5
+anchor_bottom = 0.838
+grow_horizontal = 2
+grow_vertical = 0
+text = "Загрузка ресурсов..."
+horizontal_alignment = 1
+vertical_alignment = 1

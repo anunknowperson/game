@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://bc6crie6likje"]
+
+[ext_resource type="Script" uid="uid://bcd7slsdlw8fw" path="res://scenes/game_lobby/lobby_player_container.gd" id="1_1jkhb"]
+
+[node name="LobbyPlayerContainer" type="Node3D"]
+script = ExtResource("1_1jkhb")
+
+[node name="NicknameLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.33084, 0)
+pixel_size = 0.003
+text = "Nickname"
+width = 300.0
+
+[node name="StudentLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.17779, 0)
+pixel_size = 0.0025
+modulate = Color(0.768831, 0.768831, 0.768831, 1)
+text = "Nickname"
+width = 300.0
+
+[node name="ReadyLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08491, 0)
+pixel_size = 0.0025
+modulate = Color(1, 0, 0, 1)
+text = "Документов нет"
+width = 300.0
+
+[node name="CameraAnchor" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.989841, 0.14218, 0, -0.14218, 0.989841, 0, 1.86862, 2.80955)

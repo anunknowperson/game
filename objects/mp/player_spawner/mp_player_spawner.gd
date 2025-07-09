@@ -3,8 +3,12 @@ extends Node3D
 @export
 var player_scene = preload("res://objects/player/Player.tscn")
 
+@export
+var disabled := false
 
 func _ready():
+	if disabled:
+		return
 	
 	if !Globals.local:
 		Globals.game_start.connect(start_game)

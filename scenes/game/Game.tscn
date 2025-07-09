@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://ovt82fow1cg"]
+
+[ext_resource type="Script" uid="uid://bl2j6paw6vpgn" path="res://scenes/game/game.gd" id="1_m44fu"]
+[ext_resource type="Script" uid="uid://jvpfparrcei" path="res://scenes/game/level_manager.gd" id="2_vrspl"]
+[ext_resource type="PackedScene" uid="uid://d0gmdh1d64msj" path="res://scenes/emotion_window/emotion_window.tscn" id="3_vrspl"]
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_m44fu")
+
+[node name="LevelManager" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_vrspl")
+
+[node name="Players" type="Node3D" parent="."]
+
+[node name="EmotionWindow" parent="." instance=ExtResource("3_vrspl")]

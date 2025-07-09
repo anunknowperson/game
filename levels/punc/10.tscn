@@ -1,4 +1,6 @@
-[gd_scene load_steps=59 format=3 uid="uid://0qrhbwtf53fj"]
+[gd_scene load_steps=56 format=3 uid="uid://0qrhbwtf53fj"]
+
+[ext_resource type="Material" uid="uid://54wj5icfktv7" path="res://levels/punc/10/glass.tres" id="1_4kot2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2n5ft"]
 albedo_color = Color(0.419608, 0.116538, 0.097744, 1)
@@ -15,21 +17,11 @@ albedo_color = Color(0.847059, 0.67451, 0.537255, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jmi5m"]
 albedo_color = Color(0.847656, 0.67437, 0.536689, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8c6bi"]
-albedo_color = Color(0.356863, 0.368627, 0.568627, 1)
-metallic = 1.0
-roughness = 0.3
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cdjtd"]
 albedo_color = Color(0.6, 0.6, 0.6, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sf4yc"]
 albedo_color = Color(0.847059, 0.67451, 0.537255, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tut6u"]
-albedo_color = Color(0.356863, 0.368627, 0.568627, 1)
-metallic = 1.0
-roughness = 0.3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vvho1"]
 albedo_color = Color(0.6, 0.6, 0.6, 1)
@@ -48,11 +40,6 @@ albedo_color = Color(0.6, 0.6, 0.6, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x2vtu"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r5j73"]
-albedo_color = Color(0.545098, 0.541176, 1, 1)
-metallic = 0.97
-roughness = 0.0
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tu048"]
 albedo_color = Color(0.6, 0.6, 0.6, 1)
 
@@ -62,8 +49,7 @@ albedo_color = Color(0.28125, 0.28125, 0.28125, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kwciw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8nfue"]
-albedo_color = Color(0.544526, 0.541652, 1, 1)
-metallic = 0.97
+metallic = 1.0
 roughness = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7enwn"]
@@ -89,18 +75,12 @@ albedo_color = Color(0.419608, 0.117647, 0.0980392, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4w1xj"]
 albedo_color = Color(0.6, 0.6, 0.6, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kjotk"]
-albedo_color = Color(0.357749, 0.368462, 0.570313, 1)
-metallic = 0.97
-roughness = 0.3
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4jbs"]
 albedo_color = Color(0.601563, 0.601563, 0.601563, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_32tol"]
-albedo_color = Color(0.356863, 0.368627, 0.568627, 1)
-metallic = 0.97
-roughness = 0.3
+metallic = 1.0
+roughness = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nybwx"]
 albedo_color = Color(0.6, 0.6, 0.6, 1)
@@ -239,7 +219,7 @@ material = SubResource("StandardMaterial3D_jmi5m")
 [node name="CSGBox3D29" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.757446, -2.12437, -0.545381)
 size = Vector3(0.0102438, 0.949623, 0.880197)
-material = SubResource("StandardMaterial3D_8c6bi")
+material = ExtResource("1_4kot2")
 
 [node name="CSGBox3D21" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.74527, -2.32345, -0.535056)
@@ -267,7 +247,7 @@ material = SubResource("StandardMaterial3D_sf4yc")
 [node name="CSGBox3D28" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.755962, -2.12426, 0.38296)
 size = Vector3(0.0102339, 0.949836, 0.880425)
-material = SubResource("StandardMaterial3D_tut6u")
+material = ExtResource("1_4kot2")
 
 [node name="CSGBox3D20" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.752235, -2.32446, 0.391614)
@@ -333,7 +313,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony2" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, -1.4574, -1.15728)
@@ -374,7 +354,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow29" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -0.775948, -1.73197, -0.784644)
@@ -401,7 +381,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow6" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, -1.45743, -1.20666)
@@ -428,7 +408,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow15" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077, 0.374276, -1.20684)
@@ -455,7 +435,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony8" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, 0.342599, -1.15728)
@@ -496,7 +476,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow12" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, 0.342568, -1.20666)
@@ -523,7 +503,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow17" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077, 0.674276, -1.20684)
@@ -550,7 +530,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony9" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, 0.642599, -1.15728)
@@ -591,7 +571,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow13" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, 0.642568, -1.20666)
@@ -618,7 +598,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow19" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077, 0.974276, -1.20684)
@@ -645,7 +625,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony10" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, 0.942599, -1.15728)
@@ -686,7 +666,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow14" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, 0.942568, -1.20666)
@@ -713,7 +693,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow21" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077, 1.27428, -1.20684)
@@ -740,7 +720,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony11" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, 1.2426, -1.15728)
@@ -781,7 +761,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow15" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, 1.24257, -1.20666)
@@ -808,7 +788,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow23" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077, 1.57428, -1.20684)
@@ -835,7 +815,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony12" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, 1.5426, -1.15728)
@@ -876,7 +856,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow16" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, 1.54257, -1.20666)
@@ -903,7 +883,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow25" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077, 1.87428, -1.20684)
@@ -930,7 +910,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony13" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, 1.8426, -1.15728)
@@ -971,7 +951,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow17" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, 1.84257, -1.20666)
@@ -998,7 +978,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow27" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077, 2.17428, -1.20684)
@@ -1025,7 +1005,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony14" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, 2.1426, -1.15728)
@@ -1066,7 +1046,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow18" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, 2.14257, -1.20666)
@@ -1093,7 +1073,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow5" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077, -1.12572, -1.20684)
@@ -1120,7 +1100,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony3" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, -1.1574, -1.15728)
@@ -1161,7 +1141,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow7" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, -1.15743, -1.20666)
@@ -1188,7 +1168,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow7" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077, -0.825724, -1.20684)
@@ -1215,7 +1195,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony4" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, -0.857401, -1.15728)
@@ -1256,7 +1236,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow8" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, -0.857432, -1.20666)
@@ -1283,7 +1263,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow9" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077, -0.525724, -1.20684)
@@ -1310,7 +1290,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony5" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, -0.557401, -1.15728)
@@ -1351,7 +1331,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow9" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, -0.557432, -1.20666)
@@ -1378,7 +1358,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow11" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077, -0.225724, -1.20684)
@@ -1405,7 +1385,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony6" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, -0.257401, -1.15728)
@@ -1446,7 +1426,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow10" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, -0.257432, -1.20666)
@@ -1473,7 +1453,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow13" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077, 0.074276, -1.20684)
@@ -1500,7 +1480,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony7" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, 0.0425987, -1.15728)
@@ -1541,7 +1521,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow11" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, 0.0425682, -1.20666)
@@ -1568,7 +1548,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="CSGBox3D16" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0080719, -2.09203, -1.22264)
@@ -1610,7 +1590,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow3" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.174149, -1.93147, -1.20561)
@@ -1637,7 +1617,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow4" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.209503, -1.93147, -1.20474)
@@ -1664,7 +1644,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow19" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -0.775444, -1.93147, -0.787071)
@@ -1691,7 +1671,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow30" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -0.774242, -1.73197, -0.552015)
@@ -1718,7 +1698,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow20" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -0.773743, -1.93147, -0.554442)
@@ -1745,7 +1725,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow31" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -0.775154, -1.73197, -0.326391)
@@ -1772,7 +1752,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow21" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -0.774658, -1.93147, -0.328818)
@@ -1799,7 +1779,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow32" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -0.784107, -1.73197, 0.180797)
@@ -1826,7 +1806,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow22" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -0.783604, -1.93147, 0.17837)
@@ -1853,7 +1833,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow33" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -0.782402, -1.73197, 0.413424)
@@ -1880,7 +1860,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow23" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -0.781902, -1.93147, 0.410997)
@@ -1907,7 +1887,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow34" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -0.78331, -1.73197, 0.63905)
@@ -1934,7 +1914,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow24" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, -0.782818, -1.93147, 0.636623)
@@ -1961,7 +1941,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow5" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.408932, -1.93147, -1.20674)
@@ -1988,7 +1968,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="4Window" type="CSGBox3D" parent="CSGBox3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.781853, -1.45622, -0.569873)
@@ -4778,7 +4758,7 @@ material = SubResource("StandardMaterial3D_svqul")
 [node name="CSGBox3D27" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, -0.751019, -2.12399, -0.531883)
 size = Vector3(0.00943704, 0.950385, 0.907214)
-material = SubResource("StandardMaterial3D_kjotk")
+material = ExtResource("1_4kot2")
 
 [node name="CSGBox3D19" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, -0.792421, -2.32384, -0.517807)
@@ -4832,7 +4812,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony2" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, -1.4574, -1.15728)
@@ -4873,7 +4853,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow6" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, -1.45743, -1.20666)
@@ -4900,7 +4880,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow15" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077, 0.374276, -1.20684)
@@ -4927,7 +4907,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony8" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, 0.342599, -1.15728)
@@ -4968,7 +4948,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow12" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, 0.342568, -1.20666)
@@ -4995,7 +4975,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow17" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077, 0.674276, -1.20684)
@@ -5022,7 +5002,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony9" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, 0.642599, -1.15728)
@@ -5063,7 +5043,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow13" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, 0.642568, -1.20666)
@@ -5090,7 +5070,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow19" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077, 0.974276, -1.20684)
@@ -5117,7 +5097,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony10" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, 0.942599, -1.15728)
@@ -5158,7 +5138,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow14" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, 0.942568, -1.20666)
@@ -5185,7 +5165,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow21" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077, 1.27428, -1.20684)
@@ -5212,7 +5192,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony11" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, 1.2426, -1.15728)
@@ -5253,7 +5233,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow15" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, 1.24257, -1.20666)
@@ -5280,7 +5260,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow23" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077, 1.57428, -1.20684)
@@ -5307,7 +5287,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony12" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, 1.5426, -1.15728)
@@ -5348,7 +5328,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow16" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, 1.54257, -1.20666)
@@ -5375,7 +5355,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow25" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077, 1.87428, -1.20684)
@@ -5402,7 +5382,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony13" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, 1.8426, -1.15728)
@@ -5443,7 +5423,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow17" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, 1.84257, -1.20666)
@@ -5470,7 +5450,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow27" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077, 2.17428, -1.20684)
@@ -5497,7 +5477,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony14" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, 2.1426, -1.15728)
@@ -5538,7 +5518,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow18" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, 2.14257, -1.20666)
@@ -5565,7 +5545,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow5" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077, -1.12572, -1.20684)
@@ -5592,7 +5572,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony3" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, -1.1574, -1.15728)
@@ -5633,7 +5613,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow7" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, -1.15743, -1.20666)
@@ -5660,7 +5640,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow7" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077, -0.825724, -1.20684)
@@ -5687,7 +5667,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony4" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, -0.857401, -1.15728)
@@ -5728,7 +5708,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow8" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, -0.857432, -1.20666)
@@ -5755,7 +5735,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow9" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077, -0.525724, -1.20684)
@@ -5782,7 +5762,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony5" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, -0.557401, -1.15728)
@@ -5823,7 +5803,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow9" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, -0.557432, -1.20666)
@@ -5850,7 +5830,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow11" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077, -0.225724, -1.20684)
@@ -5877,7 +5857,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony6" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, -0.257401, -1.15728)
@@ -5918,7 +5898,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow10" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, -0.257432, -1.20666)
@@ -5945,7 +5925,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow13" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4077, 0.074276, -1.20684)
@@ -5972,7 +5952,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="Balcony7" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.339447, 0.0425987, -1.15728)
@@ -6013,7 +5993,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow11" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106049, 0.0425682, -1.20666)
@@ -6040,7 +6020,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="CSGBox3D16" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0080719, -2.09203, -1.22264)
@@ -6076,7 +6056,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow3" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.174149, -1.93147, -1.20561)
@@ -6103,7 +6083,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow4" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.209503, -1.93147, -1.20474)
@@ -6130,7 +6110,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow5" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.408932, -1.93147, -1.20674)
@@ -6157,7 +6137,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="4Window" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 0.785233, -1.45622, -0.534683)
@@ -8894,7 +8874,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow19" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1.49012e-07, 0, -1, 0, 1, 0, 1, 0, 1.49012e-07, 0.795397, -1.93147, -0.302055)
@@ -8921,7 +8901,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow30" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1.49012e-07, 0, -1, 0, 1, 0, 1, 0, 1.49012e-07, 0.794195, -1.73197, -0.537113)
@@ -8948,7 +8928,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow20" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1.49012e-07, 0, -1, 0, 1, 0, 1, 0, 1.49012e-07, 0.793697, -1.93147, -0.534679)
@@ -8975,7 +8955,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow31" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1.49012e-07, 0, -1, 0, 1, 0, 1, 0, 1.49012e-07, 0.795109, -1.73197, -0.762737)
@@ -9002,7 +8982,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow21" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(1.49012e-07, 0, -1, 0, 1, 0, 1, 0, 1.49012e-07, 0.794613, -1.93147, -0.760307)
@@ -9029,7 +9009,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow32" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(2.38419e-07, 0, -1, 0, 1, 0, 1, 0, 2.38419e-07, 0.780956, -1.73197, 0.618046)
@@ -9056,7 +9036,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow22" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(2.38419e-07, 0, -1, 0, 1, 0, 1, 0, 2.38419e-07, 0.780451, -1.93147, 0.620464)
@@ -9083,7 +9063,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow33" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(2.38419e-07, 0, -1, 0, 1, 0, 1, 0, 2.38419e-07, 0.779251, -1.73197, 0.38541)
@@ -9110,7 +9090,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow23" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(2.38419e-07, 0, -1, 0, 1, 0, 1, 0, 2.38419e-07, 0.778751, -1.93147, 0.387848)
@@ -9137,7 +9117,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="SmWindow34" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(2.38419e-07, 0, -1, 0, 1, 0, 1, 0, 2.38419e-07, 0.780163, -1.73197, 0.159782)
@@ -9164,7 +9144,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8147e-06, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow24" type="CSGBox3D" parent="CSGBox3D8"]
 transform = Transform3D(2.38419e-07, 0, -1, 0, 1, 0, 1, 0, 2.38419e-07, 0.779667, -1.93147, 0.162216)
@@ -9191,7 +9171,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="."]
 transform = Transform3D(7.22521, 0, 6.91349, 0, 10, 0, -6.91349, 0, 7.22521, -73.156, 21.0052, -384.971)
@@ -11976,7 +11956,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow32" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(0.00546247, 0, 0.999986, 0, 1, 0, -0.999986, 0, 0.00546247, -0.652388, -1.95877, 0.56094)
@@ -12003,7 +11983,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow33" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(0.00546226, 0, 0.999986, 0, 1, 0, -0.999986, 0, 0.00546226, -0.652388, -1.70315, 0.56094)
@@ -12030,7 +12010,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow20" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(0.00546247, 0, 0.999986, 0, 1, 0, -0.999986, 0, 0.00546247, -0.652388, -1.15877, 0.56094)
@@ -12057,7 +12037,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow21" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(0.00546235, 0, 0.999986, 0, 1, 0, -0.999986, 0, 0.00546235, -0.652388, -0.85877, 0.56094)
@@ -12084,7 +12064,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow22" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(0.00546226, 0, 0.999986, 0, 1, 0, -0.999986, 0, 0.00546226, -0.652388, -0.55877, 0.56094)
@@ -12111,7 +12091,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow23" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(0.00546217, 0, 0.999986, 0, 1, 0, -0.999986, 0, 0.00546217, -0.652388, -0.25877, 0.56094)
@@ -12138,7 +12118,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow24" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(0.00546214, 0, 0.999986, 0, 1, 0, -0.999986, 0, 0.00546214, -0.652388, 0.0412304, 0.56094)
@@ -12165,7 +12145,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow25" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(0.00546208, 0, 0.999986, 0, 1, 0, -0.999986, 0, 0.00546208, -0.652388, 0.34123, 0.56094)
@@ -12192,7 +12172,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow26" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(0.00546202, 0, 0.999986, 0, 1, 0, -0.999986, 0, 0.00546202, -0.652388, 0.641231, 0.56094)
@@ -12219,7 +12199,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow27" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(0.00546202, 0, 0.999986, 0, 1, 0, -0.999986, 0, 0.00546202, -0.652388, 0.941231, 0.56094)
@@ -12246,7 +12226,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow28" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(0.00546199, 0, 0.999986, 0, 1, 0, -0.999986, 0, 0.00546199, -0.652388, 1.24123, 0.56094)
@@ -12273,7 +12253,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow29" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(0.0054619, 0, 0.999987, 0, 1, 0, -0.999987, 0, 0.0054619, -0.652388, 1.54123, 0.56094)
@@ -12300,7 +12280,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow30" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(0.00546187, 0, 0.999987, 0, 1, 0, -0.999987, 0, 0.00546187, -0.652388, 1.84123, 0.56094)
@@ -12327,7 +12307,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow31" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(0.00546181, 0, 0.999987, 0, 1, 0, -0.999987, 0, 0.00546181, -0.652388, 2.14123, 0.56094)
@@ -12354,7 +12334,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow34" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(-0.00546241, 0, -0.999986, 0, 1, 0, 0.999986, 0, -0.00546241, 0.646894, -1.45877, 0.564228)
@@ -12381,7 +12361,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow35" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(-0.00546229, 0, -0.999986, 0, 1, 0, 0.999986, 0, -0.00546229, 0.646894, -1.95877, 0.564228)
@@ -12408,7 +12388,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow36" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(-0.00546223, 0, -0.999986, 0, 1, 0, 0.999986, 0, -0.00546223, 0.646894, -1.70315, 0.564228)
@@ -12435,7 +12415,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow37" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(-0.00546229, 0, -0.999986, 0, 1, 0, 0.999986, 0, -0.00546229, 0.646894, -1.15877, 0.564228)
@@ -12462,7 +12442,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow38" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(-0.00546226, 0, -0.999986, 0, 1, 0, 0.999986, 0, -0.00546226, 0.646894, -0.858769, 0.564228)
@@ -12489,7 +12469,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow39" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(-0.00546223, 0, -0.999986, 0, 1, 0, 0.999986, 0, -0.00546223, 0.646894, -0.55877, 0.564228)
@@ -12516,7 +12496,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow40" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(-0.00546214, 0, -0.999986, 0, 1, 0, 0.999986, 0, -0.00546214, 0.646894, -0.25877, 0.564228)
@@ -12543,7 +12523,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow41" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(-0.00546211, 0, -0.999986, 0, 1, 0, 0.999986, 0, -0.00546211, 0.646894, 0.0412304, 0.564228)
@@ -12570,7 +12550,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow42" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(-0.00546205, 0, -0.999987, 0, 1, 0, 0.999987, 0, -0.00546205, 0.646894, 0.34123, 0.564228)
@@ -12597,7 +12577,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow43" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(-0.00546199, 0, -0.999986, 0, 1, 0, 0.999986, 0, -0.00546199, 0.646894, 0.641231, 0.564228)
@@ -12624,7 +12604,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow44" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(-0.00546199, 0, -0.999987, 0, 1, 0, 0.999987, 0, -0.00546199, 0.646894, 0.941231, 0.564228)
@@ -12651,7 +12631,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow45" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(-0.00546193, 0, -0.999987, 0, 1, 0, 0.999987, 0, -0.00546193, 0.646894, 1.24123, 0.564228)
@@ -12678,7 +12658,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow46" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(-0.00546187, 0, -0.999987, 0, 1, 0, 0.999987, 0, -0.00546187, 0.646894, 1.54123, 0.564228)
@@ -12705,7 +12685,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow47" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(-0.00546184, 0, -0.999987, 0, 1, 0, 0.999987, 0, -0.00546184, 0.646894, 1.84123, 0.564228)
@@ -12732,7 +12712,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="BigWindow48" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(-0.00546172, 0, -0.999987, 0, 1, 0, 0.999987, 0, -0.00546172, 0.646894, 2.14123, 0.564228)
@@ -12759,7 +12739,7 @@ size = Vector3(0.061554, 0.0616455, 0.0241182)
 transform = Transform3D(1, 0, 0, 0, 1.93941, 0, 0, 0, 1, 0, 0, 0.0164299)
 operation = 2
 size = Vector3(0.125, 0.0616455, 0.0181411)
-material = SubResource("StandardMaterial3D_r5j73")
+material = ExtResource("1_4kot2")
 
 [node name="4Window99" type="CSGBox3D" parent="CSGBox3D6"]
 transform = Transform3D(-1, 0, -2.98023e-07, 0, 1, 0, 2.98023e-07, 0, -1, -0.795225, 1.84244, 1.79723)

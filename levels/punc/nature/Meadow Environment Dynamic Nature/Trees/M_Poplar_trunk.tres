@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://d4aqlut5obqm0"]
+
+[ext_resource type="Texture2D" uid="uid://1gvd31vx60dv" path="res://levels/punc/nature/Meadow Environment Dynamic Nature/Trees/Models/textures/T_Poplar_bark_06_BC.tga" id="1_i7ngn"]
+
+[resource]
+resource_name = "M_Poplar_trunk"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_i7ngn")
+emission_enabled = true
+emission_energy_multiplier = 0.0

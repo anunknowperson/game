@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://dr6yr8kmoqjn2"
+path="res://.godot/imported/T_ground_meadow_soil_wet_01_MT_AO_H_SM.TGA-fa4363da856d32f5841c0af948c88352.ctex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://levels/punc/nature/Meadow Environment Dynamic Nature/Ground/T_ground_meadow_soil_wet_01_MT_AO_H_SM.TGA"
+dest_files=["res://.godot/imported/T_ground_meadow_soil_wet_01_MT_AO_H_SM.TGA-fa4363da856d32f5841c0af948c88352.ctex"]
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1

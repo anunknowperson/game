@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cr7y1amox68n2"]
+
+[ext_resource type="Texture2D" uid="uid://cdt2yff6lsq75" path="res://levels/punc/nature/Meadow Environment Dynamic Nature/Trees/Models/Textures/T_Poplar_leaves_BC.tga" id="1_rxpid"]
+
+[resource]
+resource_name = "M_Poplar_leaves"
+transparency = 2
+alpha_scissor_threshold = 0.014
+alpha_antialiasing_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_rxpid")
+emission_energy_multiplier = 0.0
+uv1_scale = Vector3(2, 2, 2)

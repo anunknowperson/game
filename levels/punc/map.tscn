@@ -1,12 +1,16 @@
-[gd_scene load_steps=107 format=3 uid="uid://cdvc2brwowmng"]
+[gd_scene load_steps=124 format=3 uid="uid://cdvc2brwowmng"]
 
 [ext_resource type="Texture2D" uid="uid://c615udjm1m6sb" path="res://levels/punc/grass/grass01.jpg" id="1_6m685"]
+[ext_resource type="Texture2D" uid="uid://dp1nswxqllu04" path="res://levels/punc/nature/Meadow Environment Dynamic Nature/Grass/Models/Textures/T_grass_meadow_01_A_M.tga" id="1_elhfh"]
 [ext_resource type="Texture2D" uid="uid://bfxlimonf1mtn" path="res://levels/punc/ref.png" id="1_mihvx"]
+[ext_resource type="PackedScene" uid="uid://cydsl76wxdh0p" path="res://levels/punc/nature/Meadow Environment Dynamic Nature/Grass/Models/grass_meadow_01_1.fbx" id="2_d6xgu"]
 [ext_resource type="Texture2D" uid="uid://bo6v3utyapcis" path="res://levels/punc/grass/grass01_n.jpg" id="2_h3imc"]
 [ext_resource type="Texture2D" uid="uid://cvjn65ewfp6px" path="res://levels/punc/punc.png" id="2_o8ur0"]
+[ext_resource type="Texture2D" uid="uid://cijelyerhtt6s" path="res://levels/punc/nature/Meadow Environment Dynamic Nature/Grass/Models/Textures/T_grass_meadow_02_A_M.tga" id="3_k7gjl"]
 [ext_resource type="Texture2D" uid="uid://dh5m0y0jxgjt1" path="res://levels/punc/grass/grass02.jpg" id="3_nwrmc"]
 [ext_resource type="Texture2D" uid="uid://dpu7atmw62hsf" path="res://levels/punc/puncreal.png" id="3_o8ur0"]
 [ext_resource type="Texture2D" uid="uid://fbex35bd1tl1" path="res://levels/punc/20.png" id="4_c6cvo"]
+[ext_resource type="PackedScene" uid="uid://bidw0dqa50sxv" path="res://levels/punc/nature/Meadow Environment Dynamic Nature/Grass/Models/grass_meadow_02_cross_1.fbx" id="4_d6xgu"]
 [ext_resource type="Texture2D" uid="uid://dqow80lspfby" path="res://levels/punc/grass/grass02_n.jpg" id="4_lfefp"]
 [ext_resource type="Texture2D" uid="uid://b1bb04x0upo5a" path="res://textures/road.webp" id="9_fklqs"]
 [ext_resource type="PackedScene" uid="uid://c2pvttx1fs8lv" path="res://objects/mp/player_spawner/mp_player_spawner.tscn" id="9_kbyy1"]
@@ -29,8 +33,12 @@
 [ext_resource type="Texture2D" uid="uid://bakyy8o2o2rjj" path="res://levels/punc/20/photo_2025-05-01_15-52-09.jpg" id="25_jixl1"]
 [ext_resource type="PackedScene" uid="uid://0qrhbwtf53fj" path="res://levels/punc/10.tscn" id="27_4j4wi"]
 [ext_resource type="PackedScene" uid="uid://1o77tp6pr0dk" path="res://levels/punc/16.tscn" id="28_fa6kk"]
+[ext_resource type="Shader" uid="uid://b4ds0uxhf43h6" path="res://sky/clouds.gdshader" id="28_ru7bl"]
 [ext_resource type="PackedScene" uid="uid://co74aaxgjdifc" path="res://levels/punc/12.tscn" id="29_ru7bl"]
+[ext_resource type="CompressedTexture3D" uid="uid://dbfbysid168mx" path="res://sky/perlworlnoise.tga" id="29_svqul"]
 [ext_resource type="PackedScene" uid="uid://b4cuhgkyb102" path="res://levels/punc/15.tscn" id="30_svqul"]
+[ext_resource type="Texture2D" uid="uid://dfkye0uf4i6w1" path="res://sky/weather.bmp" id="30_u3hjf"]
+[ext_resource type="CompressedTexture3D" uid="uid://c4dp6g6gouj2b" path="res://sky/worlnoise.bmp" id="31_elhfh"]
 [ext_resource type="PackedScene" uid="uid://c7is7jxclk0c5" path="res://levels/punc/13.tscn" id="31_u3hjf"]
 [ext_resource type="PackedScene" uid="uid://35c2ubvfjjq4" path="res://levels/punc/14.tscn" id="32_elhfh"]
 [ext_resource type="PackedScene" uid="uid://b0ddd1blryeh2" path="res://levels/punc/10_fence.tscn" id="33_jmi5m"]
@@ -40,6 +48,8 @@
 [ext_resource type="PackedScene" uid="uid://d0qjfou3eiu2u" path="res://levels/punc/entrance_21.tscn" id="44_elhfh"]
 [ext_resource type="PackedScene" uid="uid://b223cr5rkslkd" path="res://levels/punc/entrance_22.tscn" id="45_d6xgu"]
 [ext_resource type="PackedScene" uid="uid://dv6j6mi5jxh0j" path="res://levels/punc/entrance_23.tscn" id="46_k7gjl"]
+[ext_resource type="PackedScene" uid="uid://ne6qs5ixh56o" path="res://levels/punc/nature/Meadow Environment Dynamic Nature/Trees/Models/02_Poplar.FBX" id="49_u6ti6"]
+[ext_resource type="PackedScene" uid="uid://82avkl7yh53b" path="res://levels/punc/nature/Meadow Environment Dynamic Nature/Trees/Models/01_Poplar.FBX" id="50_4upaf"]
 
 [sub_resource type="Gradient" id="Gradient_cxb0v"]
 offsets = PackedFloat32Array(0.2, 1)
@@ -86,7 +96,7 @@ _shader_parameters = {
 }
 show_region_grid = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c6cvo"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u6ti6"]
 transparency = 4
 cull_mode = 2
 vertex_color_use_as_albedo = true
@@ -96,13 +106,41 @@ distance_fade_mode = 1
 distance_fade_min_distance = 128.0
 distance_fade_max_distance = 96.0
 
-[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_18pe6"]
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_4upaf"]
 generated_type = 1
 height_offset = 0.5
-material_override = SubResource("StandardMaterial3D_c6cvo")
+material_override = SubResource("StandardMaterial3D_u6ti6")
 last_lod = 0
 last_shadow_lod = 0
 lod0_range = 128.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_duumx"]
+transparency = 1
+albedo_texture = ExtResource("1_elhfh")
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_rfgxm"]
+name = "grass_meadow_01_1"
+id = 1
+scene_file = ExtResource("2_d6xgu")
+material_override = SubResource("StandardMaterial3D_duumx")
+last_lod = 1
+last_shadow_lod = 1
+lod1_range = 128.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k7gjl"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("3_k7gjl")
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_u6ti6"]
+name = "grass_meadow_02_cross_1"
+id = 2
+scene_file = ExtResource("4_d6xgu")
+material_override = SubResource("StandardMaterial3D_k7gjl")
+last_lod = 1
+last_shadow_lod = 1
+lod1_range = 128.0
 
 [sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_6m685"]
 name = "grass01"
@@ -119,7 +157,7 @@ albedo_texture = ExtResource("3_nwrmc")
 normal_texture = ExtResource("4_lfefp")
 
 [sub_resource type="Terrain3DAssets" id="Terrain3DAssets_mxndk"]
-mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_18pe6")])
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_4upaf"), SubResource("Terrain3DMeshAsset_rfgxm"), SubResource("Terrain3DMeshAsset_u6ti6")])
 texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_6m685"), SubResource("Terrain3DTextureAsset_h3imc")])
 
 [sub_resource type="Curve3D" id="Curve3D_c6cvo"]
@@ -178,7 +216,7 @@ point_count = 12
 
 [sub_resource type="Curve3D" id="Curve3D_h3imc"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.856506, 0.0202217, 0.594002, 0, 0, 0, 0, 0, 0, -0.937866, 0.0202217, -4.8089, 0, 0, 0, 0, 0, 0, -1.05341, 0.0202217, -10.1662, 0, 0, 0, 0, 0, 0, -1.19827, 0.0209688, -13.4719, 0, 0, 0, 0, 0, 0, -1.34155, 0.0209688, -16.179, 0, 0, 0, 0, 0, 0, -1.59332, 0.0209688, -19.6441, 0, 0, 0, 0, 0, 0, -1.84531, 0.0209688, -23.6791, 0, 0, 0, 0, 0, 0, -2.00027, 0.0209688, -27.3209, 0, 0, 0, 0, 0, 0, -2.18344, 0.0209688, -30.0223, 0, 0, 0, 0, 0, 0, -2.7616, 0.0209688, -38.611, 0, 0, 0, 0, 0, 0, -2.94171, 0.0209688, -42.3733, 0, 0, 0, 0, 0, 0, -3.21652, 0.0209688, -46.5679, 0, 0, 0, 0, 0, 0, -3.44034, 0.0209688, -51.8282, 0, 0, 0, 0, 0, 0, -3.57834, 0.0209688, -55.9203, 0, 0, 0, 0, 0, 0, -3.8645, 0.0209688, -59.9097, 0, 0, 0, 0, 0, 0, -3.89957, 0.0209688, -62.9987, 0, 0, 0, 0, 0, 0, -3.7067, 0.0209688, -66.3733, 0, 0, 0, 0, 0, 0, -3.56534, 0.0209688, -69.9354, 0, 0, 0, 0, 0, 0, -3.35526, 0.0209688, -72.7338, 0, 0, 0, 0, 0, 0, -3.20761, 0.0209688, -74.5462),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.856506, 0.0202217, 0.594002, 0, 0, 0, 0, 0, 0, -0.937866, 0.0202217, -4.8089, 0, 0, 0, 0, 0, 0, -1.05341, 0.0202217, -10.1662, 0, 0, 0, 0, 0, 0, -1.19827, 0.0209688, -13.4719, 0, 0, 0, 0, 0, 0, -1.34155, 0.0209688, -16.179, 0, 0, 0, 0, 0, 0, -1.59332, 0.0209688, -19.6441, 0, 0, 0, 0, 0, 0, -1.84531, 0.0209688, -23.6791, 0, 0, 0, 0, 0, 0, -2.00027, 0.0209688, -27.3209, 0, 0, 0, 0, 0, 0, -2.18344, 0.0209688, -30.0223, 0, 0, 0, 0, 0, 0, -2.7616, 0.0209688, -38.611, 0, 0, 0, 0, 0, 0, -2.94171, 0.0209688, -42.3733, 0, 0, 0, 0, 0, 0, -3.21652, 0.0443151, -46.5679, 0, 0, 0, 0, 0, 0, -3.44034, 0.0845945, -51.8282, 0, 0, 0, 0, 0, 0, -3.57843, 0.119326, -55.9229, 0, 0, 0, 0, 0, 0, -3.86462, 0.117663, -59.9121, 0, 0, 0, 0, 0, 0, -3.89981, 0.180779, -63.0035, 0, 0, 0, 0, 0, 0, -3.70633, 0.175215, -66.3806, 0, 0, 0, 0, 0, 0, -3.5648, 0.181903, -69.9424, 0, 0, 0, 0, 0, 0, -3.35434, 0.221404, -72.7453, 0, 0, 0, 0, 0, 0, -3.20747, 0.179658, -74.5462),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 20
@@ -269,7 +307,7 @@ point_count = 6
 
 [sub_resource type="Curve3D" id="Curve3D_nwrmc"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.453125, 0.228, 1.74611, 0, 0, 0, 0, 0, 0, 0.840118, 0.228, -2.17951, 0, 0, 0, 0, 0, 0, 1.37146, 0.228, -4.73924, 0, 0, 0, 0, 0, 0, 2.30469, 0.228, -7.8353, 0, 0, 0, 0, 0, 0, 3.13306, 0.228, -11.455, 0, 0, 0, 0, 0, 0, 4.83914, 0.228, -16.8548, 0, 0, 0, 0, 0, 0, 6.56332, 0.228, -22.7871, 0, 0, 0, 0, 0, 0, 7.52979, 0.228, -26.9053, 0, 0, 0, 0, 0, 0, 8.11572, 0.228, -28.665, 0, 0, 0, 0, 0, 0, 10.4615, 0.228, -37.2397, 0, 0, 0, 0, 0, 0, 11.5533, 0.228, -42.3633, 0, 0, 0, 0, 0, 0, 14.3343, 0.228, -50.6652, 0, 0, 0, 0, 0, 0, 15.6836, 0.228, -55.4587, 0, 0, 0, 0, 0, 0, 17.2665, 0.228, -60.3263, 0, 0, 0, 0, 0, 0, 18.5471, 0.228, -66.1685, 0, 0, 0, 0, 0, 0, 19.8169, 0.228, -70.3806),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.453125, 0.228, 1.74611, 0, 0, 0, 0, 0, 0, 0.840118, 0.228, -2.17951, 0, 0, 0, 0, 0, 0, 1.37146, 0.228, -4.73924, 0, 0, 0, 0, 0, 0, 2.30469, 0.228, -7.8353, 0, 0, 0, 0, 0, 0, 3.13306, 0.228, -11.455, 0, 0, 0, 0, 0, 0, 4.83914, 0.228, -16.8548, 0, 0, 0, 0, 0, 0, 6.56332, 0.228, -22.7871, 0, 0, 0, 0, 0, 0, 7.52979, 0.228, -26.9053, 0, 0, 0, 0, 0, 0, 8.11572, 0.228, -28.665, 0, 0, 0, 0, 0, 0, 10.4615, 0.228, -37.2397, 0, 0, 0, 0, 0, 0, 11.5533, 0.228, -42.3633, 0, 0, 0, 0, 0, 0, 14.3343, 0.228, -50.6652, 0, 0, 0, 0, 0, 0, 15.6836, 0.228, -55.4587, 0, 0, 0, 0, 0, 0, 17.2665, 0.290117, -60.3263, 0, 0, 0, 0, 0, 0, 18.5482, 0.317636, -66.1725, 0, 0, 0, 0, 0, 0, 19.8169, 0.409687, -70.3806),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 16
@@ -437,7 +475,7 @@ point_count = 13
 
 [sub_resource type="Curve3D" id="Curve3D_c7n8h"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 42.3494, 0, 100.603, 0, 0, 0, 0, 0, 0, 21.7108, 0, 61.2901, 0, 0, 0, 0, 0, 0, 11.5387, 0, 40.1182, 0, 0, 0, 0, 0, 0, 5.27248, 0, 25.9177, 0, 0, 0, 0, 0, 0, -0.670081, 0, 13.9474, 0, 0, 0, 0, 0, 0, -2.04462, 0, -1.22454, 0, 0, 0, 0, 0, 0, -1.65048, 0.0202217, -11.9596, 0, 0, 0, 0, 0, 0, -2.23108, 0.0202217, -17.6869, 0, 0, 0, 0, 0, 0, -2.71533, 0.0202217, -21.796, 0, 0, 0, 0, 0, 0, -3.1369, 0.0202217, -27.4033, 0, 0, 0, 0, 0, 0, -3.5905, 0.0202217, -34.1262, 0, 0, 0, 0, 0, 0, -3.58404, 0.0202217, -42.0998, 0, 0, 0, 0, 0, 0, -5.04372, 0.0202217, -59.5576, 0, 0, 0, 0, 0, 0, -6.76691, 0.0202217, -74.5083, 0, 0, 0, 0, 0, 0, -7.43755, 0.0202217, -90.6277, 0, 0, 0, 0, 0, 0, -8.56299, 0.0202217, -101.945, 0, 0, 0, 0, 0, 0, -10.0685, 0.0202217, -119.115, 0, 0, 0, 0, 0, 0, -10.7888, 0.0202217, -132.845, 0, 0, 0, 0, 0, 0, -12.1819, 0.0202217, -148.638, 0, 0, 0, 0, 0, 0, -13.2272, 0.0202217, -162.026, 0, 0, 0, 0, 0, 0, -14.741, 0.0202217, -168.183, 0, 0, 0, 0, 0, 0, -18.2045, 0.0202217, -173.1, 0, 0, 0, 0, 0, 0, -24.6736, 0.0202217, -178.105, 0, 0, 0, 0, 0, 0, -33.876, 0.0202217, -185.055, 0, 0, 0, 0, 0, 0, -40.446, 0.0202217, -190.092, 0, 0, 0, 0, 0, 0, -46.5336, 0.0202217, -194.54, 0, 0, 0, 0, 0, 0, -56.5363, 0.0202217, -201.203, 0, 0, 0, 0, 0, 0, -63.8274, 0.0202217, -207.779, 0, 0, 0, 0, 0, 0, -75.4923, 0.0202217, -216.875, 0, 0, 0, 0, 0, 0, -85.9855, 0.0202217, -224.624, 0, 0, 0, 0, 0, 0, -96.3915, 0.0202217, -233.633, 0, 0, 0, 0, 0, 0, -112.535, 0.0202217, -244.854, 0, 0, 0, 0, 0, 0, -121.835, 0.0202217, -253.599),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 42.3494, 0, 100.603, 0, 0, 0, 0, 0, 0, 21.7108, 0, 61.2901, 0, 0, 0, 0, 0, 0, 11.5387, 0, 40.1182, 0, 0, 0, 0, 0, 0, 5.27248, 0, 25.9177, 0, 0, 0, 0, 0, 0, -0.670081, 0, 13.9474, 0, 0, 0, 0, 0, 0, -2.04462, 0, -1.22454, 0, 0, 0, 0, 0, 0, -1.65048, 0.0202217, -11.9596, 0, 0, 0, 0, 0, 0, -2.23108, 0.0202217, -17.6869, 0, 0, 0, 0, 0, 0, -2.71533, 0.0202217, -21.796, 0, 0, 0, 0, 0, 0, -3.1369, 0.0202217, -27.4033, 0, 0, 0, 0, 0, 0, -3.5905, 0.0202217, -34.1262, 0, 0, 0, 0, 0, 0, -3.58404, 0.0202217, -42.0998, 0, 0, 0, 0, 0, 0, -5.04372, 0.0202217, -59.5576, 0, 0, 0, 0, 0, 0, -6.76691, -0.196864, -74.5083, 0, 0, 0, 0, 0, 0, -7.43768, -0.160938, -90.6301, 0, 0, 0, 0, 0, 0, -8.56316, -0.183713, -101.948, 0, 0, 0, 0, 0, 0, -10.0687, -0.212751, -119.118, 0, 0, 0, 0, 0, 0, -10.789, -0.16681, -132.848, 0, 0, 0, 0, 0, 0, -12.182, -0.212971, -148.641, 0, 0, 0, 0, 0, 0, -13.2273, -0.0605374, -162.027, 0, 0, 0, 0, 0, 0, -14.741, 0.0202217, -168.183, 0, 0, 0, 0, 0, 0, -18.2045, 0.0202217, -173.1, 0, 0, 0, 0, 0, 0, -24.6736, 0.0202217, -178.105, 0, 0, 0, 0, 0, 0, -33.876, 0.0202217, -185.055, 0, 0, 0, 0, 0, 0, -40.446, 0.0202217, -190.092, 0, 0, 0, 0, 0, 0, -46.5336, 0.0202217, -194.54, 0, 0, 0, 0, 0, 0, -56.5363, 0.0202217, -201.203, 0, 0, 0, 0, 0, 0, -63.8274, 0.0202217, -207.779, 0, 0, 0, 0, 0, 0, -75.4923, 0.0202217, -216.875, 0, 0, 0, 0, 0, 0, -85.9855, 0.0202217, -224.624, 0, 0, 0, 0, 0, 0, -96.3915, 0.0202217, -233.633, 0, 0, 0, 0, 0, 0, -112.535, 0.0202217, -244.854, 0, 0, 0, 0, 0, 0, -121.835, 0.0202217, -253.599),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 33
@@ -493,6 +531,37 @@ roughness = 0.0
 albedo_texture = ExtResource("23_nwpbg")
 uv1_scale = Vector3(0.25, 0.25, 0.25)
 uv1_triplanar = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jcxn0"]
+shader = ExtResource("28_ru7bl")
+shader_parameter/worlnoise = ExtResource("31_elhfh")
+shader_parameter/perlworlnoise = ExtResource("29_svqul")
+shader_parameter/weathermap = ExtResource("30_u3hjf")
+shader_parameter/wind_direction = Vector2(1, 0)
+shader_parameter/wind_speed = 1.0
+shader_parameter/_density = 0.05
+shader_parameter/cloud_coverage = 0.25
+shader_parameter/_time_offset = 0.0
+shader_parameter/rayleigh = 2.0
+shader_parameter/rayleigh_color = Color(0.26, 0.41, 0.58, 1)
+shader_parameter/mie = 0.005
+shader_parameter/mie_eccentricity = 0.8
+shader_parameter/mie_color = Color(0.63, 0.77, 0.92, 1)
+shader_parameter/turbidity = 10.0
+shader_parameter/sun_disk_scale = 1.0
+shader_parameter/ground_color = Color(1, 1, 1, 1)
+shader_parameter/exposure = 0.1
+
+[sub_resource type="Sky" id="Sky_d6xgu"]
+sky_material = SubResource("ShaderMaterial_jcxn0")
+
+[sub_resource type="Environment" id="Environment_4j4wi"]
+background_mode = 2
+sky = SubResource("Sky_d6xgu")
+tonemap_mode = 4
+ssao_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fklqs"]
 albedo_texture = ExtResource("38_sw3mv")
@@ -914,7 +983,7 @@ material = SubResource("StandardMaterial3D_kwciw")
 curve = SubResource("Curve3D_mxndk")
 
 [node name="CSGPolygon3D6" type="CSGPolygon3D" parent="Roads"]
-transform = Transform3D(0.141713, 0, 0.989908, 0, 1, 0, -0.989908, 0, 0.141713, 17.522, -0.228, -415.703)
+transform = Transform3D(0.141713, 0, 0.989908, 0, 1, 0, -0.989908, 0, 0.141713, 17.522, -0.393737, -415.703)
 use_collision = true
 polygon = PackedVector2Array(-1.47144, -0.121837, -0.891754, -0.122375, -0.306, -0.165849, -0.0593224, -0.151602, 0.385437, -0.17466, 1.35129, -0.145237, 1.38092, 0.248936, 0.789429, 0.212664, 0.335938, 0.260721, -0.0329571, 0.257065, -0.255493, 0.242029, -0.871094, 0.221007, -1.561, 0.248212)
 mode = 2
@@ -1174,7 +1243,7 @@ material = SubResource("StandardMaterial3D_kwciw")
 curve = SubResource("Curve3D_7rfqf")
 
 [node name="CSGPolygon3D7" type="CSGPolygon3D" parent="Roads"]
-transform = Transform3D(0.141713, 0, 0.989908, 0, 1, 0, -0.989908, 0, 0.141713, 5.8515, -0.228, -384.04)
+transform = Transform3D(0.141713, 0, 0.989908, 0, 1, 0, -0.989908, 0, 0.141713, 5.8515, -0.440246, -384.04)
 use_collision = true
 polygon = PackedVector2Array(-1.47144, -0.121837, -0.891754, -0.122375, -0.306, -0.165849, -0.0593224, -0.151602, 0.385437, -0.17466, 1.35129, -0.145237, 1.38092, 0.248936, 0.789429, 0.212664, 0.335938, 0.260721, -0.0329571, 0.257065, -0.255493, 0.242029, -0.871094, 0.221007, -1.561, 0.248212)
 mode = 2
@@ -1194,7 +1263,7 @@ material = SubResource("StandardMaterial3D_kwciw")
 curve = SubResource("Curve3D_nwrmc")
 
 [node name="CSGPolygon3D8" type="CSGPolygon3D" parent="Roads"]
-transform = Transform3D(0.141713, 0, 0.989908, 0, 1, 0, -0.989908, 0, 0.141713, -2.95045, -0.228, -366.735)
+transform = Transform3D(0.141713, 0, 0.989908, 0, 1, 0, -0.989908, 0, 0.141713, -2.95045, -0.489061, -366.735)
 use_collision = true
 polygon = PackedVector2Array(-1.47144, -0.121837, -0.891754, -0.122375, -0.306, -0.165849, -0.0593224, -0.151602, 0.385437, -0.17466, 1.35129, -0.145237, 1.38092, 0.248936, 0.789429, 0.212664, 0.335938, 0.260721, -0.0329571, 0.257065, -0.255493, 0.242029, -0.871094, 0.221007, -1.561, 0.248212)
 mode = 2
@@ -1214,7 +1283,7 @@ material = SubResource("StandardMaterial3D_kwciw")
 curve = SubResource("Curve3D_lfefp")
 
 [node name="CSGPolygon3D9" type="CSGPolygon3D" parent="Roads"]
-transform = Transform3D(0.141713, 0, 0.989908, 0, 1, 0, -0.989908, 0, 0.141713, -26.6709, -0.228, -399.78)
+transform = Transform3D(0.141713, 0, 0.989908, 0, 1, 0, -0.989908, 0, 0.141713, -26.6709, -0.456537, -399.78)
 use_collision = true
 polygon = PackedVector2Array(-1.47144, -0.121837, -0.891754, -0.122375, -0.306, -0.165849, -0.0593224, -0.151602, 0.385437, -0.17466, 1.35129, -0.145237, 1.38092, 0.248936, 0.789429, 0.212664, 0.335938, 0.260721, -0.0329571, 0.257065, -0.255493, 0.242029, -0.871094, 0.221007, -1.561, 0.248212)
 mode = 2
@@ -1681,7 +1750,7 @@ size = Vector3(6.03455, 1, 6.53528)
 material = SubResource("StandardMaterial3D_kwciw")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Roads"]
-transform = Transform3D(0.408617, 0, 0.912706, 0, 1, 0, -0.912706, 0, 0.408617, -22.3483, -0.315421, -392.618)
+transform = Transform3D(0.408617, 0, 0.912706, 0, 1, 0, -0.912706, 0, 0.408617, -22.3483, -0.494563, -392.618)
 use_collision = true
 size = Vector3(6.03455, 1, 6.53528)
 material = SubResource("StandardMaterial3D_kwciw")
@@ -1693,7 +1762,7 @@ size = Vector3(6.03455, 1, 6.53528)
 material = SubResource("StandardMaterial3D_kwciw")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Roads"]
-transform = Transform3D(0.408617, 0, 0.912706, 0, 1, 0, -0.912706, 0, 0.408617, -30.0877, -0.315421, -401.533)
+transform = Transform3D(0.408617, 0, 0.912706, 0, 1, 0, -0.912706, 0, 0.408617, -30.0877, -0.513181, -401.533)
 use_collision = true
 size = Vector3(6.03455, 1, 6.53528)
 material = SubResource("StandardMaterial3D_kwciw")
@@ -1871,7 +1940,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.885, 0.731527, -392.038)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.885, 0.731527, -393.038)
 
 [node name="VehicleBody3D" type="VehicleBody3D" parent="." node_paths=PackedStringArray("seats_positions")]
-transform = Transform3D(0.0321783, 0, -0.999482, 0, 1, 0, 0.999482, 0, 0.0321783, -19.4117, 0.948239, -416.306)
+transform = Transform3D(0.332754, 0, -0.943014, 0, 1, 0, 0.943014, 0, 0.332754, -31.697, 1.08212, -381.39)
 mass = 80.0
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, 0, 0.35)
@@ -1976,7 +2045,7 @@ metadata/_custom_type_script = "uid://djohcwel5mma3"
 [node name="MPAuthority" type="Node3D" parent="VehicleBody3D"]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 script = ExtResource("15_nwpbg")
-offset = 2.0
+offset = -99.0
 metadata/_custom_type_script = "uid://b3m6233tgdidj"
 
 [node name="3RDPersonCameraController" type="Node3D" parent="VehicleBody3D"]
@@ -10775,8 +10844,11 @@ operation = 2
 size = Vector3(0.242478, 2.2746, 0.844001)
 material = SubResource("StandardMaterial3D_gcm7c")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4j4wi")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.613389, 0.662606, -0.429775, 0, 0.544171, 0.838975, 0.78978, 0.514618, -0.333789, -44.26, 22.6785, -415.976)
+transform = Transform3D(-0.588393, 0.165206, 0.791518, 0.802349, -0.00194701, 0.596852, 0.100144, 0.986257, -0.131407, -44.26, 22.6785, -415.976)
 shadow_enabled = true
 
 [node name="10" parent="." instance=ExtResource("27_4j4wi")]
@@ -11181,5 +11253,41 @@ transform = Transform3D(1.76, 0, 0, 0, 1.76, 0, 0, 0, 1.76, -0.661041, -5.88972,
 use_collision = true
 size = Vector3(10.2856, 1, 8.76187)
 material = SubResource("StandardMaterial3D_fklqs")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.854395, 0, -0.519623, 0, 1, 0, 0.519623, 0, 0.854395, -36.672, 1.991, -377.161)
+
+[node name="02_Poplar" parent="." instance=ExtResource("49_u6ti6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.7509, 0, -393.443)
+
+[node name="02_Poplar2" parent="." instance=ExtResource("49_u6ti6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.6423, 0, -384.716)
+
+[node name="02_Poplar3" parent="." instance=ExtResource("49_u6ti6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6339, 0, -406.154)
+
+[node name="02_Poplar4" parent="." instance=ExtResource("49_u6ti6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5987, 0, -368.665)
+
+[node name="02_Poplar5" parent="." instance=ExtResource("49_u6ti6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.2447, 0, -425.946)
+
+[node name="02_Poplar6" parent="." instance=ExtResource("49_u6ti6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.42219, -1.90735e-06, -451.761)
+
+[node name="01_Poplar" parent="." instance=ExtResource("50_4upaf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.0188, 0, -381.106)
+
+[node name="01_Poplar2" parent="." instance=ExtResource("50_4upaf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.2049, 0, -389.559)
+
+[node name="01_Poplar3" parent="." instance=ExtResource("50_4upaf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.4519, 9.53674e-07, -413.339)
+
+[node name="01_Poplar4" parent="." instance=ExtResource("50_4upaf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6056, 0, -379.695)
+
+[node name="SpawnPoint" type="Marker3D" parent="." groups=["spawn_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5735, 1.90735e-06, -380.387)
 
 [connection signal="on_interact" from="VehicleBody3D/MPInteractable" to="VehicleBody3D" method="_on_mp_interactable_on_interact"]

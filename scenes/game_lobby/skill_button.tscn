@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://w2xoxy8own30"]
+
+[ext_resource type="Texture2D" uid="uid://bjqe4jetnawbu" path="res://students/poh/vonyat.png" id="1_i8k4d"]
+[ext_resource type="Script" uid="uid://b3m7xk66gp4ph" path="res://scenes/game_lobby/skill_button.gd" id="2_g4lgj"]
+
+[node name="SkillButton" type="TextureRect"]
+custom_minimum_size = Vector2(50, 50)
+texture = ExtResource("1_i8k4d")
+expand_mode = 2
+stretch_mode = 5
+script = ExtResource("2_g4lgj")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+text = "?"
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+auto_translate_mode = 1
+initial_position = 2
+size = Vector2i(500, 400)
+ok_button_text = "Закрыть"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="AcceptDialog"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 492.0
+offset_bottom = 351.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,137 @@
+[gd_scene load_steps=11 format=3 uid="uid://dfsy7yow8iro8"]
+
+[ext_resource type="Script" uid="uid://gd8e4jhwhe1n" path="res://levels/level.gd" id="1_b01lb"]
+[ext_resource type="Script" uid="uid://d4ac1vjic83dx" path="res://objects/spawn_point.gd" id="2_8f3vt"]
+[ext_resource type="Script" uid="uid://dj6xkodo0fb60" path="res://objects/mp/mp_level_sync.gd" id="3_8f3vt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8f3vt"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b01lb"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="GDScript" id="GDScript_8f3vt"]
+script/source = "extends Area3D
+
+var color = Color.RED
+
+@onready
+var mp_level_sync = $MPLevelSync
+
+func _on_body_entered(body: Node3D) -> void:
+	if !is_multiplayer_authority():
+		return
+	
+	if color == Color.RED:
+		color = Color.GREEN
+	else:
+		color = Color.RED
+	
+	for id in Globals.levels_mailing_lists[mp_level_sync.my_level]:
+		change_color.rpc_id(id, color)
+
+@rpc(\"any_peer\", \"call_local\", \"reliable\")
+func change_color(new_color):
+	color = new_color
+	$Label3D.modulate = color
+
+
+func synchronize_id(id :int):
+	_synchronize_id.rpc_id(id, color)
+	
+@rpc(\"any_peer\", \"call_local\", \"reliable\")
+func _synchronize_id(data):
+	color = data
+	$Label3D.modulate = data
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b01lb"]
+
+[sub_resource type="GDScript" id="GDScript_b01lb"]
+script/source = "extends Area3D
+
+
+
+func _on_body_entered(body: Node3D) -> void:
+	if body.is_in_group(\"mp_player\"):
+		body.container.change_level(0, 0)
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8f3vt"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_r0q2h"]
+
+[node name="TestLevel2" type="Node3D"]
+script = ExtResource("1_b01lb")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.63077, -0.5, 121.197)
+use_collision = true
+size = Vector3(394.915, 1, 486.468)
+material = SubResource("StandardMaterial3D_8f3vt")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.278689, 0.960381, 0, -0.960381, 0.278689, 0, 1.88143, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(0.395, 0, 0, 0, 0.395, 0, 0, 0, 0.395, -4.28216, -0.340088, 19.8089)
+use_collision = true
+size = Vector3(9.99164, 4.40186, 5.91895)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(0.395, 0, 0, 0, 0.395, 0, 0, 0, 0.395, -7.4492, -0.00941658, 21.6656)
+use_collision = true
+size = Vector3(9.99164, 4.40186, 5.91895)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(0.395, 0, 0, 0, 0.395, 0, 0, 0, 0.395, -3.93912, -0.523306, 22.5248)
+use_collision = true
+size = Vector3(9.99164, 4.40186, 5.91895)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(0.395, 0, 0, 0, 0.395, 0, 0, 0, 0.395, -6.71383, -0.523306, 24.5649)
+use_collision = true
+size = Vector3(9.99164, 4.40186, 5.91895)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(0.395, 0, 0, 0, 0.395, 0, 0, 0, 0.395, 11.2821, -0.208214, 6.85966)
+use_collision = true
+size = Vector3(37.8072, 4.40186, 5.91895)
+material = SubResource("StandardMaterial3D_b01lb")
+
+[node name="SpawnPoints" type="Node3D" parent="."]
+
+[node name="SpawnPoint" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.209284, 0, 0.189136)
+script = ExtResource("2_8f3vt")
+one_point = false
+
+[node name="Area3D2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.91925, 1.40309, 6.60636)
+script = SubResource("GDScript_8f3vt")
+
+[node name="Label3D" type="Label3D" parent="Area3D2"]
+billboard = 1
+modulate = Color(1, 0, 0, 1)
+text = "Объект"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
+shape = SubResource("BoxShape3D_b01lb")
+
+[node name="MPLevelSync" type="Node" parent="Area3D2"]
+script = ExtResource("3_8f3vt")
+metadata/_custom_type_script = "uid://dj6xkodo0fb60"
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.636698, 0.406426, 12.3145)
+script = SubResource("GDScript_b01lb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_8f3vt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("BoxMesh_r0q2h")
+
+[connection signal="body_entered" from="Area3D2" to="Area3D2" method="_on_body_entered"]
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]

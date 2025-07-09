@@ -3,6 +3,8 @@ class_name MPAuthority
 
 var authority_label: Label3D
 
+
+
 @export
 var offset := 0.2
 

@@ -1,0 +1,77 @@
+[gd_scene load_steps=4 format=3 uid="uid://4h51hum8kenv"]
+
+[ext_resource type="Script" uid="uid://byoy2833jv8tf" path="res://students/player.gd" id="1_0llo2"]
+[ext_resource type="PackedScene" uid="uid://1dc2rjn3nyq" path="res://students/student.tscn" id="2_xhq2g"]
+[ext_resource type="Script" uid="uid://buhsd2sbdluqi" path="res://scenes/game_lobby/key_hint_label.gd" id="3_5n2w0"]
+
+[node name="Player" type="Node3D"]
+script = ExtResource("1_0llo2")
+
+[node name="Player" parent="." instance=ExtResource("2_xhq2g")]
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -43.0
+offset_right = 114.0
+offset_bottom = -20.0
+grow_vertical = 0
+text = "J - действие"
+script = ExtResource("3_5n2w0")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+layout_mode = 2
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 300.0
+offset_bottom = 119.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "HP"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UI/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "SP"
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="UI/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "ST"
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HPProgressBar" type="ProgressBar" parent="UI/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+value = 100.0
+
+[node name="SPProgressBar" type="ProgressBar" parent="UI/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+value = 100.0
+
+[node name="STProgressBar" type="ProgressBar" parent="UI/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+value = 100.0

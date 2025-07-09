@@ -1,0 +1,49 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://ne6qs5ixh56o"
+path="res://.godot/imported/02_Poplar.FBX-814232cda0a72f2a34055cc419785610.scn"
+
+[deps]
+
+source_file="res://levels/punc/nature/Meadow Environment Dynamic Nature/Trees/Models/02_Poplar.FBX"
+dest_files=["res://.godot/imported/02_Poplar.FBX-814232cda0a72f2a34055cc419785610.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=true
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"materials": {
+"M_Poplar_leaves": {
+"use_external/enabled": true,
+"use_external/path": "res://levels/punc/nature/Meadow Environment Dynamic Nature/Trees/M_Poplar_leaves.tres"
+},
+"M_Poplar_trunk": {
+"use_external/enabled": true,
+"use_external/path": "res://levels/punc/nature/Meadow Environment Dynamic Nature/Trees/M_Poplar_trunk.tres"
+}
+}
+}
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1

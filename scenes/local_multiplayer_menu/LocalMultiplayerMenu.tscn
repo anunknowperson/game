@@ -1,0 +1,85 @@
+[gd_scene load_steps=2 format=3 uid="uid://l4jv8obulfae"]
+
+[ext_resource type="Script" uid="uid://dmfqn2h15tg5c" path="res://scenes/local_multiplayer_menu/local_multiplayer_menu.gd" id="1_o4x8y"]
+
+[node name="LocalMultiplayerMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o4x8y")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.3
+anchor_right = 0.7
+anchor_bottom = 0.7
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Мультиплеер в локальной сети"
+horizontal_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Ник:"
+
+[node name="NikcnameEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Поступашка"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Адрес:"
+
+[node name="AddressEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "127.0.0.1"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Порт:"
+
+[node name="PortEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "6363"
+
+[node name="ErrorLabel" type="Label" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "Соединение не удалось"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ConnectButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Присоединиться"
+
+[node name="CreateGameButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Создать игру"
+
+[connection signal="text_changed" from="VBoxContainer/HBoxContainer3/NikcnameEdit" to="." method="_on_nikcname_edit_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/HBoxContainer2/AddressEdit" to="." method="_on_address_edit_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/HBoxContainer/PortEdit" to="." method="_on_port_edit_text_changed"]
+[connection signal="pressed" from="VBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/CreateGameButton" to="." method="_on_create_game_button_pressed"]

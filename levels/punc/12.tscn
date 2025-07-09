@@ -16,9 +16,8 @@ albedo_color = Color(0.847059, 0.67451, 0.537255, 1)
 albedo_color = Color(0.847656, 0.67437, 0.536689, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8c6bi"]
-albedo_color = Color(0.356863, 0.368627, 0.568627, 1)
 metallic = 1.0
-roughness = 0.3
+roughness = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cdjtd"]
 albedo_color = Color(0.6, 0.6, 0.6, 1)
@@ -60,8 +59,7 @@ albedo_color = Color(0.6, 0.6, 0.6, 1)
 albedo_color = Color(0.28125, 0.28125, 0.28125, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8nfue"]
-albedo_color = Color(0.544526, 0.541652, 1, 1)
-metallic = 0.97
+metallic = 1.0
 roughness = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7enwn"]
@@ -88,9 +86,8 @@ albedo_color = Color(0.419608, 0.117647, 0.0980392, 1)
 albedo_color = Color(0.6, 0.6, 0.6, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kjotk"]
-albedo_color = Color(0.357749, 0.368462, 0.570313, 1)
-metallic = 0.97
-roughness = 0.3
+metallic = 1.0
+roughness = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4jbs"]
 albedo_color = Color(0.601563, 0.601563, 0.601563, 1)
